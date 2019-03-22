@@ -1,0 +1,2 @@
+# scriptcraft-types
+Scriptcraft types
