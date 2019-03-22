@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es2015", "es2018.promise"],
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "baseUrl": "../",
+    "typeRoots": ["../"],
+    "target": "es5",
+    "types": [],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
