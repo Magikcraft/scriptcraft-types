@@ -95,7 +95,12 @@ interface BossBarAPI {
 }
 
 type BukkitBlock = any;
-type BukkitWorld = any;
+
+interface BukkitWorld {
+  getSpawnLocation(): BukkitLocation;
+  [index: string]: any;
+}
+
 type BukkitVector = any;
 type BukkitChunk = any;
 
@@ -263,15 +268,310 @@ interface JSONLoc {
   z: number;
   yaw: number;
   pitch: number;
-  world: BukkitWorld;
+  world: string;
 }
 declare module "utils" {
-  function player(name: string): BukkitPlayer;
-  function players(): BukkitPlayer[];
+  /************************************************************************
+### utils.player() function
+
+The utils.player() function will return a [Player][cmpl] object
+with the given name. This function takes a single parameter
+`playerName` which can be either a String or a [Player][cmpl] object -
+if it's a Player object, then the same object is returned. If it's a
+String, then it tries to find the player with that name.
+
+#### Parameters
+
+ * playerName : A String or Player object. If no parameter is provided
+   then player() will try to return the `self` variable . It is
+   strongly recommended to provide a parameter.
+
+#### Example
+
+```javascript
+var utils = require('utils');
+var name = 'walterh';
+var player = utils.player(name);
+if ( player ) {
+  echo(player, 'Got ' + name);
+} else {
+  console.log('No player named ' + name);
+}
+```
+
+[bkpl]: http://jd.bukkit.org/dev/apidocs/org/bukkit/entity/Player.html
+[cmpl]: https://ci.visualillusionsent.net/job/CanaryLib/javadoc/net/canarymod/api/entity/living/humanoid/Player.html
+[cmloc]: https://ci.visualillusionsent.net/job/CanaryLib/javadoc/net/canarymod/api/world/position/Location.html
+[bkloc]: http://jd.bukkit.org/dev/apidocs/org/bukkit/Location.html
+
+***/
+  function player(name: string | BukkitPlayer): BukkitPlayer;
+  function players(fn?: any): BukkitPlayer[];
   function getWorld(world: any): BukkitWorld;
-  function world(world: any): BukkitWorld;
+  /*************************************************************************
+  ### utils.world( worldName ) function
+
+  Returns a World object matching the given name. Returns the same object if passed a world.
+
+  ***/
+  function world(worldName: string | BukkitWorld): BukkitWorld;
+  /*************************************************************************
+  ### utils.locationToJSON() function
+
+  utils.locationToJSON() returns a [Location][cmloc] object in JSON form...
+
+      { world: 'world5',
+        x: 56.9324,
+        y: 103.9954,
+        z: 43.1323,
+        yaw: 0.0,
+        pitch: 0.0
+      }
+
+  This can be useful if you write a plugin that needs to store location data since bukkit's Location object is a Java object which cannot be serialized to JSON by default.
+
+  #### Parameters
+
+   * location: An object of type [Location][cmloc]
+
+  #### Returns
+
+  A JSON object in the above form.
+
+  ***/
   function locationToJSON(location: BukkitLocation): JSONLoc;
+  /*************************************************************************
+  ### utils.locationToString() function
+
+  The utils.locationToString() function returns a
+  [Location][cmloc] object in string form...
+
+      '{"world":"world5",x:56.9324,y:103.9954,z:43.1323,yaw:0.0,pitch:0.0}'
+
+  ... which can be useful if you write a plugin which uses Locations as
+  keys in a lookup table.
+
+  #### Example
+
+  ```javascript
+  var utils = require('utils');
+  ...
+  var key = utils.locationToString(player.location);
+  lookupTable[key] = player.name;
+  ```
+
+  ***/
+  function locationToString(location: BukkitLocation): string;
+  /*************************************************************************
+  ### utils.locationFromJSON() function
+
+  This function reconstructs an [Location][cmloc] object from
+  a JSON representation. This is the counterpart to the
+  `locationToJSON()` function. It takes a JSON object of the form
+  returned by locationToJSON() and reconstructs and returns a bukkit
+  Location object.
+
+  ***/
   function locationFromJSON(location: JSONLoc): BukkitLocation;
+  /*************************************************************************
+  ### utils.getPlayerPos() function
+
+  This function returns the player's [Location][cmloc] (x, y, z, pitch
+  and yaw) for a named player.  If the "player" is in fact a
+  [BlockCommand][bkbcs] then the attached Block's location is returned.
+
+  #### Parameters
+
+   * player : A [org.bukkit.command.CommandSender][bkbcs] (Player or BlockCommandSender) or player name (String).
+
+  #### Returns
+
+  A [Location][cmloc] object.
+
+  [bkbcs]: http://jd.bukkit.org/dev/apidocs/org/bukkit/command/BlockCommandSender.html
+  [bksndr]: http://jd.bukkit.org/dev/apidocs/index.html?org/bukkit/command/CommandSender.html
+  ***/
+  function getPlayerPos(player: BukkitPlayer): BukkitLocation;
+
+  /************************************************************************
+  ### utils.getMousePos() function
+
+  This function returns a [Location][cmloc] object (the
+  x,y,z) of the current block being targeted by the named player. This
+  is the location of the block the player is looking at (targeting).
+
+  #### Parameters
+
+   * player : The player whose targeted location you wish to get.
+
+  #### Example
+
+  The following code will strike lightning at the location the player is looking at...
+
+  ```javascript
+  var utils = require('utils');
+  var playerName = 'walterh';
+  var targetPos = utils.getMousePos(playerName);
+  if (targetPos){
+    if (__plugin.canary){
+      targetPos.world.makeLightningBolt(targetPos);
+    }
+    if (__plugin.bukkit){
+      targetPos.world.strikeLightning(targetPos);
+    }
+  }
+  ```
+
+  ***/
+  function getMousePos(player: BukkitPlayer);
+
+  function worlds(): BukkitWorld[];
+  /*************************************************************************
+  ### utils.blockAt( Location ) function
+
+  Returns the Block at the given location.
+
+  ***/
+  function blockAt(location: BukkitLocation): BukkitBlock;
+  /************************************************************************
+  ### utils.foreach() function
+
+  The utils.foreach() function is a utility function for iterating over
+  an array of objects (or a java.util.Collection of objects) and
+  processing each object in turn. Where utils.foreach() differs from
+  other similar functions found in javascript libraries, is that
+  utils.foreach can process the array immediately or can process it
+  *nicely* by processing one item at a time then delaying processing of
+  the next item for a given number of server ticks (there are 20 ticks
+  per second on the minecraft main thread).  This method relies on
+  Bukkit's [org.bukkit.scheduler][sched] package for scheduling
+  processing of arrays.
+
+  [sched]: http://jd.bukkit.org/beta/apidocs/org/bukkit/scheduler/package-summary.html
+
+  #### Parameters
+
+   * array : The array to be processed - It can be a javascript array, a java array or java.util.Collection
+   * callback : The function to be called to process each item in the
+     array. The callback function should have the following signature
+     `callback(item, index, object, array)`. That is the callback will
+     be called with the following parameters....
+
+     - item : The item in the array
+     - index : The index at which the item can be found in the array.
+     - object : Additional (optional) information passed into the foreach method.
+     - array : The entire array.
+
+   * context (optional) : An object which may be used by the callback.
+   * delayInMilliseconds (optional, numeric) : If a delay is specified then the processing will be scheduled so that
+     each item will be processed in turn with a delay between the completion of each
+     item and the start of the next. This is recommended for any CPU-intensive process.
+   * onDone (optional, function) : A function to be executed when all processing
+     is complete. This parameter is only used when the processing is delayed. (It's optional even if a
+     delay parameter is supplied).
+
+  If called with a delay parameter then foreach() will return
+  immediately after processing just the first item in the array (all
+  subsequent items are processed later). If your code relies on the
+  completion of the array processing, then provide an `onDone` parameter
+  and put the code there.
+
+  #### Example
+
+  The following example illustrates how to use foreach for immediate processing of an array...
+
+  ```javascript
+  var utils = require('utils');
+  var players = utils.players();
+  utils.foreach (players, function( player ) {
+    echo( player , 'Hi ' + player);
+  });
+  ```
+
+  ... The `utils.foreach()` function can work with Arrays or any
+  Java-style collection. This is important because many objects in the
+  CanaryMod and Bukkit APIs use Java-style collections.
+  ***/
+  function foreach<T, P>(
+    array: T[],
+    callback: (item: T, index: number, context: P, array: T[]) => void,
+    context: P,
+    delay?: number,
+    onCompletion?: () => void
+  );
+  /************************************************************************
+  ### utils.nicely() function
+
+  The utils.nicely() function is for performing background processing. utils.nicely() lets you
+  process with a specified delay between the completion of each `next()`
+  function and the start of the next `next()` function.
+  `utils.nicely()` is a recursive function - that is - it calls itself
+  (schedules itself actually) repeatedly until `hasNext` returns false.
+
+  #### Parameters
+
+   * next : A function which will be called if processing is to be done.
+   * hasNext : A function which is called to determine if the `next`
+     callback should be invoked. This should return a boolean value -
+     true if the `next` function should be called (processing is not
+     complete), false otherwise.
+   * onDone : A function which is to be called when all processing is complete (hasNext returned false).
+   * delayInMilliseconds : The delay between each call.
+
+  #### Example
+
+  See the source code to utils.foreach for an example of how utils.nicely is used.
+
+  ***/
+  function nicely(
+    next: () => void,
+    hasNext: () => boolean,
+    onDone: () => void,
+    delay: number
+  ): void;
+  /*************************************************************************
+  ### utils.time( world ) function
+
+  Returns the timeofday (in minecraft ticks) for the given world. This function is necessary because
+  canarymod and bukkit differ in how the timeofday is calculated.
+
+  See http://minecraft.gamepedia.com/Day-night_cycle#Conversions
+
+  ***/
+  function getTime(world: BukkitWorld): number;
+  /*************************************************************************
+ ### utils.time24( world ) function
+
+ Returns the timeofday for the given world using 24 hour notation. (number of minutes)
+
+ See http://minecraft.gamepedia.com/Day-night_cycle#Conversions
+
+ #### Parameters
+
+  * world : the name of the world or world object for which you want to get time
+
+ ***/
+  function getTime24(world: BukkitWorld): number;
+  /*************************************************************************
+  ### utils.players() function
+
+  This function returns a javascript array of all online players on the
+  server.  You can optionally provide a function which will be invoked
+  with each player as a parameter.  For example, to give each player the
+  ability to shoot arrows which launch fireworks:
+
+  ```javascript
+  require('utils').players( arrows.firework )
+  ```
+
+  Any players with a bow will be able to launch fireworks by shooting.
+
+  ### utils.playerNames() function
+
+  This function returns a javascript array of player names (as javascript strings)
+
+  ***/
+  function players(): string[];
 }
 
 /**
@@ -289,7 +589,69 @@ declare module "inventory";
 /**
  * http
  */
-declare module "http";
+declare module "http" {
+  type HttpVerb = "GET" | "POST" | "PUT" | "DELETE";
+  /*************************************************************************
+  ## Http Module
+
+  For handling http requests. Not to be confused with the more robust
+  and functional 'http' module bundled with Node.js.
+
+  ### http.request() function
+
+  The http.request() function will fetch a web address asynchronously (on a
+  separate thread)and pass the URL's response to a callback function
+  which will be executed synchronously (on the main thread).  In this
+  way, http.request() can be used to fetch web content without blocking the
+  main thread of execution.
+
+  #### Parameters
+
+   * request: The request details either a plain URL e.g. "http://scriptcraft.js/sample.json" or an object with the following properties...
+
+     - url: The URL of the request.
+     - method: Should be one of the standard HTTP methods, GET, POST, PUT, DELETE (defaults to GET).
+     - params: A Javascript object with name-value pairs. This is for supplying parameters to the server.
+
+   * callback: The function to be called when the Web request has completed. This function takes the following parameters...
+     - responseCode: The numeric response code from the server. If the server did not respond with 200 OK then the response parameter will be undefined.
+     - response: A string (if the response is of type text) or object containing the HTTP response body.
+
+  #### Example
+
+  The following example illustrates how to use http.request to make a request to a JSON web service and evaluate its response...
+
+  ```javascript
+  var jsResponse;
+  var http = require('http');
+  http.request('http://scriptcraftjs.org/sample.json',function(responseCode, responseBody){
+    jsResponse = JSON.parse( responseBody );
+  });
+  ```
+  The following example illustrates a more complex use-case POSTing parameters to a CGI process on a server...
+
+  ```javascript
+  var http = require('http');
+  http.request( {
+      url: 'http://pixenate.com/pixenate/pxn8.pl',
+      method: 'POST',
+      params: {script: '[]'}
+    },
+    function( responseCode, responseBody ) {
+      var jsObj = JSON.parse( responseBody );
+    });
+  ```
+
+  ***/
+  function request(
+    request: {
+      url: string;
+      method: HttpVerb;
+      params: { [name: string]: string | number };
+    },
+    callback: (responseCode: number, responseBody: string | object) => void
+  ): void;
+}
 
 /**
  * events
