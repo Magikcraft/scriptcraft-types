@@ -1,6 +1,6 @@
 {
   "name": "@scriptcraft/types",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ScriptCraft types",
   "main": "index.js",
   "scripts": {

@@ -98,17 +98,16 @@ type BukkitBlock = any;
 
 interface BukkitWorld {
   getSpawnLocation(): BukkitLocation;
+  regenerateChunk(x, z): void;
   [index: string]: any;
 }
 
 type BukkitVector = any;
 type BukkitChunk = any;
 
-/* interface BukkitWorld {
-
-} */
 interface BukkitLocation {
   world: BukkitWorld;
+  chunk: BukkitChunk;
   x: number;
   y: number;
   z: number;
