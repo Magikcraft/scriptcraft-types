@@ -65,6 +65,8 @@ type Entity = any;
 type Scoreboard = any;
 type WeatherType = any;
 type BlockData = any;
+type InetSocketAddress = any;
+type AdvancementProgress = any;
 
 interface BukkitPlayer {
   canSee(player: BukkitPlayer): boolean;
