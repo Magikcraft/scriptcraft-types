@@ -1,6 +1,6 @@
 declare const echo: (player: any, msg: string) => void;
 declare const java: any;
-declare const __plugin: any;
+declare const __plugin: Plugin;
 declare const __dirname: string;
 declare const __filename: string;
 declare const org: any;
@@ -34,6 +34,7 @@ declare interface events {
   serverCommand: (event) => void;
   playerQuit: (event) => void;
   playerInteract: (event) => void;
+  1;
   entityDamageByEntity: (event) => void;
   entityDamage: (event) => void;
   projectileHit: (event) => void;
@@ -42,7 +43,293 @@ declare interface events {
 }
 
 type NashornScriptEngine = any;
-type BukkitPlayer = any;
+
+/**
+ * As yet untyped
+ */
+type Statistic = any;
+type EntityType = any;
+type Particle = any;
+type Material = any;
+type Advancement = any;
+type Plugin = any;
+type ItemStack = any;
+type Effect = any;
+type SoundCategory = any;
+type Sound = any;
+type Instrument = any;
+type Note = any;
+type DyeColor = any;
+type MapView = any;
+type Entity = any;
+type Scoreboard = any;
+type WeatherType = any;
+type BlockData = any;
+
+interface BukkitPlayer {
+  canSee(player: BukkitPlayer): boolean;
+  /**Says a message (or runs a command). */
+  chat(msg: string): void;
+  decrementStatistic(statistic: Statistic);
+  decrementStatistic(statistic: Statistic, amount: number);
+  decrementStatistic(statistic: Statistic, entityType: EntityType);
+  decrementStatistic(
+    statistic: Statistic,
+    entityType: EntityType,
+    amount: number
+  );
+  decrementStatistic(statistic: Statistic, material: Material);
+  decrementStatistic(statistic: Statistic, material: Material, amount: number);
+  getAddress();
+  getAdvancementProgress(advancement: Advancement);
+  getAllowFlight();
+  getClientViewDistance();
+  getCompassTarget();
+  getDisplayName();
+  getExhaustion();
+  getExp();
+  getFlySpeed();
+  getFoodLevel();
+  getHealthScale();
+  getLevel();
+  getLocale();
+  getPlayerListFooter();
+  getPlayerListHeader();
+  getPlayerListName();
+  getPlayerTime();
+  getPlayerTimeOffset();
+  getPlayerWeather();
+  getSaturation();
+  getScoreboard();
+  getSpectatorTarget();
+  getStatistic(statistic: Statistic);
+  getStatistic(statistic: Statistic, entityType: EntityType);
+  getStatistic(statistic: Statistic, material: Material);
+  getTotalExperience();
+  getWalkSpeed();
+  giveExp(amount: number);
+  giveExpLevels(amount: number);
+  hidePlayer(player: BukkitPlayer);
+  hidePlayer(plugin: Plugin, player: BukkitPlayer);
+  incrementStatistic(statistic: Statistic);
+  incrementStatistic(statistic: Statistic, amount: number);
+  incrementStatistic(statistic: Statistic, entityType): EntityType;
+  incrementStatistic(
+    statistic: Statistic,
+    entityType: EntityType,
+    amount: number
+  );
+  incrementStatistic(statistic: Statistic, material: Material);
+  incrementStatistic(statistic: Statistic, material: Material, amount: number);
+  isFlying();
+  isHealthScaled();
+  isPlayerTimeRelative();
+  isSleepingIgnored();
+  isSneaking();
+  isSprinting();
+  kickPlayer(message: string);
+  loadData();
+  openBook(book: ItemStack);
+  performCommand(command: string);
+  playEffect(loc: BukkitLocation, effect: Effect, data: number);
+  playEffect(loc: BukkitLocation, effect: Effect, data: any);
+  playNote(loc: BukkitLocation, instrument: number, note: number);
+  playNote(loc: BukkitLocation, instrument: Instrument, note: Note);
+  playSound(
+    location: BukkitLocation,
+    sound: string,
+    volume: number,
+    pitch: number
+  );
+  playSound(
+    location: BukkitLocation,
+    sound: string,
+    category: SoundCategory,
+    volume: number,
+    pitch: number
+  );
+  playSound(
+    location: BukkitLocation,
+    sound: Sound,
+    volume: number,
+    pitch: number
+  );
+  playSound(
+    location: BukkitLocation,
+    sound: Sound,
+    category: SoundCategory,
+    volume: number,
+    pitch: number
+  );
+
+  resetPlayerTime();
+  resetPlayerWeather();
+  resetTitle();
+  saveData();
+  sendBlockChange(loc: BukkitLocation, block: BlockData);
+
+  sendBlockChange(loc: BukkitLocation, material: Material, data: number);
+  sendChunkChange(
+    loc: BukkitLocation,
+    sx: number,
+    sy: number,
+    sz: number,
+    data: number[]
+  );
+  sendMap(map: MapView);
+  sendRawMessage(message: string);
+  sendSignChange(loc: BukkitLocation, lines: string[]);
+  sendSignChange(loc: BukkitLocation, lines: string[], dyeColor: DyeColor);
+  sendTitle(title: string, subtitle: string);
+  sendTitle(
+    title: string,
+    subtitle: string,
+    fadeIn: number,
+    stay: number,
+    fadeOut: number
+  );
+  setAllowFlight(flight: boolean);
+  setCompassTarget(loc: BukkitLocation);
+  setDisplayName(name: string);
+  setExhaustion(value: number);
+  setExp(exp: number);
+  setFlying(value: boolean);
+  setFlySpeed(value: number);
+  setFoodLevel(value: number);
+  setHealthScale(scale: number);
+  setHealthScaled(scale: boolean);
+  setLevel(level: number);
+  setPlayerListFooter(footer: string);
+  setPlayerListHeader(header: string);
+  setPlayerListHeaderFooter(header: string, footer: string);
+  setPlayerListName(name: string);
+  setPlayerTime(time: number, relative: boolean);
+  setPlayerWeather(type: WeatherType);
+  setResourcePack(url: string);
+  setResourcePack(url: string, hash: number[]);
+  setSaturation(value: number);
+  setScoreboard(scoreboard: Scoreboard);
+  setSleepingIgnored(isSleeping: boolean);
+  setSneaking(sneak: boolean);
+  setSpectatorTarget(entity: Entity);
+  setSprinting(sprinting: boolean);
+  setStatistic(statistic: Statistic, newValue: number);
+  setStatistic(statistic: Statistic, entityType: EntityType, newValue: number);
+  setStatistic(statistic: Statistic, material: Material, newValue: number);
+  setTexturePack(url: string);
+  setTotalExperience(exp: number);
+  setWalkSpeed(value: number);
+  showPlayer(player: BukkitPlayer);
+  showPlayer(plugin: Plugin, player: BukkitPlayer);
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number
+  );
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number
+  );
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    extra: number
+  );
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    extra: number,
+    data: any
+  );
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    data: any
+  );
+  spawnParticle(
+    particle: Particle,
+    x: number,
+    y: number,
+    z: number,
+    count: number,
+    data: any
+  );
+  spawnParticle(particle: Particle, location: BukkitLocation, count: number);
+  spawnParticle(
+    particle: Particle,
+    location: BukkitLocation,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number
+  );
+  spawnParticle(
+    particle: Particle,
+    location: BukkitLocation,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    extra: number
+  );
+  spawnParticle(
+    particle: Particle,
+    location: BukkitLocation,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    extra: number,
+    data: any
+  );
+  spawnParticle(
+    particle: Particle,
+    location: BukkitLocation,
+    count: number,
+    offsetX: number,
+    offsetY: number,
+    offsetZ: number,
+    data: any
+  );
+  spawnParticle(
+    particle: Particle,
+    location: BukkitLocation,
+    count: number,
+    data: any
+  );
+  stopSound(sound: string);
+  stopSound(sound: string, category: SoundCategory);
+  stopSound(sound: Sound);
+  stopSound(sound: Sound, category: SoundCategory);
+  updateCommands();
+  updateInventory();
+}
 
 /* declare const command: (name, func, options, intercepts) => () => void; */
 
@@ -102,6 +389,12 @@ interface BukkitLocation {
   getBlockX: () => number;
   getBlockY: () => number;
   getBlockZ: () => number;
+  getX: () => number;
+  getY: () => number;
+  getZ: () => number;
+  setX: (x: number) => void;
+  setY: (y: number) => void;
+  setZ: (z: number) => void;
   getChunk: () => BukkitChunk;
   getDirection: () => BukkitVector;
   getPitch: () => number;
@@ -1977,7 +2270,7 @@ declare module "events" {
 
       * callback - A function which is called whenever the [player.PlayerInteractEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/player/PlayerInteractEvent.html) is fired
 
-      * priority - optional - see events.on() for more information.
+      * priority - optional -bi see events.on() for more information.
 
      ***/
   function playerInteract(callback: callbackFn, priority?: any);
