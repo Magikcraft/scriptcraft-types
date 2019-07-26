@@ -324,6 +324,7 @@ interface BukkitPlayer {
     count: number,
     data: any
   );
+  spigot(): any;
   stopSound(sound: string);
   stopSound(sound: string, category: SoundCategory);
   stopSound(sound: Sound);
