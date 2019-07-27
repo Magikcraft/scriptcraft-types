@@ -520,7 +520,7 @@ interface Attributable {
 }
       
 interface Java{
-   type(type: 'org.bukkit.GameMode'): GameMode
+   type(type: 'org.bukkit.GameMode'): GameModes
 }
 
 interface GameModes {
@@ -1008,6 +1008,7 @@ interface HumanEntity extends LivingEntity, InventoryHolder {
       getMainHand​(): MainHand
       /** Returns the name of this player */
       getName​(): string
+      name: string;
       /** Gets the inventory view the player is currently viewing. */
       getOpenInventory​(): InventoryView
       /** Deprecated. There are currently no well defined semantics regardingserialized entities in Bukkit. Use with care. */
@@ -1434,6 +1435,7 @@ interface Damageable extends Entity {
    damage​(amount: number, source: Entity): void
    /** Gets the entity's health from 0 to getMaxHealth(), where 0 is dead. */
    getHealth​(): number
+   health: number
    /** Deprecated. use Attribute.GENERIC_MAX_HEALTH. */
    getMaxHealth​(): number
    /** Deprecated. use Attribute.GENERIC_MAX_HEALTH. */
@@ -3996,6 +3998,7 @@ interface Server extends PluginMessageRecipient {
    getWhitelistedPlayers​(): OfflinePlayer[]
    /** Gets the world with the given name. */
    getWorld​(name: string): World
+   world(name: string): World;
    /** Gets the world from the given Unique ID. */
    getWorld​(uid: UUID): World
    /** Gets the folder that contains all of the various Worlds. */
@@ -4609,6 +4612,7 @@ interface Entity extends Metadatable, CommandSender, Nameable, PersistentDataHol
    getLastDamageCause​(): EntityDamageEvent
    /** Gets the entity's current position */
    getLocation​(): Location
+   location: Location
    /** Stores the entity's current position in the provided Location object. */
    getLocation​(loc: Location): Location
    /** Returns the entity's maximum fire ticks. */
@@ -4643,6 +4647,7 @@ interface Entity extends Metadatable, CommandSender, Nameable, PersistentDataHol
    getWidth​(): number
    /** Gets the current world this entity resides in */
    getWorld​(): World
+   world: World
    /** Returns whether gravity applies to this entity. */
    hasGravity​(): boolean
    /** Gets whether or not the mob's custom name is displayed client side. */
@@ -5126,6 +5131,7 @@ interface IPlayer extends Conversable, OfflinePlayer, PluginMessageRecipient {
    getFlySpeed​(): number
    /** Gets the players current food level */
    getFoodLevel​(): number
+   foodLevel: number
    /** Gets the number that health is scaled to for the client. */
    getHealthScale​(): number
    /** Gets the players current experience level */
@@ -5336,6 +5342,7 @@ interface IPlayer extends Conversable, OfflinePlayer, PluginMessageRecipient {
    spawnParticle​(particle: Particle, location: Location, count: number, offsetX: number, offsetY: number, offsetZ: number, data: any): any
    /** Spawns the particle (the number of times specified by count)at the target location. */
    spawnParticle​(particle: Particle, location: Location, count: number, data: any): any
+   spigot(): any
    /** Stop the specified sound from playing. */
    stopSound​(sound: string): void
    /** Stop the specified sound from playing. */
@@ -6137,6 +6144,7 @@ interface World extends PluginMessageRecipient, Metadatable {
    getMonsterSpawnLimit​(): number
    /** Gets the unique name of this world */
    getName​(): string
+   name: string
    /** Returns a list of entities within a bounding box centered around aLocation. */
    getNearbyEntities​(location: Location, x: number, y: number, z: number): Entity[]
    /** Returns a list of entities within a bounding box centered around aLocation. */
