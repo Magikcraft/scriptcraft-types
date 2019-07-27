@@ -212,7 +212,6 @@ type Statistic = any
 type Particle = any
 type Advancement = any
 type Plugin = any
-type ItemStack = any
 type Effect = any
 type SoundCategory = any
 type Sound = any
@@ -225,6 +224,78 @@ type BlockData = any
 type InetSocketAddress = any
 type AdvancementProgress = any
 type BlockVector = any
+
+interface Java{
+   type(type: 'org.bukkit.inventory.ItemStack'):  ItemStackConstructor
+}
+
+interface  ItemStackConstructor {
+   new():  ItemStack
+   new(stack: ItemStack):  ItemStack
+   new(type: Material):  ItemStack
+   new(type: Material, amount: number):  ItemStack
+   new(type: Material, amount: number, damage: number):  ItemStack
+   new(type: Material, amount: number, damage: number, data: number):  ItemStack
+}
+
+interface ItemStack extends Object, Cloneable<ItemStack> {
+
+   /** Adds the specified Enchantment to this item stack. */
+   addEnchantment​(ench: Enchantment, level: number): void
+   /** Adds the specified enchantments to this item stack. */
+   addEnchantments​(enchantments: Map<Enchantment, number>): void
+   /** Adds the specified Enchantment to this item stack. */
+   addUnsafeEnchantment​(ench: Enchantment, level: number): void
+   /** Adds the specified enchantments to this item stack in an unsafe manner. */
+   addUnsafeEnchantments​(enchantments: Map<Enchantment, number>): void
+   /**   */
+   clone​(): ItemStack
+   /** Checks if this ItemStack contains the given Enchantment */
+   containsEnchantment​(ench: Enchantment): boolean
+   /** Required method for configuration serialization */
+   deserialize​(args: Map<string, Object>): ItemStack
+   /**   */
+   equals​(obj: Object): boolean
+   /** Gets the amount of items in this stack */
+   getAmount​(): number
+   /** Gets the MaterialData for this stack of items */
+   getData​(): MaterialData
+   /** Deprecated. see setDurability(short) */
+   getDurability​(): number
+   /** Gets the level of the specified enchantment on this item stack */
+   getEnchantmentLevel​(ench: Enchantment): number
+   /** Gets a map containing all enchantments and their levels on this item. */
+   getEnchantments​(): Map<Enchantment, number>
+   /** Get a copy of this ItemStack's ItemMeta. */
+   getItemMeta​(): ItemMeta
+   /** Get the maximum stacksize for the material hold in this ItemStack. */
+   getMaxStackSize​(): number
+   /** Gets the type of this item */
+   getType​(): Material
+   /**   */
+   hashCode​(): number
+   /** Checks to see if any meta data has been defined. */
+   hasItemMeta​(): boolean
+   /** This method is the same as equals, but does not consider stack size(amount). */
+   isSimilar​(stack: ItemStack): boolean
+   /** Removes the specified Enchantment if it exists on thisItemStack */
+   removeEnchantment​(ench: Enchantment): number
+   /** Creates a Map representation of this class. */
+   serialize​(): Map<string, Object>
+   /** Sets the amount of items in this stack */
+   setAmount​(amount: number): void
+   /** Sets the MaterialData for this stack of items */
+   setData​(data: MaterialData): void
+   /** Deprecated. durability is now part of ItemMeta. To avoid confusion andmisuse, getItemMeta(), setItemMeta(ItemMeta) andDamageable.setDamage(int) should be used instead. This is becauseany call to this method will be overwritten by subsequent setting ofItemMeta which was created before this call. */
+   setDurability​(durability: number): void
+   /** Set the ItemMeta of this ItemStack. */
+   setItemMeta​(itemMeta: ItemMeta): boolean
+   /** Sets the type of this item */
+   setType​(type: Material): void
+   /**   */
+   toString​(): string
+}
+
 
 interface MetadataValue {
     /** Attempts to convert the value of this metadata item into a boolean. */
@@ -370,7 +441,11 @@ interface InventoryHolder {
     getInventory(): Inventory
 }
 
-interface Inventory extends ItemStack {
+interface Iterable<T> {
+   forEach(consumer: (item: T) => void): void
+}
+
+interface Inventory extends Iterable<ItemStack> {
     /** Stores the given ItemStacks in the inventory. */
     addItem(...items: ItemStack[]): { [key: number]: ItemStack }
     /** Finds all slots in the inventory containing any ItemStacks with thegiven ItemStack. */
