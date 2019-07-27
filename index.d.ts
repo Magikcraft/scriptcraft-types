@@ -4637,6 +4637,7 @@ interface Entity extends Metadatable, CommandSender, Nameable, PersistentDataHol
    getTicksLived​(): number
    /** Get the type of the entity. */
    getType​(): EntityType
+   type: EntityType
    /** Returns a unique and persistent id for this entity */
    getUniqueId​(): UUID
    /** Get the vehicle that this player is inside. */
@@ -5542,6 +5543,7 @@ interface Block extends Metadatable {
    getChunk​(): Chunk
    /** Deprecated. Magic value */
    getData​(): number
+   data: number
    /** Returns a list of items which would drop by destroying this block */
    getDrops​(): ItemStack[]
    /** Returns a list of items which would drop by destroying this block witha specific tool */
@@ -5558,6 +5560,7 @@ interface Block extends Metadatable {
    getLightLevel​(): number
    /** Gets the Location of the block */
    getLocation​(): Location
+   location: Location
    /** Stores the location of the block in the provided Location object. */
    getLocation​(loc: Location): Location
    /** Returns the reaction of the block when moved by a piston */
@@ -5574,6 +5577,7 @@ interface Block extends Metadatable {
    getTemperature​(): number
    /** Gets the type of this block */
    getType​(): Material
+   type: Material
    /** Gets the world which contains this Block */
    getWorld​(): World
    /** Gets the x-coordinate of this block */
@@ -6100,6 +6104,7 @@ interface World extends PluginMessageRecipient, Metadatable {
    getEmptyChunkSnapshot​(x: number, z: number, includeBiome: boolean, includeBiomeTemp: boolean): ChunkSnapshot
    /** Get a list of all entities in this World */
    getEntities​(): Entity[]
+   entities: Entity[]
    /** Get a collection of all entities in this World matching the givenclass/interface */
    getEntitiesByClass​<T extends Entity>(cls: new(...args) => T): T[]
    /** Deprecated.  */
