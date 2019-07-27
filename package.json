@@ -1,25 +1,28 @@
 {
-  "name": "@scriptcraft/types",
-  "version": "1.0.7",
-  "description": "ScriptCraft types",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"No tests\" && exit 0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Magikcraft/scriptcraft-types.git"
-  },
-  "keywords": [
-    "scriptcraft",
-    "minecraft",
-    "magikcraft"
-  ],
-  "types": "./index.d.ts",
-  "author": "Magikcraft.io",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Magikcraft/scriptcraft-types/issues"
-  },
-  "homepage": "https://github.com/Magikcraft/scriptcraft-types#readme"
+    "name": "@scriptcraft/types",
+    "version": "1.1.0",
+    "description": "ScriptCraft types",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"No tests\" && exit 0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Magikcraft/scriptcraft-types.git"
+    },
+    "keywords": [
+        "scriptcraft",
+        "minecraft",
+        "magikcraft"
+    ],
+    "types": "./index.d.ts",
+    "author": "Magikcraft.io",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Magikcraft/scriptcraft-types/issues"
+    },
+    "homepage": "https://github.com/Magikcraft/scriptcraft-types#readme",
+    "dependencies": {
+        "prettier": "^1.18.2"
+    }
 }
