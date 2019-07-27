@@ -4992,261 +4992,362 @@ interface Vector {
    zero​(): Vector
 }
 
-interface Player {
-  canSee(player: Player): boolean;
-  /**Says a message (or runs a command). */
-  chat(msg: string): void;
-  decrementStatistic(statistic: Statistic);
-  decrementStatistic(statistic: Statistic, amount: number);
-  decrementStatistic(statistic: Statistic, entityType: EntityType);
-  decrementStatistic(
-    statistic: Statistic,
-    entityType: EntityType,
-    amount: number
-  );
-  decrementStatistic(statistic: Statistic, material: Material);
-  decrementStatistic(statistic: Statistic, material: Material, amount: number);
-  getAddress(): InetSocketAddress;
-  getAdvancementProgress(advancement: Advancement): AdvancementProgress;
-  getAllowFlight(): boolean;
-  getClientViewDistance(): number;
-  getCompassTarget(): Location;
-  getDisplayName(): string;
-  getExhaustion(): number;
-  getExp(): number;
-  getFlySpeed(): number;
-  getFoodLevel(): number;
-  getHealthScale(): number;
-  getLevel(): number;
-  getLocale(): string;
-  getName(): string;
-  getPlayerListFooter(): string;
-  getPlayerListHeader(): string;
-  getPlayerListName(): string;
-  getPlayerTime(): number;
-  getPlayerTimeOffset(): number;
-  getPlayerWeather(): WeatherType;
-  getSaturation(): number;
-  getScoreboard(): Scoreboard;
-  getSpectatorTarget(): Entity;
-  getStatistic(statistic: Statistic): number;
-  getStatistic(statistic: Statistic, entityType: EntityType): number;
-  getStatistic(statistic: Statistic, material: Material): number;
-  getTotalExperience(): number;
-  getWalkSpeed(): number;
-  giveExp(amount: number);
-  giveExpLevels(amount: number);
-  hidePlayer(plugin: Plugin, player: Player);
-  incrementStatistic(statistic: Statistic);
-  incrementStatistic(statistic: Statistic, amount: number);
-  incrementStatistic(statistic: Statistic, entityType): EntityType;
-  incrementStatistic(
-    statistic: Statistic,
-    entityType: EntityType,
-    amount: number
-  );
-  incrementStatistic(statistic: Statistic, material: Material);
-  incrementStatistic(statistic: Statistic, material: Material, amount: number);
-  isFlying(): boolean;
-  isHealthScaled(): boolean;
-  isPlayerTimeRelative(): boolean;
-  isSleepingIgnored(): boolean;
-  isSneaking(): boolean;
-  isSprinting(): boolean;
-  kickPlayer(message: string);
-  /**Loads the players current location, health, inventory, motion, and other information from the username.dat file, in the world/player folder. */
-  loadData();
-  openBook(book: ItemStack);
-  performCommand(command: string): boolean;
-  playEffect(loc: Location, effect: Effect, data: number);
-  playEffect(loc: Location, effect: Effect, data: any);
-  playNote(loc: Location, instrument: number, note: number);
-  playNote(loc: Location, instrument: Instrument, note: Note);
-  playSound(location: Location, sound: string, volume: number, pitch: number);
-  playSound(
-    location: Location,
-    sound: string,
-    category: SoundCategory,
-    volume: number,
-    pitch: number
-  );
-  playSound(location: Location, sound: Sound, volume: number, pitch: number);
-  playSound(
-    location: Location,
-    sound: Sound,
-    category: SoundCategory,
-    volume: number,
-    pitch: number
-  );
+interface Java{
+   type(type: 'org.bukkit.Achievement'): Achievements
+}
 
-  resetPlayerTime();
-  resetPlayerWeather();
-  resetTitle();
-  saveData();
-  sendBlockChange(loc: Location, block: BlockData);
+interface Achievements {
+   /** Deprecated.   */
+   ACQUIRE_IRON: Achievement
+   /** Deprecated.   */
+   BAKE_CAKE: Achievement
+   /** Deprecated.   */
+   BOOKCASE: Achievement
+   /** Deprecated.   */
+   BREED_COW: Achievement
+   /** Deprecated.   */
+   BREW_POTION: Achievement
+   /** Deprecated.   */
+   BUILD_BETTER_PICKAXE: Achievement
+   /** Deprecated.   */
+   BUILD_FURNACE: Achievement
+   /** Deprecated.   */
+   BUILD_HOE: Achievement
+   /** Deprecated.   */
+   BUILD_PICKAXE: Achievement
+   /** Deprecated.   */
+   BUILD_SWORD: Achievement
+   /** Deprecated.   */
+   BUILD_WORKBENCH: Achievement
+   /** Deprecated.   */
+   COOK_FISH: Achievement
+   /** Deprecated.   */
+   DIAMONDS_TO_YOU: Achievement
+   /** Deprecated.   */
+   ENCHANTMENTS: Achievement
+   /** Deprecated.   */
+   END_PORTAL: Achievement
+   /** Deprecated.   */
+   EXPLORE_ALL_BIOMES: Achievement
+   /** Deprecated.   */
+   FLY_PIG: Achievement
+   /** Deprecated.   */
+   FULL_BEACON: Achievement
+   /** Deprecated.   */
+   GET_BLAZE_ROD: Achievement
+   /** Deprecated.   */
+   GET_DIAMONDS: Achievement
+   /** Deprecated.   */
+   GHAST_RETURN: Achievement
+   /** Deprecated.   */
+   KILL_COW: Achievement
+   /** Deprecated.   */
+   KILL_ENEMY: Achievement
+   /** Deprecated.   */
+   KILL_WITHER: Achievement
+   /** Deprecated.   */
+   MAKE_BREAD: Achievement
+   /** Deprecated.   */
+   MINE_WOOD: Achievement
+   /** Deprecated.   */
+   NETHER_PORTAL: Achievement
+   /** Deprecated.   */
+   ON_A_RAIL: Achievement
+   /** Deprecated.   */
+   OPEN_INVENTORY: Achievement
+   /** Deprecated.   */
+   OVERKILL: Achievement
+   /** Deprecated.   */
+   OVERPOWERED: Achievement
+   /** Deprecated.   */
+   SNIPE_SKELETON: Achievement
+   /** Deprecated.   */
+   SPAWN_WITHER: Achievement
+   /** Deprecated.   */
+   THE_END: Achievement
+}
 
-  sendBlockChange(loc: Location, material: Material, data: number);
-  sendChunkChange(
-    loc: Location,
-    sx: number,
-    sy: number,
-    sz: number,
-    data: number[]
-  ): boolean;
-  sendMap(map: MapView);
-  sendRawMessage(message: string);
-  sendSignChange(loc: Location, lines: string[]);
-  sendSignChange(loc: Location, lines: string[], dyeColor: DyeColor);
-  sendTitle(title: string, subtitle: string);
-  sendTitle(
-    title: string,
-    subtitle: string,
-    fadeIn: number,
-    stay: number,
-    fadeOut: number
-  );
-  setAllowFlight(flight: boolean);
-  setCompassTarget(loc: Location);
-  setDisplayName(name: string);
-  setExhaustion(value: number);
-  setExp(exp: number);
-  setFlying(value: boolean);
-  setFlySpeed(value: number);
-  setFoodLevel(value: number);
-  setHealthScale(scale: number);
-  setHealthScaled(scale: boolean);
-  setLevel(level: number);
-  setPlayerListFooter(footer: string);
-  setPlayerListHeader(header: string);
-  setPlayerListHeaderFooter(header: string, footer: string);
-  setPlayerListName(name: string);
-  setPlayerTime(time: number, relative: boolean);
-  setPlayerWeather(type: WeatherType);
-  setResourcePack(url: string);
-  setResourcePack(url: string, hash: number[]);
-  setSaturation(value: number);
-  setScoreboard(scoreboard: Scoreboard);
-  setSleepingIgnored(isSleeping: boolean);
-  setSneaking(sneak: boolean);
-  setSpectatorTarget(entity: Entity);
-  setSprinting(sprinting: boolean);
-  setStatistic(statistic: Statistic, newValue: number);
-  setStatistic(statistic: Statistic, entityType: EntityType, newValue: number);
-  setStatistic(statistic: Statistic, material: Material, newValue: number);
-  setTexturePack(url: string);
-  setTotalExperience(exp: number);
-  setWalkSpeed(value: number);
-  showPlayer(player: Player);
-  showPlayer(plugin: Plugin, player: Player);
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number
-  );
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number
-  );
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    extra: number
-  );
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    extra: number,
-    data: any
-  );
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    data: any
-  );
-  spawnParticle(
-    particle: Particle,
-    x: number,
-    y: number,
-    z: number,
-    count: number,
-    data: any
-  );
-  spawnParticle(particle: Particle, location: Location, count: number);
-  spawnParticle(
-    particle: Particle,
-    location: Location,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number
-  );
-  spawnParticle(
-    particle: Particle,
-    location: Location,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    extra: number
-  );
-  spawnParticle(
-    particle: Particle,
-    location: Location,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    extra: number,
-    data: any
-  );
-  spawnParticle(
-    particle: Particle,
-    location: Location,
-    count: number,
-    offsetX: number,
-    offsetY: number,
-    offsetZ: number,
-    data: any
-  );
-  spawnParticle(
-    particle: Particle,
-    location: Location,
-    count: number,
-    data: any
-  );
-  spigot(): any;
-  stopSound(sound: string);
-  stopSound(sound: string, category: SoundCategory);
-  stopSound(sound: Sound);
-  stopSound(sound: Sound, category: SoundCategory);
-  updateCommands();
-  updateInventory();
+interface Achievement {
+
+   /** Deprecated. Returns the parent achievement of this achievement, or null if none. */
+   getParent​(): Achievement
+   /** Deprecated. Returns whether or not this achievement has a parent achievement. */
+   hasParent​(): boolean
+   /** Deprecated. Returns the enum constant of this type with the specified name. */
+   valueOf​(name: string): Achievement
+   /** Deprecated. Returns an array containing the constants of this enum type, inthe order they are declared. */
+   values​(): Achievement[]
+}
+
+// Extend an interface with overrided methods
+// https://stackoverflow.com/a/49198999
+type Diff<T extends keyof any, U extends keyof any> = 
+  ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
+type Overwrite<T, U> = Pick<T, Diff<keyof T, keyof U>> & U;
+
+interface Player extends Overwrite<HumanEntity, IPlayer>  {}
+
+interface IPlayer extends Conversable, OfflinePlayer, PluginMessageRecipient {
+   /** Deprecated. future versions of Minecraft do not have achievements */
+   awardAchievement​(achievement: Achievement): void
+   /** Checks to see if a player has been hidden from this player */
+   canSee​(player: Player): boolean
+   /** Says a message (or runs a command). */
+   chat​(msg: string): void
+   /** Decrements the given statistic for this player. */
+   decrementStatistic​(statistic: Statistic): void
+   /** Decrements the given statistic for this player. */
+   decrementStatistic​(statistic: Statistic, amount: number): void
+   /** Decrements the given statistic for this player for the given entity. */
+   decrementStatistic​(statistic: Statistic, entityType: EntityType): void
+   /** Decrements the given statistic for this player for the given entity. */
+   decrementStatistic​(statistic: Statistic, entityType: EntityType, amount: number): void
+   /** Decrements the given statistic for this player for the given material. */
+   decrementStatistic​(statistic: Statistic, material: Material): void
+   /** Decrements the given statistic for this player for the given material. */
+   decrementStatistic​(statistic: Statistic, material: Material, amount: number): void
+   /** Gets the socket address of this player */
+   getAddress​(): InetSocketAddress
+   /** Return the player's progression on the specified advancement. */
+   getAdvancementProgress​(advancement: Advancement): AdvancementProgress
+   /** Determines if the Player is allowed to fly via jump key double-tap likein creative mode. */
+   getAllowFlight​(): boolean
+   /** Get the player's current client side view distance. */
+   getClientViewDistance​(): number
+   /** Get the previously set compass target. */
+   getCompassTarget​(): Location
+   /** Gets the "friendly" name to display of this player. */
+   getDisplayName​(): string
+   /** Gets the players current exhaustion level. */
+   getExhaustion​(): number
+   /** Gets the players current experience points towards the next level. */
+   getExp​(): number
+   /** Gets the current allowed speed that a client can fly. */
+   getFlySpeed​(): number
+   /** Gets the players current food level */
+   getFoodLevel​(): number
+   /** Gets the number that health is scaled to for the client. */
+   getHealthScale​(): number
+   /** Gets the players current experience level */
+   getLevel​(): number
+   /** Gets the player's current locale. */
+   getLocale​(): string
+   /** Gets the currently displayed player list footer for this player. */
+   getPlayerListFooter​(): string
+   /** Gets the currently displayed player list header for this player. */
+   getPlayerListHeader​(): string
+   /** Gets the name that is shown on the player list. */
+   getPlayerListName​(): string
+   /** Returns the player's current timestamp. */
+   getPlayerTime​(): number
+   /** Returns the player's current time offset relative to server time, orthe current player's fixed time if the player's time is absolute. */
+   getPlayerTimeOffset​(): number
+   /** Returns the type of weather the player is currently experiencing. */
+   getPlayerWeather​(): WeatherType
+   /** Gets the players current saturation level. */
+   getSaturation​(): number
+   /** Gets the Scoreboard displayed to this player */
+   getScoreboard​(): Scoreboard
+   /** Gets the entity which is followed by the camera when inGameMode.SPECTATOR. */
+   getSpectatorTarget​(): Entity
+   /** Gets the value of the given statistic for this player. */
+   getStatistic​(statistic: Statistic): number
+   /** Gets the value of the given statistic for this player. */
+   getStatistic​(statistic: Statistic, entityType: EntityType): number
+   /** Gets the value of the given statistic for this player. */
+   getStatistic​(statistic: Statistic, material: Material): number
+   /** Gets the players total experience points. */
+   getTotalExperience​(): number
+   /** Gets the current allowed speed that a client can walk. */
+   getWalkSpeed​(): number
+   /** Gives the player the amount of experience specified. */
+   giveExp​(amount: number): void
+   /** Gives the player the amount of experience levels specified. */
+   giveExpLevels​(amount: number): void
+   /** Deprecated. future versions of Minecraft do not have achievements */
+   hasAchievement​(achievement: Achievement): boolean
+   /** Deprecated. see hidePlayer(Plugin, Player) */
+   hidePlayer​(player: Player): void
+   /** Hides a player from this player */
+   hidePlayer​(plugin: Plugin, player: Player): void
+   /** Increments the given statistic for this player. */
+   incrementStatistic​(statistic: Statistic): void
+   /** Increments the given statistic for this player. */
+   incrementStatistic​(statistic: Statistic, amount: number): void
+   /** Increments the given statistic for this player for the given entity. */
+   incrementStatistic​(statistic: Statistic, entityType: EntityType): void
+   /** Increments the given statistic for this player for the given entity. */
+   incrementStatistic​(statistic: Statistic, entityType: EntityType, amount: number): void
+   /** Increments the given statistic for this player for the given material. */
+   incrementStatistic​(statistic: Statistic, material: Material): void
+   /** Increments the given statistic for this player for the given material. */
+   incrementStatistic​(statistic: Statistic, material: Material, amount: number): void
+   /** Checks to see if this player is currently flying or not. */
+   isFlying​(): boolean
+   /** Gets if the client is displayed a 'scaled' health, that is, health on ascale from 0-getHealthScale(). */
+   isHealthScaled​(): boolean
+   /** Returns true if the player's time is relative to the server time,otherwise the player's time is absolute and will not change its currenttime unless done so with setPlayerTime(). */
+   isPlayerTimeRelative​(): boolean
+   /** Returns whether the player is sleeping ignored. */
+   isSleepingIgnored​(): boolean
+   /** Returns if the player is in sneak mode */
+   isSneaking​(): boolean
+   /** Gets whether the player is sprinting or not. */
+   isSprinting​(): boolean
+   /** Kicks player with custom kick message. */
+   kickPlayer​(message: string): void
+   /** Loads the players current location, health, inventory, motion, andother information from the username.dat file, in the world/playerfolder. */
+   loadData​(): void
+   /** Open a Material.WRITTEN_BOOK for a Player */
+   openBook​(book: ItemStack): void
+   /** Makes the player perform the given command */
+   performCommand​(command: string): boolean
+   /** Deprecated. Magic value */
+   playEffect​(loc: Location, effect: Effect, data: number): void
+   /** Plays an effect to just this player. */
+   playEffect​(loc: Location, effect: Effect, data: any): any
+   /** Deprecated. Magic value */
+   playNote​(loc: Location, instrument: number, note: number): void
+   /** Play a note for a player at a location. */
+   playNote​(loc: Location, instrument: Instrument, note: Note): void
+   /** Play a sound for a player at the location. */
+   playSound​(location: Location, sound: string, volume: number, pitch: number): void
+   /** Play a sound for a player at the location. */
+   playSound​(location: Location, sound: string, category: SoundCategory, volume: number, pitch: number): void
+   /** Play a sound for a player at the location. */
+   playSound​(location: Location, sound: Sound, volume: number, pitch: number): void
+   /** Play a sound for a player at the location. */
+   playSound​(location: Location, sound: Sound, category: SoundCategory, volume: number, pitch: number): void
+   /** Deprecated. future versions of Minecraft do not have achievements */
+   removeAchievement​(achievement: Achievement): void
+   /** Restores the normal condition where the player's time is synchronizedwith the server time. */
+   resetPlayerTime​(): void
+   /** Restores the normal condition where the player's weather is controlledby server conditions. */
+   resetPlayerWeather​(): void
+   /** Resets the title displayed to the player. */
+   resetTitle​(): void
+   /** Saves the players current location, health, inventory, motion, andother information into the username.dat file, in the world/playerfolder */
+   saveData​(): void
+   /** Send a block change. */
+   sendBlockChange​(loc: Location, block: BlockData): void
+   /** Deprecated. Magic value */
+   sendBlockChange​(loc: Location, material: Material, data: number): void
+   /** Deprecated. Magic value */
+   sendChunkChange​(loc: Location, sx: number, sy: number, sz: number, data: number[]): boolean
+   /** Render a map and send it to the player in its entirety. */
+   sendMap​(map: MapView): void
+   /** Sends this sender a message raw */
+   sendRawMessage​(message: string): void
+   /** Send a sign change. */
+   sendSignChange​(loc: Location, lines: string[]): void
+   /** Send a sign change. */
+   sendSignChange​(loc: Location, lines: string[], dyeColor: DyeColor): void
+   /** Deprecated. API behavior subject to change */
+   sendTitle​(title: string, subtitle: string): void
+   /** Sends a title and a subtitle message to the player. */
+   sendTitle​(title: string, subtitle: string, fadeIn: number, stay: number, fadeOut: number): void
+   /** Sets if the Player is allowed to fly via jump key double-tap like increative mode. */
+   setAllowFlight​(flight: boolean): void
+   /** Set the target of the player's compass. */
+   setCompassTarget​(loc: Location): void
+   /** Sets the "friendly" name to display of this player. */
+   setDisplayName​(name: string): void
+   /** Sets the players current exhaustion level */
+   setExhaustion​(value: number): void
+   /** Sets the players current experience points towards the next level */
+   setExp​(exp: number): void
+   /** Makes this player start or stop flying. */
+   setFlying​(value: boolean): void
+   /** Sets the speed at which a client will fly. */
+   setFlySpeed​(value: number): void
+   /** Sets the players current food level */
+   setFoodLevel​(value: number): void
+   /** Sets the number to scale health to for the client; this will alsosetHealthScaled(true). */
+   setHealthScale​(scale: number): void
+   /** Sets if the client is displayed a 'scaled' health, that is, health on ascale from 0-getHealthScale(). */
+   setHealthScaled​(scale: boolean): void
+   /** Sets the players current experience level */
+   setLevel​(level: number): void
+   /** Sets the currently displayed player list footer for this player. */
+   setPlayerListFooter​(footer: string): void
+   /** Sets the currently displayed player list header for this player. */
+   setPlayerListHeader​(header: string): void
+   /** Sets the currently displayed player list header and footer for thisplayer. */
+   setPlayerListHeaderFooter​(header: string, footer: string): void
+   /** Sets the name that is shown on the in-game player list. */
+   setPlayerListName​(name: string): void
+   /** Sets the current time on the player's client. */
+   setPlayerTime​(time: number, relative: boolean): void
+   /** Sets the type of weather the player will see. */
+   setPlayerWeather​(type: WeatherType): void
+   /** Request that the player's client download and switch resource packs. */
+   setResourcePack​(url: string): void
+   /** Request that the player's client download and switch resource packs. */
+   setResourcePack​(url: string, hash: number[]): void
+   /** Sets the players current saturation level */
+   setSaturation​(value: number): void
+   /** Sets the player's visible Scoreboard. */
+   setScoreboard​(scoreboard: Scoreboard): void
+   /** Sets whether the player is ignored as not sleeping. */
+   setSleepingIgnored​(isSleeping: boolean): void
+   /** Sets the sneak mode the player */
+   setSneaking​(sneak: boolean): void
+   /** Sets the entity which is followed by the camera when inGameMode.SPECTATOR. */
+   setSpectatorTarget​(entity: Entity): void
+   /** Sets whether the player is sprinting or not. */
+   setSprinting​(sprinting: boolean): void
+   /** Sets the given statistic for this player. */
+   setStatistic​(statistic: Statistic, newValue: number): void
+   /** Sets the given statistic for this player for the given entity. */
+   setStatistic​(statistic: Statistic, entityType: EntityType, newValue: number): void
+   /** Sets the given statistic for this player for the given material. */
+   setStatistic​(statistic: Statistic, material: Material, newValue: number): void
+   /** Deprecated. Minecraft no longer uses textures packs. Instead youshould use setResourcePack(String). */
+   setTexturePack​(url: string): void
+   /** Sets the players current experience points. */
+   setTotalExperience​(exp: number): void
+   /** Sets the speed at which a client will walk. */
+   setWalkSpeed​(value: number): void
+   /** Deprecated. see showPlayer(Plugin, Player) */
+   showPlayer​(player: Player): void
+   /** Allows this player to see a player that was previously hidden. */
+   showPlayer​(plugin: Plugin, player: Player): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number, offsetX: number, offsetY: number, offsetZ: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number, offsetX: number, offsetY: number, offsetZ: number, extra: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number, offsetX: number, offsetY: number, offsetZ: number, extra: number, data: any): any
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number, offsetX: number, offsetY: number, offsetZ: number, data: any): any
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, x: number, y: number, z: number, count: number, data: any): any
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number, offsetX: number, offsetY: number, offsetZ: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number, offsetX: number, offsetY: number, offsetZ: number, extra: number): void
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number, offsetX: number, offsetY: number, offsetZ: number, extra: number, data: any): any
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number, offsetX: number, offsetY: number, offsetZ: number, data: any): any
+   /** Spawns the particle (the number of times specified by count)at the target location. */
+   spawnParticle​(particle: Particle, location: Location, count: number, data: any): any
+   /** Stop the specified sound from playing. */
+   stopSound​(sound: string): void
+   /** Stop the specified sound from playing. */
+   stopSound​(sound: string, category: SoundCategory): void
+   /** Stop the specified sound from playing. */
+   stopSound​(sound: Sound): void
+   /** Stop the specified sound from playing. */
+   stopSound​(sound: Sound, category: SoundCategory): void
+   /** Update the list of commands sent to the client. */
+   updateCommands​(): void
+   /** Deprecated. This method should not be relied upon as it is a temporarywork-around for a larger, more complicated issue. */
+   updateInventory​(): void
 }
 
 /* declare const command: (name, func, options, intercepts) => () => void; */
