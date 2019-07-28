@@ -124,6 +124,7 @@ interface Plugin extends TabExecutor {
    getResource​(filename: string): InputStream
    /** Returns the Server instance currently running this plugin */
    getServer​(): Server
+   server: Server
    /** Returns a value indicating whether or not this plugin is currentlyenabled */
    isEnabled​(): boolean
    /** Simple boolean if we can still nag to the logs about things */
