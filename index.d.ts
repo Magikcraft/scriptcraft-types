@@ -30,6 +30,122 @@ interface Java {
     from: (JavaScriptItem: any) => any
 }
 
+interface TabExecutor extends TabCompleter, CommandExecutor {
+
+}
+
+interface Java{
+   type(type: 'org.bukkit.configuration.MemoryConfiguration'):  MemoryConfigurationConstructor
+}
+
+type Configuration = any
+type MemorySection = any
+type ConfigurationSection = any
+type MemoryConfigurationOptions= any
+type FileConfigurationOptions = any
+
+interface  MemoryConfigurationConstructor {
+   new():  MemoryConfiguration
+   new(defaults: Configuration):  MemoryConfiguration
+}
+
+interface  MemoryConfiguration extends MemorySection, Configuration {
+
+   /**  */
+   defaults: Configuration
+   /**  */
+   // options: MemoryConfigurationOptions
+
+   /** Sets the default value in the root at the given path as provided. */
+   addDefault​(path: string, value: Object): void
+   /** Sets the default values of the given paths as provided. */
+   addDefaults​(defaults: Map<string, Object>): void
+   /** Sets the default values of the given paths as provided. */
+   addDefaults​(defaults: Configuration): void
+   /** Gets the source Configuration for this configuration. */
+   getDefaults​(): Configuration
+   /** Gets the parent ConfigurationSection that directly containsthis ConfigurationSection. */
+   getParent​(): ConfigurationSection
+   /** Gets the ConfigurationOptions for this Configuration. */
+   options​(): MemoryConfigurationOptions
+   /** Sets the source of all default values for this Configuration. */
+   setDefaults​(defaults: Configuration): void
+}
+
+interface Java{
+   type(type: 'org.bukkit.configuration.file.FileConfiguration'):  FileConfigurationConstructor
+}
+
+interface  FileConfigurationConstructor {
+   new():  FileConfiguration
+   new(defaults: Configuration):  FileConfiguration
+}
+
+interface  FileConfiguration extends MemoryConfiguration {
+
+   /** Compiles the header for this FileConfiguration and returns theresult. */
+   buildHeader​(): string
+   /** Loads this FileConfiguration from the specified location. */
+   load​(file: File): void
+   /** Loads this FileConfiguration from the specified reader. */
+   load​(reader: Reader): void
+   /** Loads this FileConfiguration from the specified location. */
+   load​(file: string): void
+   /** Loads this FileConfiguration from the specified string, asopposed to from file. */
+   loadFromString​(contents: string): void
+   /** Gets the ConfigurationOptions for this Configuration. */
+   options​(): FileConfigurationOptions
+   /** Saves this FileConfiguration to the specified location. */
+   save​(file: File): void
+   /** Saves this FileConfiguration to the specified location. */
+   save​(file: string): void
+   /** Saves this FileConfiguration to a string, and returns it. */
+   saveToString​(): string
+}
+
+
+interface Plugin extends TabExecutor {
+
+   /** Gets a FileConfiguration for this plugin, read through"config.yml" */
+   getConfig​(): FileConfiguration
+   /** Returns the folder that the plugin data's files are located in. */
+   getDataFolder​(): File
+   /** Gets a ChunkGenerator for use in a default world, as specifiedin the server configuration */
+   getDefaultWorldGenerator​(worldName: string, id: string): ChunkGenerator
+   /** Returns the plugin.yaml file containing the details for this plugin */
+   getDescription​(): PluginDescriptionFile
+   /** Returns the plugin logger associated with this server's logger. */
+   getLogger​(): Logger
+   /** Returns the name of the plugin. */
+   getName​(): string
+   /** Gets the associated PluginLoader responsible for this plugin */
+   getPluginLoader​(): PluginLoader
+   /** Gets an embedded resource in this plugin */
+   getResource​(filename: string): InputStream
+   /** Returns the Server instance currently running this plugin */
+   getServer​(): Server
+   /** Returns a value indicating whether or not this plugin is currentlyenabled */
+   isEnabled​(): boolean
+   /** Simple boolean if we can still nag to the logs about things */
+   isNaggable​(): boolean
+   /** Called when this plugin is disabled */
+   onDisable​(): void
+   /** Called when this plugin is enabled */
+   onEnable​(): void
+   /** Called after a plugin is loaded but before it has been enabled. */
+   onLoad​(): void
+   /** Discards any data in getConfig() and reloads from disk. */
+   reloadConfig​(): void
+   /** Saves the FileConfiguration retrievable by getConfig(). */
+   saveConfig​(): void
+   /** Saves the raw contents of the default config.yml file to the locationretrievable by getConfig(). */
+   saveDefaultConfig​(): void
+   /** Saves the raw contents of any resource embedded with a plugin's .jarfile assuming it can be found using getResource(String). */
+   saveResource​(resourcePath: string, replace: boolean): void
+   /** Set naggable state */
+   setNaggable​(canNag: boolean): void
+}
+
 interface BlockFace {
     /**    Gets the normal vector corresponding to this block face.
      */
@@ -211,7 +327,6 @@ type NashornScriptEngine = any
 type Statistic = any
 type Particle = any
 type Advancement = any
-type Plugin = any
 type Effect = any
 type SoundCategory = any
 type Sound = any
@@ -411,22 +526,36 @@ interface Recipe {
     /** Get the result of this recipe. */
     getResult(): ItemStack
 }
+interface Java{
+   type(type: 'org.bukkit.NamespacedKey'):  NamespacedKeyConstructor
+}
 
-interface NamespacedKey {
-    /**   */
-    equals(obj: Object): boolean
-    /**   */
-    getKey(): string
-    /**   */
-    getNamespace(): string
-    /**   */
-    hashCode(): number
-    /** Get a key in the Minecraft namespace. */
-    minecraft(key: string): NamespacedKey
-    /** Deprecated. should never be used by plugins, for internal use only!! */
-    randomKey(): NamespacedKey
-    /**   */
-    toString(): string
+interface  NamespacedKeyConstructor {
+   new(namespace: string, key: string):  NamespacedKey
+   new(plugin: Plugin, key: string):  NamespacedKey
+}
+
+interface  NamespacedKey extends Object {
+
+   /** The namespace representing all keys generated by Bukkit for backwardscompatibility measures.*/
+   BUKKIT: string
+   /** The namespace representing all inbuilt keys.*/
+   MINECRAFT: string
+
+   /**   */
+   equals​(obj: Object): boolean
+   /**   */
+   getKey​(): string
+   /**   */
+   getNamespace​(): string
+   /**   */
+   hashCode​(): number
+   /** Get a key in the Minecraft namespace. */
+   minecraft​(key: string): NamespacedKey
+   /** Deprecated. should never be used by plugins, for internal use only!! */
+   randomKey​(): NamespacedKey
+   /**   */
+   toString​(): string
 }
 
 interface Keyed {
