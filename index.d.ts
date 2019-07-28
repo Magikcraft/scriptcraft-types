@@ -4523,7 +4523,7 @@ interface Server extends PluginMessageRecipient {
     /** Gets a set containing all banned players. */
     getBannedPlayers(): OfflinePlayer[]
     /** Gets the KeyedBossBar specified by this key. */
-    getBossBar(key: NamespacedKey): KeyedBossBar
+    getBossBar(key: NamespacedKey): KeyedBossBar | null
     /** Gets an unmodifiable iterator through all persistent bossbars. */
     getBossBars(): Iterator<KeyedBossBar>
     /** Gets the Bukkit version that this server is running. */
