@@ -341,6 +341,35 @@ type InetSocketAddress = any
 type AdvancementProgress = any
 type BlockVector = any
 
+interface PotionMeta extends ItemMeta {
+   /** Adds a custom potion effect to this potion. */
+   addCustomEffect​(effect: PotionEffect, overwrite: boolean): boolean
+   /** Removes all custom potion effects from this potion. */
+   clearCustomEffects​(): boolean
+   /**   */
+   clone​(): PotionMeta
+   /** Returns the potion data about the base potion */
+   getBasePotionData​(): PotionData
+   /** Gets the potion color that is set. */
+   getColor​(): Color
+   /** Gets an immutable list containing all custom potion effects applied tothis potion. */
+   getCustomEffects​(): PotionEffect[]
+   /** Checks for existence of a potion color. */
+   hasColor​(): boolean
+   /** Checks for a specific custom potion effect type on this potion. */
+   hasCustomEffect​(type: PotionEffectType): boolean
+   /** Checks for the presence of custom potion effects. */
+   hasCustomEffects​(): boolean
+   /** Removes a custom potion effect from this potion. */
+   removeCustomEffect​(type: PotionEffectType): boolean
+   /** Sets the underlying potion data */
+   setBasePotionData​(data: PotionData): void
+   /** Sets the potion color. */
+   setColor​(color: Color): void
+   /** Deprecated. use PotionType(org.bukkit.potion.PotionEffectType, boolean, boolean) */
+   setMainEffect​(type: PotionEffectType): boolean
+}
+
 interface Java{
    type(type: 'org.bukkit.inventory.ItemStack'):  ItemStackConstructor
 }
