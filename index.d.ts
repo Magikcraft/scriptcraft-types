@@ -1,5 +1,3 @@
-import { remoteServerCommand } from "events";
-
 declare const echo: (player: any, msg: string) => void
 declare const java: any
 declare const __plugin: Plugin
