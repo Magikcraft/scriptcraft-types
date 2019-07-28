@@ -2960,6 +2960,67 @@ interface CustomItemTagContainer<T, Z> {
     setCustomTag(key: NamespacedKey, type: ItemTagType<T, Z>, value: Z): void
 }
 
+interface Java{
+   type(type: 'org.bukkit.inventory.meta.BookMeta.Generation'): BookMetaGenerations
+}
+
+interface BookMetaGenerations {
+   /** Book that was copied from a copy of an original. */
+   COPY_OF_COPY: BookMetaGeneration
+   /** Book that was copied from an original. */
+   COPY_OF_ORIGINAL: BookMetaGeneration
+   /** Book written into a book-and-quill. */
+   ORIGINAL: BookMetaGeneration
+   /** Unused; unobtainable by players. */
+   TATTERED: BookMetaGeneration
+}
+
+interface BookMetaGeneration {
+   /** Returns the enum constant of this type with the specified name. */
+   valueOf​(name: string): BookMetaGeneration
+   /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+   values​(): BookMetaGeneration[]
+}
+
+interface BookMeta extends ItemMeta {
+   /** Adds new pages to the end of the book. */
+   addPage​(...pages: string[]): void
+   /**   */
+   clone​(): BookMeta
+   /** Gets the author of the book. */
+   getAuthor​(): string
+   /** Gets the generation of the book. */
+   getGeneration​(): BookMetaGeneration
+   /** Gets the specified page in the book. */
+   getPage​(page: number): string
+   /** Gets the number of pages in the book. */
+   getPageCount​(): number
+   /** Gets all the pages in the book. */
+   getPages​(): string[]
+   /** Gets the title of the book. */
+   getTitle​(): string
+   /** Checks for the existence of an author in the book. */
+   hasAuthor​(): boolean
+   /** Checks for the existence of generation level in the book. */
+   hasGeneration​(): boolean
+   /** Checks for the existence of pages in the book. */
+   hasPages​(): boolean
+   /** Checks for the existence of a title in the book. */
+   hasTitle​(): boolean
+   /** Sets the author of the book. */
+   setAuthor​(author: string): void
+   /** Sets the generation of the book. */
+   setGeneration​(generation: BookMetaGeneration): void
+   /** Sets the specified page in the book. */
+   setPage​(page: number, data: string): void
+   /** Clears the existing book pages, and sets the book to use the providedpages. */
+   setPages​(...pages: string[]): void
+   /** Clears the existing book pages, and sets the book to use the providedpages. */
+   setPages​(pages: string[]): void
+   /** Sets the title of the book. */
+   setTitle​(title: string): boolean
+}
+
 interface ItemMeta extends Cloneable<ItemMeta> {
     /** Add an Attribute and it's Modifier. */
     addAttributeModifier(
