@@ -1,3 +1,5 @@
+import { remoteServerCommand } from "events";
+
 declare const echo: (player: any, msg: string) => void
 declare const java: any
 declare const __plugin: Plugin
@@ -638,6 +640,12 @@ interface InventoryHolder {
 
 interface Iterable<T> {
    forEach(consumer: (item: T) => void): void
+}
+
+interface Iterator<T> {
+   hasNext(): boolean
+   next(): T
+   remove()
 }
 
 interface Inventory extends Iterable<ItemStack> {
