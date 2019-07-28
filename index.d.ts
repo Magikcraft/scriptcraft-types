@@ -4444,6 +4444,7 @@ interface Server extends PluginMessageRecipient {
     getConnectionThrottle(): number
     /** Gets a ConsoleCommandSender that may be used as an input sourcefor this server. */
     getConsoleSender(): ConsoleCommandSender
+    consoleSender: ConsoleCommandSender
     /** Gets the default GameMode for new players. */
     getDefaultGameMode(): GameMode
     /** Gets an entity on the server by its UUID */
@@ -4498,6 +4499,7 @@ interface Server extends PluginMessageRecipient {
     getPluginCommand(name: string): PluginCommand
     /** Gets the plugin manager for interfacing with plugins. */
     getPluginManager(): PluginManager
+    pluginManager: PluginManager
     /** Get the game port that the server runs on. */
     getPort(): number
     /** Get a list of all recipes for a given item. */
@@ -4566,6 +4568,7 @@ interface Server extends PluginMessageRecipient {
     // loadServerIcon​(file: File): CachedServerIcon
     /** Deprecated. Use getPlayer(UUID) as player names are no longerguaranteed to be unique */
     matchPlayer(name: string): Player[]
+    nukkit?: any
     /** Get an iterator through the list of crafting recipes. */
     recipeIterator(): Iterator<Recipe>
     /** Reloads the server, refreshing settings and plugin information. */
