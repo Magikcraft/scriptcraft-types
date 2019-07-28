@@ -4561,7 +4561,7 @@ interface Server extends PluginMessageRecipient {
     /** Gets the KeyedBossBar specified by this key. */
     getBossBar(key: NamespacedKey): KeyedBossBar | null
     /** Gets an unmodifiable iterator through all persistent bossbars. */
-    getBossBars(): Iterable<KeyedBossBar>
+    getBossBars(): Iterator<KeyedBossBar>
     /** Gets the Bukkit version that this server is running. */
     getBukkitVersion(): string
     /** Gets a list of command aliases defined in the server properties. */
