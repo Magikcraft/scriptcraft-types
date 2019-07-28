@@ -174,23 +174,59 @@ interface BarFlags {
     /**Tells the client to play the Ender Dragon boss music. */
     PLAY_BOSS_MUSIC: BarFlag
 }
-interface BarColor {}
-interface BarColors {
-    BLUE: BarColor
-    GREEN: BarColor
-    PINK: BarColor
-    PURPLE: BarColor
-    RED: BarColor
-    WHITE: BarColor
-    YELLOW: BarColor
+interface Java{
+   type(type: 'org.bukkit.boss.BarColor'): BarColors
 }
-interface BarStyle {}
+
+interface BarColors {
+
+   /**   */
+   BLUE: BarColor
+   /**   */
+   GREEN: BarColor
+   /**   */
+   PINK: BarColor
+   /**   */
+   PURPLE: BarColor
+   /**   */
+   RED: BarColor
+   /**   */
+   WHITE: BarColor
+   /**   */
+   YELLOW: BarColor
+}
+
+interface BarColor {
+
+   /** Returns the enum constant of this type with the specified name. */
+   valueOf​(name: string): BarColor
+   /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+   values​(): BarColor[]
+}
+interface Java{
+   type(type: 'org.bukkit.boss.BarStyle'): BarStyles
+}
+
 interface BarStyles {
-    SEGMENTED_10: BarStyle
-    SEGMENTED_12: BarStyle
-    SEGMENTED_20: BarStyle
-    SEGMENTED_6: BarStyle
-    SOLID: BarStyle
+
+   /** Splits the boss bar into 10 segments */
+   SEGMENTED_10: BarStyle
+   /** Splits the boss bar into 12 segments */
+   SEGMENTED_12: BarStyle
+   /** Splits the boss bar into 20 segments */
+   SEGMENTED_20: BarStyle
+   /** Splits the boss bar into 6 segments */
+   SEGMENTED_6: BarStyle
+   /** Makes the boss bar solid (no segments) */
+   SOLID: BarStyle
+}
+
+interface BarStyle {
+
+   /** Returns the enum constant of this type with the specified name. */
+   valueOf​(name: string): BarStyle
+   /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+   values​(): BarStyle[]
 }
 interface BlockFaces {
     DOWN: BlockFace
