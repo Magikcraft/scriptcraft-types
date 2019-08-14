@@ -5956,6 +5956,7 @@ interface IPlayer extends Conversable, OfflinePlayer, PluginMessageRecipient {
     playEffect(loc: Location, effect: Effect, data: number): void
     /** Plays an effect to just this player. */
     playEffect(loc: Location, effect: Effect, data: any): any
+    playEffect(type: EntityEffect): void
     /** Deprecated. Magic value */
     playNote(loc: Location, instrument: number, note: number): void
     /** Play a note for a player at a location. */
@@ -6239,7 +6240,7 @@ interface String {
     includes(substring: string): boolean
 }
 
-type callbackFn = (event: any) => void
+type eventHandler<T = any> = (event: T) => void
 
 declare const global: {
     args: any
@@ -10916,15 +10917,2341 @@ declare module 'http' {
     ): void
 }
 
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockEvent'):  BlockEventConstructor
+}
+
+interface  BlockEventConstructor {
+    new(theBlock: Block):  BlockEvent
+}
+
+interface  BlockEvent extends Event {
+
+    /**  */
+    block: Block
+
+    /** Gets the block involved in this event. */
+    getBlock​(): Block
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockDamageEvent'):  BlockDamageEventConstructor
+}
+
+interface  BlockDamageEventConstructor {
+    new(player: Player, block: Block, itemInHand: ItemStack, instaBreak: boolean):  BlockDamageEvent
+}
+
+interface  BlockDamageEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets if the block is set to instantly break when damaged by the player. */
+    getInstaBreak​(): boolean
+    /** Gets the ItemStack for the item currently in the player's hand. */
+    getItemInHand​(): ItemStack
+    /** Gets the player damaging the block involved in this event. */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets if the block should instantly break when damaged by the player. */
+    setInstaBreak​(bool: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockBreakEvent'):  BlockBreakEventConstructor
+}
+
+interface  BlockBreakEventConstructor {
+    new(theBlock: Block, player: Player):  BlockBreakEvent
+}
+
+interface  BlockBreakEvent extends BlockExpEvent, Cancellable {
+
+    /** Gets the Player that is breaking the block involved in this event. */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Gets whether or not the block will drop items. */
+    isDropItems​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets whether or not the block will drop items as it normally would. */
+    setDropItems​(dropItems: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockBurnEvent'):  BlockBurnEventConstructor
+}
+
+interface  BlockBurnEventConstructor {
+    new(block: Block):  BlockBurnEvent
+    new(block: Block, ignitingBlock: Block):  BlockBurnEvent
+}
+
+interface  BlockBurnEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the block which ignited this block. */
+    getIgnitingBlock​(): Block
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockCanBuildEvent'):  BlockCanBuildEventConstructor
+}
+
+interface  BlockCanBuildEventConstructor {
+    new(block: Block, type: BlockData, canBuild: boolean):  BlockCanBuildEvent
+    new(block: Block, player: Player, type: BlockData, canBuild: boolean):  BlockCanBuildEvent
+}
+
+interface  BlockCanBuildEvent extends BlockEvent {
+
+    /**  */
+    blockData: BlockData
+    /**  */
+    buildable: boolean
+
+    /** Gets the BlockData that we are trying to place. */
+    getBlockData​(): BlockData
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the Material that we are trying to place. */
+    getMaterial​(): Material
+    /** Gets the player who placed the block involved in this event. */
+    getPlayer​(): Player
+    /** Gets whether or not the block can be built here. */
+    isBuildable​(): boolean
+    /** Sets whether the block can be built here or not. */
+    setBuildable​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockDamageEvent'):  BlockDamageEventConstructor
+}
+
+interface  BlockDamageEventConstructor {
+    new(player: Player, block: Block, itemInHand: ItemStack, instaBreak: boolean):  BlockDamageEvent
+}
+
+interface  BlockDamageEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets if the block is set to instantly break when damaged by the player. */
+    getInstaBreak​(): boolean
+    /** Gets the ItemStack for the item currently in the player's hand. */
+    getItemInHand​(): ItemStack
+    /** Gets the player damaging the block involved in this event. */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets if the block should instantly break when damaged by the player. */
+    setInstaBreak​(bool: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockDispenseEvent'):  BlockDispenseEventConstructor
+}
+
+interface  BlockDispenseEventConstructor {
+    new(block: Block, dispensed: ItemStack, velocity: Vector):  BlockDispenseEvent
+}
+
+interface  BlockDispenseEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the item that is being dispensed. */
+    getItem​(): ItemStack
+    /** Gets the velocity. */
+    getVelocity​(): Vector
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the item being dispensed. */
+    setItem​(item: ItemStack): void
+    /** Sets the velocity of the item being dispensed. */
+    setVelocity​(vel: Vector): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockExpEvent'):  BlockExpEventConstructor
+}
+
+interface  BlockExpEventConstructor {
+    new(block: Block, exp: number):  BlockExpEvent
+}
+
+interface  BlockExpEvent extends BlockEvent {
+
+    /** Get the experience dropped by the block after the event has processed */
+    getExpToDrop​(): number
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Set the amount of experience dropped by the block after the event hasprocessed */
+    setExpToDrop​(exp: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockExplodeEvent'):  BlockExplodeEventConstructor
+}
+
+interface  BlockExplodeEventConstructor {
+    new(what: Block, blocks: Block[], yield: number):  BlockExplodeEvent
+}
+
+interface  BlockExplodeEvent extends BlockEvent, Cancellable {
+
+    /** Returns the list of blocks that would have been removed or were removedfrom the explosion event. */
+    blockList​(): Block[]
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Returns the percentage of blocks to drop from this explosion */
+    getYield​(): number
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the percentage of blocks to drop from this explosion */
+    setYield​(yield: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockFadeEvent'):  BlockFadeEventConstructor
+}
+
+interface  BlockFadeEventConstructor {
+    new(block: Block, newState: BlockState):  BlockFadeEvent
+}
+
+interface  BlockFadeEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the state of the block that will be fading, melting ordisappearing. */
+    getNewState​(): BlockState
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockGrowEvent'):  BlockGrowEventConstructor
+}
+
+interface  BlockGrowEventConstructor {
+    new(block: Block, newState: BlockState):  BlockGrowEvent
+}
+
+interface  BlockGrowEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the state of the block where it will form or spread to. */
+    getNewState​(): BlockState
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockFormEvent'):  BlockFormEventConstructor
+}
+
+interface  BlockFormEventConstructor {
+    new(block: Block, newState: BlockState):  BlockFormEvent
+}
+
+interface  BlockFormEvent extends BlockGrowEvent {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockFromToEvent'):  BlockFromToEventConstructor
+}
+
+interface  BlockFromToEventConstructor {
+    new(block: Block, toBlock: Block):  BlockFromToEvent
+    new(block: Block, face: BlockFace):  BlockFromToEvent
+}
+
+interface  BlockFromToEvent extends BlockEvent, Cancellable {
+
+    /**  */
+    cancel: boolean
+    /**  */
+    face: BlockFace
+    /**  */
+    to: Block
+
+    /** Gets the BlockFace that the block is moving to. */
+    getFace​(): BlockFace
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Convenience method for getting the faced Block. */
+    getToBlock​(): Block
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockMultiPlaceEvent'):  BlockMultiPlaceEventConstructor
+}
+
+interface  BlockMultiPlaceEventConstructor {
+    new(states: BlockState[], clicked: Block, itemInHand: ItemStack, thePlayer: Player, canBuild: boolean):  BlockMultiPlaceEvent
+}
+
+interface  BlockMultiPlaceEvent extends BlockPlaceEvent {
+
+    /** Gets a list of blockstates for all blocks which were replaced by theplacement of the new blocks. */
+    getReplacedBlockStates​(): BlockState[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockPhysicsEvent'):  BlockPhysicsEventConstructor
+}
+
+interface  BlockPhysicsEventConstructor {
+    new(block: Block, changed: BlockData):  BlockPhysicsEvent
+    new(block: Block, changed: BlockData, sourceBlock: Block):  BlockPhysicsEvent
+}
+
+interface  BlockPhysicsEvent extends BlockEvent, Cancellable {
+
+    /** Gets the type of block that changed, causing this event */
+    getChangedType​(): Material
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the source block that triggered this event. */
+    getSourceBlock​(): Block
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockIgniteEvent.IgniteCause'): BlockIgniteEventIgniteCauses
+}
+
+interface BlockIgniteEventIgniteCauses {
+
+    /** Block ignition caused by an Ender Crystal. */
+    ENDER_CRYSTAL: BlockIgniteEventIgniteCause
+    /** Block ignition caused by explosion. */
+    EXPLOSION: BlockIgniteEventIgniteCause
+    /** Block ignition caused by an entity using a fireball. */
+    FIREBALL: BlockIgniteEventIgniteCause
+    /** Block ignition caused by a player or dispenser using flint-and-steel. */
+    FLINT_AND_STEEL: BlockIgniteEventIgniteCause
+    /** Block ignition caused by lava. */
+    LAVA: BlockIgniteEventIgniteCause
+    /** Block ignition caused by lightning. */
+    LIGHTNING: BlockIgniteEventIgniteCause
+    /** Block ignition caused by dynamic spreading of fire. */
+    SPREAD: BlockIgniteEventIgniteCause
+}
+
+interface BlockIgniteEventIgniteCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): BlockIgniteEventIgniteCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): BlockIgniteEventIgniteCause[]
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockIgniteEvent'):  BlockIgniteEventConstructor
+}
+
+interface  BlockIgniteEventConstructor {
+    new(theBlock: Block, cause: BlockIgniteEventIgniteCause, ignitingBlock: Block):  BlockIgniteEvent
+    new(theBlock: Block, cause: BlockIgniteEventIgniteCause, ignitingEntity: Entity):  BlockIgniteEvent
+    new(theBlock: Block, cause: BlockIgniteEventIgniteCause, ignitingEntity: Entity, ignitingBlock: Block):  BlockIgniteEvent
+}
+
+interface  BlockIgniteEvent extends BlockEvent, Cancellable {
+
+    /** Gets the cause of block ignite. */
+    getCause​(): BlockIgniteEventIgniteCause
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the block which ignited this block */
+    getIgnitingBlock​(): Block
+    /** Gets the entity who ignited this block */
+    getIgnitingEntity​(): Entity
+    /** Gets the player who ignited this block */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockPistonEvent'):  BlockPistonEventConstructor
+}
+
+interface  BlockPistonEventConstructor {
+    new(block: Block, direction: BlockFace):  BlockPistonEvent
+}
+
+interface  BlockPistonEvent extends BlockEvent, Cancellable {
+
+    /** Return the direction in which the piston will operate. */
+    getDirection​(): BlockFace
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Returns true if the Piston in the event is sticky. */
+    isSticky​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancelled: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockPlaceEvent'):  BlockPlaceEventConstructor
+}
+
+interface  BlockPlaceEventConstructor {
+    new(placedBlock: Block, replacedBlockState: BlockState, placedAgainst: Block, itemInHand: ItemStack, thePlayer: Player, canBuild: boolean):  BlockPlaceEvent
+    new(placedBlock: Block, replacedBlockState: BlockState, placedAgainst: Block, itemInHand: ItemStack, thePlayer: Player, canBuild: boolean, hand: EquipmentSlot):  BlockPlaceEvent
+}
+
+interface  BlockPlaceEvent extends BlockEvent, Cancellable {
+
+    /**  */
+    canBuild: boolean
+    /**  */
+    cancel: boolean
+    /**  */
+    hand: EquipmentSlot
+    /**  */
+    itemInHand: ItemStack
+    /**  */
+    placedAgainst: Block
+    /**  */
+    player: Player
+    /**  */
+    replacedBlockState: BlockState
+
+    /** Gets the block that this block was placed against */
+    getBlockAgainst​(): Block
+    /** Clarity method for getting the placed block. */
+    getBlockPlaced​(): Block
+    /** Gets the BlockState for the block which was replaced. */
+    getBlockReplacedState​(): BlockState
+    /** Gets the hand which placed the block */
+    getHand​(): EquipmentSlot
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the item in the player's hand when they placed the block. */
+    getItemInHand​(): ItemStack
+    /** Gets the player who placed the block involved in this event. */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the canBuild state of this event. */
+    setBuild​(canBuild: boolean): void
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockRedstoneEvent'):  BlockRedstoneEventConstructor
+}
+
+interface  BlockRedstoneEventConstructor {
+    new(block: Block, oldCurrent: number, newCurrent: number):  BlockRedstoneEvent
+}
+
+interface  BlockRedstoneEvent extends BlockEvent {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the new current of this block */
+    getNewCurrent​(): number
+    /** Gets the old current of this block */
+    getOldCurrent​(): number
+    /** Sets the new current of this block */
+    setNewCurrent​(newCurrent: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockShearEntityEvent'):  BlockShearEntityEventConstructor
+}
+
+interface  BlockShearEntityEventConstructor {
+    new(dispenser: Block, sheared: Entity, tool: ItemStack):  BlockShearEntityEvent
+}
+
+interface  BlockShearEntityEvent extends BlockEvent, Cancellable {
+
+    /** Gets the entity that was sheared. */
+    getEntity​(): Entity
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the item used to shear this sheep. */
+    getTool​(): ItemStack
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancelled: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.inventory.BrewEvent'):  BrewEventConstructor
+}
+
+interface  BrewEventConstructor {
+    new(brewer: Block, contents: BrewerInventory, fuelLevel: number):  BrewEvent
+}
+
+interface  BrewEvent extends BlockEvent, Cancellable {
+
+    /** Gets the contents of the Brewing Stand. */
+    getContents​(): BrewerInventory
+    /** Gets the remaining fuel level. */
+    getFuelLevel​(): number
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface BlockInventoryHolder extends InventoryHolder {
+
+    /** Gets the block associated with this holder. */
+    getBlock​(): Block
+}
+
+interface Lockable {
+
+    /** Gets the key needed to access the container. */
+    getLock​(): string
+    /** Checks if the container has a valid (non empty) key. */
+    isLocked​(): boolean
+    /** Sets the key required to access this container. */
+    setLock​(key: string): void
+}
+
+interface PersistentDataAdapterContext {
+
+    /** Creates a new and empty meta container instance. */
+    newPersistentDataContainer​(): PersistentDataContainer
+}
+
+interface PersistentDataType<T,Z> {
+
+    /**  */
+    BYTE: PersistentDataType<number,number>
+    /**  */
+    BYTE_ARRAY: PersistentDataType<number[],number[]>
+    /**  */
+    DOUBLE: PersistentDataType<number,number>
+    /**  */
+    FLOAT: PersistentDataType<number,number>
+    /**  */
+    INTEGER: PersistentDataType<number,number>
+    /**  */
+    INTEGER_ARRAY: PersistentDataType<number[],number[]>
+    /**  */
+    LONG: PersistentDataType<number,number>
+    /**  */
+    LONG_ARRAY: PersistentDataType<number[],number[]>
+    /**  */
+    SHORT: PersistentDataType<number,number>
+    /**  */
+    STRING: PersistentDataType<String,String>
+    /**  */
+    TAG_CONTAINER: PersistentDataType<PersistentDataContainer,PersistentDataContainer>
+
+    /** Creates a complex object based of the passed primitive value */
+    fromPrimitive​(primitive: any, context: PersistentDataAdapterContext): Z
+    /** Returns the complex object type the primitive value resembles. */
+    getComplexType​(): new(...args) => Z
+    /** Returns the primitive data type of this tag. */
+    getPrimitiveType​(): new(...args) => T
+    /** Returns the primitive data that resembles the complex object passed tothis method. */
+    toPrimitive​(complex: Z, context: PersistentDataAdapterContext): any
+}
+
+
+interface PersistentDataContainer {
+
+    /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
+    get​<T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>): Z
+    /** Returns the adapter context this tag container uses. */
+    getAdapterContext​(): PersistentDataAdapterContext
+    /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
+    getOrDefault​<T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>, defaultValue: Z):  Z
+    /** Returns if the persistent metadata provider has metadata registeredmatching the provided parameters. */
+    has​ <T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>): boolean
+    /** Returns if the container instance is empty, therefore has no entriesinside it. */
+    isEmpty​(): boolean
+    /** Removes a custom key from the PersistentDataHolder instance. */
+    remove​(key: NamespacedKey): void
+    /** Stores a metadata value on the PersistentDataHolder instance. */
+    set​<T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>, value: Z):  void
+}
+
+interface TileState extends BlockState, PersistentDataHolder {
+
+    /** Returns a custom tag container capable of storing tags on the object. */
+    getPersistentDataContainer​(): PersistentDataContainer
+}
+
+interface Container extends TileState, BlockInventoryHolder, Lockable, Nameable {
+
+    /** Gets the inventory of the block represented by this block state. */
+    getInventory​(): Inventory
+    /** Gets the captured inventory snapshot of this container. */
+    getSnapshotInventory​(): Inventory
+}
+
+interface BrewingStand extends Container {
+
+    /** How much time is left in the brewing cycle. */
+    getBrewingTime​(): number
+    /** Get the level of current fuel for brewing. */
+    getFuelLevel​(): number
+    /** Gets the inventory of the block represented by this block state. */
+    getInventory​(): BrewerInventory
+    /** Gets the captured inventory snapshot of this container. */
+    getSnapshotInventory​(): BrewerInventory
+    /** Set the time left before brewing completes. */
+    setBrewingTime​(brewTime: number): void
+    /** Set the level of current fuel for brewing. */
+    setFuelLevel​(level: number): void
+}
+
+interface BrewerInventory extends Inventory {
+
+    /** Get the current fuel for brewing. */
+    getFuel​(): ItemStack
+    /** Gets the block or entity belonging to the open inventory */
+    getHolder​(): BrewingStand
+    /** Get the current ingredient for brewing. */
+    getIngredient​(): ItemStack
+    /** Set the current fuel for brewing. */
+    setFuel​(fuel: ItemStack): void
+    /** Set the current ingredient for brewing. */
+    setIngredient​(ingredient: ItemStack): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.inventory.BrewingStandFuelEvent'):  BrewingStandFuelEventConstructor
+}
+
+interface  BrewingStandFuelEventConstructor {
+    new(brewingStand: Block, fuel: ItemStack, fuelPower: number):  BrewingStandFuelEvent
+}
+
+interface  BrewingStandFuelEvent extends BlockEvent, Cancellable {
+
+    /** Gets the ItemStack of the fuel before the amount was subtracted. */
+    getFuel​(): ItemStack
+    /** Gets the fuel power for this fuel. */
+    getFuelPower​(): number
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Gets whether the brewing stand's fuel will be reduced / consumed or not. */
+    isConsuming​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets whether the brewing stand's fuel will be reduced / consumed or not. */
+    setConsuming​(consuming: boolean): void
+    /** Sets the fuel power for this fuel. */
+    setFuelPower​(fuelPower: number): void
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.block.CauldronLevelChangeEvent.ChangeReason'): CauldronLevelChangeEventChangeReasons
+}
+
+interface CauldronLevelChangeEventChangeReasons {
+
+    /** Player cleaning their armor. */
+    ARMOR_WASH: CauldronLevelChangeEventChangeReason
+    /** Player cleaning their banner. */
+    BANNER_WASH: CauldronLevelChangeEventChangeReason
+    /** Player filling the cauldron by emptying their bottle. */
+    BOTTLE_EMPTY: CauldronLevelChangeEventChangeReason
+    /** Player emptying the cauldron by filling their bottle. */
+    BOTTLE_FILL: CauldronLevelChangeEventChangeReason
+    /** Player filling the cauldron by emptying their bucket. */
+    BUCKET_EMPTY: CauldronLevelChangeEventChangeReason
+    /** Player emptying the cauldron by filling their bucket. */
+    BUCKET_FILL: CauldronLevelChangeEventChangeReason
+    /** Evaporating due to biome dryness. */
+    EVAPORATE: CauldronLevelChangeEventChangeReason
+    /** Entity being extinguished. */
+    EXTINGUISH: CauldronLevelChangeEventChangeReason
+    /** Unknown. */
+    UNKNOWN: CauldronLevelChangeEventChangeReason
+}
+
+interface CauldronLevelChangeEventChangeReason {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): CauldronLevelChangeEventChangeReason
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): CauldronLevelChangeEventChangeReason[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.CauldronLevelChangeEvent'):  CauldronLevelChangeEventConstructor
+}
+
+interface  CauldronLevelChangeEventConstructor {
+    new(block: Block, entity: Entity, reason: CauldronLevelChangeEventChangeReason, oldLevel: number, newLevel: number):  CauldronLevelChangeEvent
+}
+
+interface  CauldronLevelChangeEvent extends BlockEvent, Cancellable {
+
+    /** Get entity which did this. */
+    getEntity​(): Entity
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /**   */
+    getNewLevel​(): number
+    /**   */
+    getOldLevel​(): number
+    /**   */
+    getReason​(): CauldronLevelChangeEventChangeReason
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancelled: boolean): void
+    /**   */
+    setNewLevel​(newLevel: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.FluidLevelChangeEvent'):  FluidLevelChangeEventConstructor
+}
+
+interface  FluidLevelChangeEventConstructor {
+    new(theBlock: Block, newData: BlockData):  FluidLevelChangeEvent
+}
+
+interface  FluidLevelChangeEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the new data of the changed block. */
+    getNewData​(): BlockData
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancelled: boolean): void
+    /** Sets the new data of the changed block. */
+    setNewData​(newData: BlockData): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.inventory.FurnaceBurnEvent'):  FurnaceBurnEventConstructor
+}
+
+interface  FurnaceBurnEventConstructor {
+    new(furnace: Block, fuel: ItemStack, burnTime: number):  FurnaceBurnEvent
+}
+
+interface  FurnaceBurnEvent extends BlockEvent, Cancellable {
+
+    /** Gets the burn time for this fuel */
+    getBurnTime​(): number
+    /** Gets the fuel ItemStack for this event */
+    getFuel​(): ItemStack
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets whether the furnace's fuel is burning or not. */
+    isBurning​(): boolean
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets whether the furnace's fuel is burning or not. */
+    setBurning​(burning: boolean): void
+    /** Sets the burn time for this fuel */
+    setBurnTime​(burnTime: number): void
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.LeavesDecayEvent'):  LeavesDecayEventConstructor
+}
+
+interface  LeavesDecayEventConstructor {
+    new(block: Block):  LeavesDecayEvent
+}
+
+interface  LeavesDecayEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.block.MoistureChangeEvent'):  MoistureChangeEventConstructor
+}
+
+interface  MoistureChangeEventConstructor {
+    new(block: Block, newState: BlockState):  MoistureChangeEvent
+}
+
+interface  MoistureChangeEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the new state of the affected block. */
+    getNewState​(): BlockState
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.NotePlayEvent'):  NotePlayEventConstructor
+}
+
+interface  NotePlayEventConstructor {
+    new(block: Block, instrument: Instrument, note: Note):  NotePlayEvent
+}
+
+interface  NotePlayEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the Instrument to be used. */
+    getInstrument​(): Instrument
+    /** Gets the Note to be played. */
+    getNote​(): Note
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Deprecated. no effect on newer Minecraft versions */
+    setInstrument​(instrument: Instrument): void
+    /** Deprecated. no effect on newer Minecraft versions */
+    setNote​(note: Note): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.SignChangeEvent'):  SignChangeEventConstructor
+}
+
+interface  SignChangeEventConstructor {
+    new(theBlock: Block, thePlayer: Player, theLines: string[]):  SignChangeEvent
+}
+
+interface  SignChangeEvent extends BlockEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets a single line of text from the sign involved in this event. */
+    getLine​(index: number): string
+    /** Gets all of the lines of text from the sign involved in this event. */
+    getLines​(): string[]
+    /** Gets the player changing the sign involved in this event. */
+    getPlayer​(): Player
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets a single line for the sign involved in this event */
+    setLine​(index: number, line: string): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.SpongeAbsorbEvent'):  SpongeAbsorbEventConstructor
+}
+
+interface  SpongeAbsorbEventConstructor {
+    new(block: Block, waterblocks: BlockState[]):  SpongeAbsorbEvent
+}
+
+interface  SpongeAbsorbEvent extends BlockEvent, Cancellable {
+
+    /** Get a list of all blocks to be removed by the sponge. */
+    getBlocks​(): BlockState[]
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.BlockSpreadEvent'):  BlockSpreadEventConstructor
+}
+
+interface  BlockSpreadEventConstructor {
+    new(block: Block, source: Block, newState: BlockState):  BlockSpreadEvent
+}
+
+interface  BlockSpreadEvent extends BlockFormEvent {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the source block involved in this event. */
+    getSource​(): Block
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.EntityBlockFormEvent'):  EntityBlockFormEventConstructor
+}
+
+interface  EntityBlockFormEventConstructor {
+    new(entity: Entity, block: Block, blockstate: BlockState):  EntityBlockFormEvent
+}
+
+interface  EntityBlockFormEvent extends BlockFormEvent {
+
+    /** Get the entity that formed the block. */
+    getEntity​(): Entity
+}
+
+interface AreaEffectCloud extends Entity {
+
+    /** Adds a custom potion effect to this cloud. */
+    addCustomEffect​(effect: PotionEffect, overwrite: boolean): boolean
+    /** Removes all custom potion effects from this cloud. */
+    clearCustomEffects​(): void
+    /** Returns the potion data about the base potion */
+    getBasePotionData​(): PotionData
+    /** Gets the color of this cloud. */
+    getColor​(): Color
+    /** Gets an immutable list containing all custom potion effects applied tothis cloud. */
+    getCustomEffects​(): PotionEffect[]
+    /** Gets the duration which this cloud will exist for (in ticks). */
+    getDuration​(): number
+    /** Gets the amount that the duration of this cloud will decrease by when itapplies an effect to an entity. */
+    getDurationOnUse​(): number
+    /** Gets the particle which this cloud will be composed of */
+    getParticle​(): Particle
+    /** Gets the initial radius of the cloud. */
+    getRadius​(): number
+    /** Gets the amount that the radius of this cloud will decrease by when itapplies an effect to an entity. */
+    getRadiusOnUse​(): number
+    /** Gets the amount that the radius of this cloud will decrease by each tick. */
+    getRadiusPerTick​(): number
+    /** Gets the time that an entity will be immune from subsequent exposure. */
+    getReapplicationDelay​(): number
+    /** Retrieve the original source of this cloud. */
+    getSource​(): ProjectileSource
+    /** Gets the time which an entity has to be exposed to the cloud before theeffect is applied. */
+    getWaitTime​(): number
+    /** Checks for a specific custom potion effect type on this cloud. */
+    hasCustomEffect​(type: PotionEffectType): boolean
+    /** Checks for the presence of custom potion effects. */
+    hasCustomEffects​(): boolean
+    /** Removes a custom potion effect from this cloud. */
+    removeCustomEffect​(type: PotionEffectType): boolean
+    /** Sets the underlying potion data */
+    setBasePotionData​(data: PotionData): void
+    /** Sets the color of this cloud. */
+    setColor​(color: Color): void
+    /** Sets the duration which this cloud will exist for (in ticks). */
+    setDuration​(duration: number): void
+    /** Sets the amount that the duration of this cloud will decrease by when itapplies an effect to an entity. */
+    setDurationOnUse​(duration: number): void
+    /** Sets the particle which this cloud will be composed of */
+    setParticle​(particle: Particle): void
+    /** Sets the particle which this cloud will be composed of */
+    setParticle​(particle: Particle, data: any): any
+    /** Sets the initial radius of the cloud. */
+    setRadius​(radius: number): void
+    /** Sets the amount that the radius of this cloud will decrease by when itapplies an effect to an entity. */
+    setRadiusOnUse​(radius: number): void
+    /** Gets the amount that the radius of this cloud will decrease by each tick. */
+    setRadiusPerTick​(radius: number): void
+    /** Sets the time that an entity will be immune from subsequent exposure. */
+    setReapplicationDelay​(delay: number): void
+    /** Set the original source of this cloud. */
+    setSource​(source: ProjectileSource): void
+    /** Sets the time which an entity has to be exposed to the cloud before theeffect is applied. */
+    setWaitTime​(waitTime: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.AreaEffectCloudApplyEvent'):  AreaEffectCloudApplyEventConstructor
+}
+
+interface  AreaEffectCloudApplyEventConstructor {
+    new(entity: AreaEffectCloud, affectedEntities: LivingEntity[]):  AreaEffectCloudApplyEvent
+}
+
+interface  AreaEffectCloudApplyEvent extends EntityEvent, Cancellable {
+
+    /** Retrieves a mutable list of the effected entities */
+    getAffectedEntities​(): LivingEntity[]
+    /** Returns the Entity involved in this event */
+    getEntity​(): AreaEffectCloud
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Ambient extends Mob {
+
+}
+
+interface Bat extends Ambient {
+
+    /** Checks the current waking state of this bat. */
+    isAwake​(): boolean
+    /** This method modifies the current waking state of this bat. */
+    setAwake​(state: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.BatToggleSleepEvent'):  BatToggleSleepEventConstructor
+}
+
+interface  BatToggleSleepEventConstructor {
+    new(what: Bat, awake: boolean):  BatToggleSleepEvent
+}
+
+interface  BatToggleSleepEvent extends EntityEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Get whether or not the bat is attempting to awaken. */
+    isAwake​(): boolean
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.CreeperPowerEvent.PowerCause'): CreeperPowerEventPowerCauses
+}
+
+interface CreeperPowerEventPowerCauses {
+
+    /** Power change caused by a lightning bolt */
+    LIGHTNING: CreeperPowerEventPowerCause
+    /** Power change caused by something else (probably a plugin) */
+    SET_OFF: CreeperPowerEventPowerCause
+    /** Power change caused by something else (probably a plugin) */
+    SET_ON: CreeperPowerEventPowerCause
+}
+
+interface CreeperPowerEventPowerCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): CreeperPowerEventPowerCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): CreeperPowerEventPowerCause[]
+}
+
+interface Monster extends Creature {
+
+}
+
+interface Creeper extends Monster {
+
+    /** Makes this Creeper explode instantly. */
+    explode​(): void
+    /** Get the explosion radius in which this Creeper's explosion will affect. */
+    getExplosionRadius​(): number
+    /** Get the maximum fuse ticks for this Creeper, where the maximum ticksis the amount of time in which a creeper is allowed to be in theprimed state before exploding. */
+    getMaxFuseTicks​(): number
+    /** Ignites this Creeper, beginning its fuse. */
+    ignite​(): void
+    /** Checks if this Creeper is powered (Electrocuted) */
+    isPowered​(): boolean
+    /** Set the explosion radius in which this Creeper's explosion will affect. */
+    setExplosionRadius​(radius: number): void
+    /** Set the maximum fuse ticks for this Creeper, where the maximum ticksis the amount of time in which a creeper is allowed to be in theprimed state before exploding. */
+    setMaxFuseTicks​(ticks: number): void
+    /** Sets the Powered status of this Creeper */
+    setPowered​(value: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.CreeperPowerEvent'):  CreeperPowerEventConstructor
+}
+
+interface  CreeperPowerEventConstructor {
+    new(creeper: Creeper, bolt: LightningStrike, cause: CreeperPowerEventPowerCause):  CreeperPowerEvent
+    new(creeper: Creeper, cause: CreeperPowerEventPowerCause):  CreeperPowerEvent
+}
+
+interface  CreeperPowerEvent extends EntityEvent, Cancellable {
+
+    /** Gets the cause of the creeper being (un)powered. */
+    getCause​(): CreeperPowerEventPowerCause
+    /** Returns the Entity involved in this event */
+    getEntity​(): Creeper
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the lightning bolt which is striking the Creeper. */
+    getLightning​(): LightningStrike
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityDamageEvent.DamageCause'): EntityDamageEventDamageCauses
+}
+
+interface EntityDamageEventDamageCauses {
+
+    /** Damage caused by being in the area when a block explodes. */
+    BLOCK_EXPLOSION: EntityDamageEventDamageCause
+    /** Damage caused when an entity contacts a block such as a Cactus. */
+    CONTACT: EntityDamageEventDamageCause
+    /** Damage caused when an entity is colliding with too many entities dueto the maxEntityCramming game rule. */
+    CRAMMING: EntityDamageEventDamageCause
+    /** Custom damage. */
+    CUSTOM: EntityDamageEventDamageCause
+    /** Damage caused by a dragon breathing fire. */
+    DRAGON_BREATH: EntityDamageEventDamageCause
+    /** Damage caused by running out of air while in water */
+    DROWNING: EntityDamageEventDamageCause
+    /** Damage caused when an entity that should be in water is not. */
+    DRYOUT: EntityDamageEventDamageCause
+    /** Damage caused when an entity attacks another entity. */
+    ENTITY_ATTACK: EntityDamageEventDamageCause
+    /** Damage caused by being in the area when an entity, such as aCreeper, explodes. */
+    ENTITY_EXPLOSION: EntityDamageEventDamageCause
+    /** Damage caused when an entity attacks another entity in a sweep attack. */
+    ENTITY_SWEEP_ATTACK: EntityDamageEventDamageCause
+    /** Damage caused when an entity falls a distance greater than 3 blocks */
+    FALL: EntityDamageEventDamageCause
+    /** Damage caused by being hit by a falling block which deals damage */
+    FALLING_BLOCK: EntityDamageEventDamageCause
+    /** Damage caused by direct exposure to fire */
+    FIRE: EntityDamageEventDamageCause
+    /** Damage caused due to burns caused by fire */
+    FIRE_TICK: EntityDamageEventDamageCause
+    /** Damage caused when an entity runs into a wall. */
+    FLY_INTO_WALL: EntityDamageEventDamageCause
+    /** Damage caused when an entity steps on Material.MAGMA_BLOCK. */
+    HOT_FLOOR: EntityDamageEventDamageCause
+    /** Damage caused by direct exposure to lava */
+    LAVA: EntityDamageEventDamageCause
+    /** Damage caused by being struck by lightning */
+    LIGHTNING: EntityDamageEventDamageCause
+    /** Damage caused by being hit by a damage potion or spell */
+    MAGIC: EntityDamageEventDamageCause
+    /** Damage caused due to a snowman melting */
+    MELTING: EntityDamageEventDamageCause
+    /** Damage caused due to an ongoing poison effect */
+    POISON: EntityDamageEventDamageCause
+    /** Damage caused when attacked by a projectile. */
+    PROJECTILE: EntityDamageEventDamageCause
+    /** Damage caused by starving due to having an empty hunger bar */
+    STARVATION: EntityDamageEventDamageCause
+    /** Damage caused by being put in a block */
+    SUFFOCATION: EntityDamageEventDamageCause
+    /** Damage caused by committing suicide using the command "/kill" */
+    SUICIDE: EntityDamageEventDamageCause
+    /** Damage caused in retaliation to another attack by the Thornsenchantment. */
+    THORNS: EntityDamageEventDamageCause
+    /** Damage caused by falling into the void */
+    VOID: EntityDamageEventDamageCause
+    /** Damage caused by Wither potion effect */
+    WITHER: EntityDamageEventDamageCause
+}
+
+interface EntityDamageEventDamageCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityDamageEventDamageCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityDamageEventDamageCause[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityDamageEvent.DamageModifier'): EntityDamageEventDamageModifiers
+}
+
+interface EntityDamageEventDamageModifiers {
+
+    /** Deprecated. This represents the damage reduction caused by the absorption potioneffect. */
+    ABSORPTION: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the damage reduction caused by wearing armor. */
+    ARMOR: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the amount of damage being done, also known as theraw EntityDamageEvent.getDamage(). */
+    BASE: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the damage reduction caused by blocking, only present forPlayers. */
+    BLOCKING: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the damage reduced by a wearing a helmet when hitby a falling block. */
+    HARD_HAT: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the damage reduction caused by the combination of:Armor enchantmentsWitch's potion resistance */
+    MAGIC: EntityDamageEventDamageModifier
+    /** Deprecated. This represents the damage reduction caused by the Resistance potion effect. */
+    RESISTANCE: EntityDamageEventDamageModifier
+}
+
+interface EntityDamageEventDamageModifier {
+
+    /** Deprecated. Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityDamageEventDamageModifier
+    /** Deprecated. Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityDamageEventDamageModifier[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityDamageEvent'):  EntityDamageEventConstructor
+}
+
+interface  EntityDamageEventConstructor {
+    new(damagee: Entity, cause: EntityDamageEventDamageCause, damage: number):  EntityDamageEvent
+}
+
+interface  EntityDamageEvent extends EntityEvent, Cancellable {
+
+    /** Gets the cause of the damage. */
+    getCause​(): EntityDamageEventDamageCause
+    /** Gets the raw amount of damage caused by the event */
+    getDamage​(): number
+    /** Gets the damage change for some modifier */
+    getDamage​(type: EntityDamageEventDamageModifier): number
+    /** Gets the amount of damage caused by the event after all damagereduction is applied. */
+    getFinalDamage​(): number
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the original damage for the specified modifier, as defined at thisevent's construction. */
+    getOriginalDamage​(type: EntityDamageEventDamageModifier): number
+    /** This checks to see if a particular modifier is valid for this event'scaller, such that, setDamage(DamageModifier, double) will notthrow an UnsupportedOperationException. */
+    isApplicable​(type: EntityDamageEventDamageModifier): boolean
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the raw amount of damage caused by the event. */
+    setDamage​(damage: number): void
+    /** Sets the damage for the specified modifier. */
+    setDamage​(type: EntityDamageEventDamageModifier, damage: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityPotionEffectEvent.Cause'): EntityPotionEffectEventCauses
+}
+
+interface EntityPotionEffectEventCauses {
+
+    /** When the entity stands inside an area effect cloud. */
+    AREA_EFFECT_CLOUD: EntityPotionEffectEventCause
+    /** When the entity is hit by an spectral or tipped arrow. */
+    ARROW: EntityPotionEffectEventCause
+    /** When the entity is inflicted with a potion effect due to an entityattack (e.g. */
+    ATTACK: EntityPotionEffectEventCause
+    /** When beacon effects get applied due to the entity being nearby. */
+    BEACON: EntityPotionEffectEventCause
+    /** When a potion effect is changed due to the /effect command. */
+    COMMAND: EntityPotionEffectEventCause
+    /** When the entity gets the effect from a conduit. */
+    CONDUIT: EntityPotionEffectEventCause
+    /** When a conversion from a villager zombie to a villager is started orfinished. */
+    CONVERSION: EntityPotionEffectEventCause
+    /** When all effects are removed due to death (Note: This is called onrespawn, so it's player only!) */
+    DEATH: EntityPotionEffectEventCause
+    /** When the entity gets the effect from a dolphin. */
+    DOLPHIN: EntityPotionEffectEventCause
+    /** When the effect was removed due to expiration. */
+    EXPIRATION: EntityPotionEffectEventCause
+    /** When an effect is inflicted due to food (e.g. */
+    FOOD: EntityPotionEffectEventCause
+    /** When an illusion illager makes himself disappear. */
+    ILLUSION: EntityPotionEffectEventCause
+    /** When all effects are removed due to a bucket of milk. */
+    MILK: EntityPotionEffectEventCause
+    /** When a potion effect is modified through the plugin methods. */
+    PLUGIN: EntityPotionEffectEventCause
+    /** When the entity drinks a potion. */
+    POTION_DRINK: EntityPotionEffectEventCause
+    /** When the entity is inflicted with an effect due to a splash potion. */
+    POTION_SPLASH: EntityPotionEffectEventCause
+    /** When a spider gets effects when spawning on hard difficulty. */
+    SPIDER_SPAWN: EntityPotionEffectEventCause
+    /** When the entity gets effects from a totem item saving it's life. */
+    TOTEM: EntityPotionEffectEventCause
+    /** When the entity gets water breathing by wearing a turtle helmet. */
+    TURTLE_HELMET: EntityPotionEffectEventCause
+    /** When the Cause is missing. */
+    UNKNOWN: EntityPotionEffectEventCause
+    /** When a villager gets regeneration after a trade. */
+    VILLAGER_TRADE: EntityPotionEffectEventCause
+}
+
+interface EntityPotionEffectEventCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityPotionEffectEventCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityPotionEffectEventCause[]
+}
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityDamageByEntityEvent'):  EntityDamageByEntityEventConstructor
+}
+
+interface  EntityDamageByEntityEventConstructor {
+    new(damager: Entity, damagee: Entity, cause: EntityDamageEventDamageCause, damage: number):  EntityDamageByEntityEvent
+}
+
+interface  EntityDamageByEntityEvent extends EntityDamageEvent {
+
+    /** Returns the entity that damaged the defender. */
+    getDamager​(): Entity
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityPotionEffectEvent.Action'): EntityPotionEffectEventActions
+}
+
+interface EntityPotionEffectEventActions {
+
+    /** When the potion effect is added because the entity didn't have it'stype. */
+    ADDED: EntityPotionEffectEventAction
+    /** When the entity already had the potion effect type, but the effect ischanged. */
+    CHANGED: EntityPotionEffectEventAction
+    /** When the effect is removed due to all effects being removed. */
+    CLEARED: EntityPotionEffectEventAction
+    /** When the potion effect type is completely removed. */
+    REMOVED: EntityPotionEffectEventAction
+}
+
+interface EntityPotionEffectEventAction {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityPotionEffectEventAction
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityPotionEffectEventAction[]
+}
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityPotionEffectEvent'):  EntityPotionEffectEventConstructor
+}
+
+interface  EntityPotionEffectEventConstructor {
+    new(livingEntity: LivingEntity, oldEffect: PotionEffect, newEffect: PotionEffect, cause: EntityPotionEffectEventCause, action: EntityPotionEffectEventAction, override: boolean):  EntityPotionEffectEvent
+}
+
+interface  EntityPotionEffectEvent extends EntityEvent, Cancellable {
+
+    /** Gets the action which will be performed on the potion effect type. */
+    getAction​(): EntityPotionEffectEventAction
+    /** Gets the cause why the effect has changed. */
+    getCause​(): EntityPotionEffectEventCause
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the modified potion effect type. */
+    getModifiedType​(): PotionEffectType
+    /** Gets new potion effect of the changed type to be applied. */
+    getNewEffect​(): PotionEffect
+    /** Gets the old potion effect of the changed type, which will be removed. */
+    getOldEffect​(): PotionEffect
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Returns if the new potion effect will override the old potion effect(Only applicable for the CHANGED Action). */
+    isOverride​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets if the new potion effect will override the old potion effect (Onlyapplicable for the CHANGED action). */
+    setOverride​(override: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason'): EntityRegainHealthEventRegainReasons
+}
+
+interface EntityRegainHealthEventRegainReasons {
+
+    /** Any other reason not covered by the reasons above */
+    CUSTOM: EntityRegainHealthEventRegainReason
+    /** When a player regains health from eating consumables */
+    EATING: EntityRegainHealthEventRegainReason
+    /** When an ender dragon regains health from an ender crystal */
+    ENDER_CRYSTAL: EntityRegainHealthEventRegainReason
+    /** When a player is healed by a potion or spell */
+    MAGIC: EntityRegainHealthEventRegainReason
+    /** When a player is healed over time by a potion or spell */
+    MAGIC_REGEN: EntityRegainHealthEventRegainReason
+    /** When a player regains health from regenerating due to Peaceful mode(difficulty=0) */
+    REGEN: EntityRegainHealthEventRegainReason
+    /** When a player regains health from regenerating due to their hungerbeing satisfied */
+    SATIATED: EntityRegainHealthEventRegainReason
+    /** When an entity is damaged by the Wither potion effect */
+    WITHER: EntityRegainHealthEventRegainReason
+    /** When a wither is filling its health during spawning */
+    WITHER_SPAWN: EntityRegainHealthEventRegainReason
+}
+
+interface EntityRegainHealthEventRegainReason {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityRegainHealthEventRegainReason
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityRegainHealthEventRegainReason[]
+}
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityRegainHealthEvent'):  EntityRegainHealthEventConstructor
+}
+
+interface  EntityRegainHealthEventConstructor {
+    new(entity: Entity, amount: number, regainReason: EntityRegainHealthEventRegainReason):  EntityRegainHealthEvent
+}
+
+interface  EntityRegainHealthEvent extends EntityEvent, Cancellable {
+
+    /** Gets the amount of regained health */
+    getAmount​(): number
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the reason for why the entity is regaining health */
+    getRegainReason​(): EntityRegainHealthEventRegainReason
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the amount of regained health */
+    setAmount​(amount: number): void
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason'): CreatureSpawnEventSpawnReasons
+}
+
+interface CreatureSpawnEventSpawnReasons {
+
+    /** When an animal breeds to create a child */
+    BREEDING: CreatureSpawnEventSpawnReason
+    /** When an iron golem is spawned by being built */
+    BUILD_IRONGOLEM: CreatureSpawnEventSpawnReason
+    /** When a snowman is spawned by being built */
+    BUILD_SNOWMAN: CreatureSpawnEventSpawnReason
+    /** When a wither boss is spawned by being built */
+    BUILD_WITHER: CreatureSpawnEventSpawnReason
+    /** Deprecated. no longer called, chunks are generated with entitiesalready existing. Consider using ChunkLoadEvent,ChunkLoadEvent.isNewChunk() and Chunk.getEntities()for similar effect. */
+    CHUNK_GEN: CreatureSpawnEventSpawnReason
+    /** When a villager is cured from infection */
+    CURED: CreatureSpawnEventSpawnReason
+    /** When a creature is spawned by plugins */
+    CUSTOM: CreatureSpawnEventSpawnReason
+    /** When an entity is missing a SpawnReason */
+    DEFAULT: CreatureSpawnEventSpawnReason
+    /** When a creature is spawned by a dispenser dispensing an egg */
+    DISPENSE_EGG: CreatureSpawnEventSpawnReason
+    /** When a creature is spawned by another entity drowning */
+    DROWNED: CreatureSpawnEventSpawnReason
+    /** When a creature spawns from an egg */
+    EGG: CreatureSpawnEventSpawnReason
+    /** When an entity is spawned as a result of ender pearl usage */
+    ENDER_PEARL: CreatureSpawnEventSpawnReason
+    /** When eg an effect cloud is spawned as a result of a creeper exploding */
+    EXPLOSION: CreatureSpawnEventSpawnReason
+    /** When a zombie infects a villager */
+    INFECTION: CreatureSpawnEventSpawnReason
+    /** When an entity spawns as a jockey of another entity (mostly spiderjockeys) */
+    JOCKEY: CreatureSpawnEventSpawnReason
+    /** When a creature spawns because of a lightning strike */
+    LIGHTNING: CreatureSpawnEventSpawnReason
+    /** When an entity spawns as a mount of another entity (mostly chickenjockeys) */
+    MOUNT: CreatureSpawnEventSpawnReason
+    /** When something spawns from natural means */
+    NATURAL: CreatureSpawnEventSpawnReason
+    /** When a creature is spawned by nether portal */
+    NETHER_PORTAL: CreatureSpawnEventSpawnReason
+    /** When an ocelot has a baby spawned along with them */
+    OCELOT_BABY: CreatureSpawnEventSpawnReason
+    /** When an entity calls for reinforcements */
+    REINFORCEMENTS: CreatureSpawnEventSpawnReason
+    /** When an cow is spawned by shearing a mushroom cow */
+    SHEARED: CreatureSpawnEventSpawnReason
+    /** When an entity is spawned as a result of the entity it is beingperched on jumping or being damaged */
+    SHOULDER_ENTITY: CreatureSpawnEventSpawnReason
+    /** When a silverfish spawns from a block */
+    SILVERFISH_BLOCK: CreatureSpawnEventSpawnReason
+    /** When a slime splits */
+    SLIME_SPLIT: CreatureSpawnEventSpawnReason
+    /** When a creature spawns from a spawner */
+    SPAWNER: CreatureSpawnEventSpawnReason
+    /** When a creature spawns from a Spawner Egg */
+    SPAWNER_EGG: CreatureSpawnEventSpawnReason
+    /** When an entity spawns as a trap for players approaching */
+    TRAP: CreatureSpawnEventSpawnReason
+    /** When an iron golem is spawned to defend a village */
+    VILLAGE_DEFENSE: CreatureSpawnEventSpawnReason
+    /** When a zombie is spawned to invade a village */
+    VILLAGE_INVASION: CreatureSpawnEventSpawnReason
+}
+
+interface CreatureSpawnEventSpawnReason {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): CreatureSpawnEventSpawnReason
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): CreatureSpawnEventSpawnReason[]
+}
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntitySpawnEvent'):  EntitySpawnEventConstructor
+}
+
+interface  EntitySpawnEventConstructor {
+    new(spawnee: Entity):  EntitySpawnEvent
+}
+
+interface  EntitySpawnEvent extends EntityEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the location at which the entity is spawning. */
+    getLocation​(): Location
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.CreatureSpawnEvent'):  CreatureSpawnEventConstructor
+}
+
+interface  CreatureSpawnEventConstructor {
+    new(spawnee: LivingEntity, spawnReason: CreatureSpawnEventSpawnReason):  CreatureSpawnEvent
+}
+
+interface  CreatureSpawnEvent extends EntitySpawnEvent {
+
+    /** Returns the Entity involved in this event */
+    getEntity​(): LivingEntity
+    /** Gets the reason for why the creature is being spawned. */
+    getSpawnReason​(): CreatureSpawnEventSpawnReason
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityDeathEvent'):  EntityDeathEventConstructor
+}
+
+interface  EntityDeathEventConstructor {
+    new(entity: LivingEntity, drops: ItemStack[]):  EntityDeathEvent
+    new(what: LivingEntity, drops: ItemStack[], droppedExp: number):  EntityDeathEvent
+}
+
+interface  EntityDeathEvent extends EntityEvent {
+
+    /** Gets how much EXP should be dropped from this death. */
+    getDroppedExp​(): number
+    /** Gets all the items which will drop when the entity dies */
+    getDrops​(): ItemStack[]
+    /** Returns the Entity involved in this event */
+    getEntity​(): LivingEntity
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Sets how much EXP should be dropped from this death. */
+    setDroppedExp​(exp: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityTargetEvent.TargetReason'): EntityTargetEventTargetReasons
+}
+
+interface EntityTargetEventTargetReasons {
+
+    /** When the entity doesn't have a target, so it attacks the nearestentity */
+    CLOSEST_ENTITY: EntityTargetEventTargetReason
+    /** When the entity doesn't have a target, so it attacks the nearest player */
+    CLOSEST_PLAYER: EntityTargetEventTargetReason
+    /** When an entity targets another entity after colliding with it. */
+    COLLISION: EntityTargetEventTargetReason
+    /** For custom calls to the event. */
+    CUSTOM: EntityTargetEventTargetReason
+    /** When an entity selects a target while defending a village. */
+    DEFEND_VILLAGE: EntityTargetEventTargetReason
+    /** When a raiding entity selects the same target as one of its compatriots. */
+    FOLLOW_LEADER: EntityTargetEventTargetReason
+    /** When the target is forgotten for whatever reason. */
+    FORGOT_TARGET: EntityTargetEventTargetReason
+    /** When the owner of the entity attacks the target attacks, so theentity targets it. */
+    OWNER_ATTACKED_TARGET: EntityTargetEventTargetReason
+    /** Deprecated. obsoleted by TARGET_ATTACKED_NEARBY_ENTITY */
+    PIG_ZOMBIE_TARGET: EntityTargetEventTargetReason
+    /** When the entity has no target, so the entity randomly chooses one. */
+    RANDOM_TARGET: EntityTargetEventTargetReason
+    /** When a zombie targeting an entity summons reinforcements, so the reinforcements target the same entity */
+    REINFORCEMENT_TARGET: EntityTargetEventTargetReason
+    /** When the target attacks the entity, so entity targets it */
+    TARGET_ATTACKED_ENTITY: EntityTargetEventTargetReason
+    /** When the target attacks a nearby entity of the same type, so the entity targets it */
+    TARGET_ATTACKED_NEARBY_ENTITY: EntityTargetEventTargetReason
+    /** When the target attacks the owner of the entity, so the entitytargets it. */
+    TARGET_ATTACKED_OWNER: EntityTargetEventTargetReason
+    /** When the entity's target has died, and so it no longer targets it */
+    TARGET_DIED: EntityTargetEventTargetReason
+    /** When another entity tempts this entity by having a desired item suchas wheat in it's hand. */
+    TEMPT: EntityTargetEventTargetReason
+    /** A currently unknown reason for the entity changing target. */
+    UNKNOWN: EntityTargetEventTargetReason
+}
+
+interface EntityTargetEventTargetReason {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EntityTargetEventTargetReason
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EntityTargetEventTargetReason[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityTargetEvent'):  EntityTargetEventConstructor
+}
+
+interface  EntityTargetEventConstructor {
+    new(entity: Entity, target: Entity, reason: EntityTargetEventTargetReason):  EntityTargetEvent
+}
+
+interface  EntityTargetEvent extends EntityEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Returns the reason for the targeting */
+    getReason​(): EntityTargetEventTargetReason
+    /** Get the entity that this is targeting. */
+    getTarget​(): Entity
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Set the entity that you want the mob to target instead. */
+    setTarget​(target: Entity): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityTeleportEvent'):  EntityTeleportEventConstructor
+}
+
+interface  EntityTeleportEventConstructor {
+    new(what: Entity, from: Location, to: Location):  EntityTeleportEvent
+}
+
+interface  EntityTeleportEvent extends EntityEvent, Cancellable {
+
+    /** Gets the location that this entity moved from */
+    getFrom​(): Location
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the location that this entity moved to */
+    getTo​(): Location
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the location that this entity moved from */
+    setFrom​(from: Location): void
+    /** Sets the location that this entity moved to */
+    setTo​(to: Location): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.PlayerDeathEvent'):  PlayerDeathEventConstructor
+}
+
+interface  PlayerDeathEventConstructor {
+    new(player: Player, drops: ItemStack[], droppedExp: number, newExp: number, newTotalExp: number, newLevel: number, deathMessage: string):  PlayerDeathEvent
+    new(player: Player, drops: ItemStack[], droppedExp: number, newExp: number, deathMessage: string):  PlayerDeathEvent
+    new(player: Player, drops: ItemStack[], droppedExp: number, deathMessage: string):  PlayerDeathEvent
+}
+
+interface  PlayerDeathEvent extends EntityDeathEvent {
+
+    /** Get the death message that will appear to everyone on the server. */
+    getDeathMessage​(): string
+    /** Returns the Entity involved in this event */
+    getEntity​(): Player
+    /** Gets if the Player keeps inventory on death. */
+    getKeepInventory​(): boolean
+    /** Gets if the Player should keep all EXP at respawn. */
+    getKeepLevel​(): boolean
+    /** Gets how much EXP the Player should have at respawn. */
+    getNewExp​(): number
+    /** Gets the Level the Player should have at respawn. */
+    getNewLevel​(): number
+    /** Gets the Total EXP the Player should have at respawn. */
+    getNewTotalExp​(): number
+    /** Set the death message that will appear to everyone on the server. */
+    setDeathMessage​(deathMessage: string): void
+    /** Sets if the Player keeps inventory on death. */
+    setKeepInventory​(keepInventory: boolean): void
+    /** Sets if the Player should keep all EXP at respawn. */
+    setKeepLevel​(keepLevel: boolean): void
+    /** Sets how much EXP the Player should have at respawn. */
+    setNewExp​(exp: number): void
+    /** Sets the Level the Player should have at respawn. */
+    setNewLevel​(level: number): void
+    /** Sets the Total EXP the Player should have at respawn. */
+    setNewTotalExp​(totalExp: number): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerEvent'):  PlayerEventConstructor
+}
+
+interface  PlayerEventConstructor {
+    new(who: Player):  PlayerEvent
+}
+
+interface  PlayerEvent extends Event {
+
+    /**  */
+    player: Player
+
+    /** Returns the player involved in this event */
+    getPlayer​(): Player
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerChangedWorldEvent'):  PlayerChangedWorldEventConstructor
+}
+
+interface  PlayerChangedWorldEventConstructor {
+    new(player: Player, from: World):  PlayerChangedWorldEvent
+}
+
+interface  PlayerChangedWorldEvent extends PlayerEvent {
+
+    /** Gets the world the player is switching from. */
+    getFrom​(): World
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerQuitEvent'):  PlayerQuitEventConstructor
+}
+
+interface  PlayerQuitEventConstructor {
+    new(who: Player, quitMessage: string):  PlayerQuitEvent
+}
+
+interface  PlayerQuitEvent extends PlayerEvent {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the quit message to send to all online players */
+    getQuitMessage​(): string
+    /** Sets the quit message to send to all online players */
+    setQuitMessage​(quitMessage: string): void
+}
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerJoinEvent'):  PlayerJoinEventConstructor
+}
+
+interface  PlayerJoinEventConstructor {
+    new(playerJoined: Player, joinMessage: string):  PlayerJoinEvent
+}
+
+interface  PlayerJoinEvent extends PlayerEvent {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the join message to send to all online players */
+    getJoinMessage​(): string
+    /** Sets the join message to send to all online players */
+    setJoinMessage​(joinMessage: string): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.block.Action'): Actions
+}
+
+interface Actions {
+
+    /** Left-clicking the air */
+    LEFT_CLICK_AIR: Action
+    /** Left-clicking a block */
+    LEFT_CLICK_BLOCK: Action
+    /** Stepping onto or into a block (Ass-pressure)Examples:Jumping on soilStanding on pressure plateTriggering redstone oreTriggering tripwire */
+    PHYSICAL: Action
+    /** Right-clicking the air */
+    RIGHT_CLICK_AIR: Action
+    /** Right-clicking a block */
+    RIGHT_CLICK_BLOCK: Action
+}
+
+interface Action {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): Action
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): Action[]
+}
+
+
+interface Java{
+    type(type: 'org.bukkit.event.Event.Result'): EventResults
+}
+
+interface EventResults {
+
+    /** Allow / Force the event. */
+    ALLOW: EventResult
+    /** Neither deny nor allow the event. */
+    DEFAULT: EventResult
+    /** Deny the event. */
+    DENY: EventResult
+}
+
+interface EventResult {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): EventResult
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): EventResult[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerInteractEvent'):  PlayerInteractEventConstructor
+}
+
+interface  PlayerInteractEventConstructor {
+    new(who: Player, action: Action, item: ItemStack, clickedBlock: Block, clickedFace: BlockFace):  PlayerInteractEvent
+    new(who: Player, action: Action, item: ItemStack, clickedBlock: Block, clickedFace: BlockFace, hand: EquipmentSlot):  PlayerInteractEvent
+}
+
+interface  PlayerInteractEvent extends PlayerEvent, Cancellable {
+
+    /**  */
+    action: Action
+    /**  */
+    blockClicked: Block
+    /**  */
+    blockFace: BlockFace
+    /**  */
+    item: ItemStack
+
+    /** Returns the action type */
+    getAction​(): Action
+    /** Returns the face of the block that was clicked */
+    getBlockFace​(): BlockFace
+    /** Returns the clicked block */
+    getClickedBlock​(): Block
+    /** The hand used to perform this interaction. */
+    getHand​(): EquipmentSlot
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Returns the item in hand represented by this event */
+    getItem​(): ItemStack
+    /** Convenience method. */
+    getMaterial​(): Material
+    /** Check if this event involved a block */
+    hasBlock​(): boolean
+    /** Check if this event involved an item */
+    hasItem​(): boolean
+    /** Convenience method to inform the user whether this was a blockplacement event. */
+    isBlockInHand​(): boolean
+    /** Deprecated. This event has two possible cancellation states, one foruseInteractedBlock() and one for useItemInHand(). It ispossible a call might have the former false, but the latter true, eg inthe case of using a firework whilst gliding. Callers should check therelevant methods individually. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /**   */
+    setUseInteractedBlock​(useInteractedBlock: EventResult): void
+    /**   */
+    setUseItemInHand​(useItemInHand: EventResult): void
+    /** This controls the action to take with the block (if any) that wasclicked on. */
+    useInteractedBlock​(): EventResult
+    /** This controls the action to take with the item the player is holding. */
+    useItemInHand​(): EventResult
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerInteractEntityEvent'):  PlayerInteractEntityEventConstructor
+}
+
+interface  PlayerInteractEntityEventConstructor {
+    new(who: Player, clickedEntity: Entity):  PlayerInteractEntityEvent
+    new(who: Player, clickedEntity: Entity, hand: EquipmentSlot):  PlayerInteractEntityEvent
+}
+
+interface  PlayerInteractEntityEvent extends PlayerEvent, Cancellable {
+
+    /**  */
+    clickedEntity: Entity
+
+    /** The hand used to perform this interaction. */
+    getHand​(): EquipmentSlot
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the entity that was right-clicked by the player. */
+    getRightClicked​(): Entity
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerTeleportEvent.TeleportCause'): PlayerTeleportEventTeleportCauses
+}
+
+interface PlayerTeleportEventTeleportCauses {
+
+    /** Indicates the teleportation was caused by a player consuming chorusfruit */
+    CHORUS_FRUIT: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a player executing acommand */
+    COMMAND: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a player entering an Endgateway */
+    END_GATEWAY: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a player entering an Endportal */
+    END_PORTAL: PlayerTeleportEventTeleportCause
+    /** Indicates the teleporation was caused by a player throwing an EnderPearl */
+    ENDER_PEARL: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a player entering aNether portal */
+    NETHER_PORTAL: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a plugin */
+    PLUGIN: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by a player teleporting to aEntity/Player via the spectator menu */
+    SPECTATE: PlayerTeleportEventTeleportCause
+    /** Indicates the teleportation was caused by an event not covered bythis enum */
+    UNKNOWN: PlayerTeleportEventTeleportCause
+}
+
+interface PlayerTeleportEventTeleportCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): PlayerTeleportEventTeleportCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): PlayerTeleportEventTeleportCause[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerMoveEvent'):  PlayerMoveEventConstructor
+}
+
+interface  PlayerMoveEventConstructor {
+    new(player: Player, from: Location, to: Location):  PlayerMoveEvent
+}
+
+interface  PlayerMoveEvent extends PlayerEvent, Cancellable {
+
+    /** Gets the location this player moved from */
+    getFrom​(): Location
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the location this player moved to */
+    getTo​(): Location
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the location to mark as where the player moved from */
+    setFrom​(from: Location): void
+    /** Sets the location that this player will move to */
+    setTo​(to: Location): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerTeleportEvent'):  PlayerTeleportEventConstructor
+}
+
+interface  PlayerTeleportEventConstructor {
+    new(player: Player, from: Location, to: Location):  PlayerTeleportEvent
+    new(player: Player, from: Location, to: Location, cause: PlayerTeleportEventTeleportCause):  PlayerTeleportEvent
+}
+
+interface  PlayerTeleportEvent extends PlayerMoveEvent {
+
+    /** Gets the cause of this teleportation event */
+    getCause​(): PlayerTeleportEventTeleportCause
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.server.TabCompleteEvent'):  TabCompleteEventConstructor
+}
+
+interface  TabCompleteEventConstructor {
+    new(sender: CommandSender, buffer: string, completions: string[]):  TabCompleteEvent
+}
+
+interface  TabCompleteEvent extends Event, Cancellable {
+
+    /** Return the entire buffer which formed the basis of this completion. */
+    getBuffer​(): string
+    /** The list of completions which will be offered to the sender, in order. */
+    getCompletions​(): string[]
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Get the sender completing this command. */
+    getSender​(): CommandSender
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancelled: boolean): void
+    /** Set the completions offered, overriding any already set. */
+    setCompletions​(completions: string[]): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.weather.LightningStrikeEvent.Cause'): LightningStrikeEventCauses
+}
+
+interface LightningStrikeEventCauses {
+
+    /** Triggered by the /summon command. */
+    COMMAND: LightningStrikeEventCause
+    /** Triggered by a skeleton horse trap. */
+    TRAP: LightningStrikeEventCause
+    /** Triggered by an enchanted trident. */
+    TRIDENT: LightningStrikeEventCause
+    /** Unknown trigger. */
+    UNKNOWN: LightningStrikeEventCause
+    /** Triggered by weather. */
+    WEATHER: LightningStrikeEventCause
+}
+
+interface LightningStrikeEventCause {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): LightningStrikeEventCause
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): LightningStrikeEventCause[]
+}
+interface Java{
+    type(type: 'org.bukkit.event.weather.WeatherEvent'):  WeatherEventConstructor
+}
+
+interface  WeatherEventConstructor {
+    new(where: World):  WeatherEvent
+}
+
+interface  WeatherEvent extends Event {
+
+    /**  */
+    world: World
+
+    /** Returns the World where this event is occurring */
+    getWorld​(): World
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.weather.WeatherChangeEvent'):  WeatherChangeEventConstructor
+}
+
+interface  WeatherChangeEventConstructor {
+    new(world: World, to: boolean):  WeatherChangeEvent
+}
+
+interface  WeatherChangeEvent extends WeatherEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Gets the state of weather that the world is being set to */
+    toWeatherState​(): boolean
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.weather.LightningStrikeEvent'):  LightningStrikeEventConstructor
+}
+
+interface  LightningStrikeEventConstructor {
+    new(world: World, bolt: LightningStrike):  LightningStrikeEvent
+    new(world: World, bolt: LightningStrike, cause: LightningStrikeEventCause):  LightningStrikeEvent
+}
+
+interface  LightningStrikeEvent extends WeatherEvent, Cancellable {
+
+    /** Gets the cause of this lightning strike. */
+    getCause​(): LightningStrikeEventCause
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the bolt which is striking the earth. */
+    getLightning​(): LightningStrike
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerDropItemEvent'):  PlayerDropItemEventConstructor
+}
+
+interface  PlayerDropItemEventConstructor {
+    new(player: Player, drop: Item):  PlayerDropItemEvent
+}
+
+interface  PlayerDropItemEvent extends PlayerEvent, Cancellable {
+
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the ItemDrop created by the player */
+    getItemDrop​(): Item
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerPickupItemEvent'):  PlayerPickupItemEventConstructor
+}
+
+interface  PlayerPickupItemEventConstructor {
+    new(player: Player, item: Item, remaining: number):  PlayerPickupItemEvent
+}
+
+interface  PlayerPickupItemEvent extends PlayerEvent, Cancellable {
+
+    /** Deprecated.   */
+    getHandlerList​(): HandlerList
+    /** Deprecated.   */
+    getHandlers​(): HandlerList
+    /** Deprecated. Gets the Item picked up by the player. */
+    getItem​(): Item
+    /** Deprecated. Gets the amount remaining on the ground, if any */
+    getRemaining​(): number
+    /** Deprecated. Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Deprecated. Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerChatTabCompleteEvent'):  PlayerChatTabCompleteEventConstructor
+}
+
+interface  PlayerChatTabCompleteEventConstructor {
+    new(who: Player, message: string, completions: string[]):  PlayerChatTabCompleteEvent
+}
+
+interface  PlayerChatTabCompleteEvent extends PlayerEvent {
+
+    /** Deprecated. Gets the chat message being tab-completed. */
+    getChatMessage​(): string
+    /** Deprecated.   */
+    getHandlerList​(): HandlerList
+    /** Deprecated.   */
+    getHandlers​(): HandlerList
+    /** Deprecated. Gets the last 'token' of the message being tab-completed. */
+    getLastToken​(): string
+    /** Deprecated. This is the collection of completions for this event. */
+    getTabCompletions​(): string[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerChangedWorldEvent'):  PlayerChangedWorldEventConstructor
+}
+
+interface  PlayerChangedWorldEventConstructor {
+    new(player: Player, from: World):  PlayerChangedWorldEvent
+}
+
+interface  PlayerChangedWorldEvent extends PlayerEvent {
+
+    /** Gets the world the player is switching from. */
+    getFrom​(): World
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerBedEnterEvent.BedEnterResult'): PlayerBedEnterEventBedEnterResults
+}
+
+interface PlayerBedEnterEventBedEnterResults {
+
+    /** The world doesn't allow sleeping (ex. */
+    NOT_POSSIBLE_HERE: PlayerBedEnterEventBedEnterResult
+    /** Entering the bed is prevented due to it not being night northundering currently. */
+    NOT_POSSIBLE_NOW: PlayerBedEnterEventBedEnterResult
+    /** Entering the bed is prevented due to there being monsters nearby. */
+    NOT_SAFE: PlayerBedEnterEventBedEnterResult
+    /** The player will enter the bed. */
+    OK: PlayerBedEnterEventBedEnterResult
+    /** Entering the bed is prevented due to there being some other problem. */
+    OTHER_PROBLEM: PlayerBedEnterEventBedEnterResult
+    /** Entering the bed is prevented due to the player being too far away. */
+    TOO_FAR_AWAY: PlayerBedEnterEventBedEnterResult
+}
+
+interface PlayerBedEnterEventBedEnterResult {
+
+    /** Returns the enum constant of this type with the specified name. */
+    valueOf​(name: string): PlayerBedEnterEventBedEnterResult
+    /** Returns an array containing the constants of this enum type, inthe order they are declared. */
+    values​(): PlayerBedEnterEventBedEnterResult[]
+}
+
+interface Java{
+    type(type: 'org.bukkit.event.player.PlayerBedEnterEvent'):  PlayerBedEnterEventConstructor
+}
+
+interface  PlayerBedEnterEventConstructor {
+    new(who: Player, bed: Block):  PlayerBedEnterEvent
+    new(who: Player, bed: Block, bedEnterResult: PlayerBedEnterEventBedEnterResult):  PlayerBedEnterEvent
+}
+
+interface  PlayerBedEnterEvent extends PlayerEvent, Cancellable {
+
+    /** Returns the bed block involved in this event. */
+    getBed​(): Block
+    /** This describes the default outcome of this event. */
+    getBedEnterResult​(): PlayerBedEnterEventBedEnterResult
+    /**   */
+    getHandlerList​(): HandlerList
+    /**   */
+    getHandlers​(): HandlerList
+    /** Gets the cancellation state of this event. */
+    isCancelled​(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Sets the action to take with the interacted bed. */
+    setUseBed​(useBed: EventResult): void
+    /** This controls the action to take with the bed that was clicked on. */
+    useBed​(): EventResult
+}
 /**
  * events
  */
 // Based on lib/events-helper-bukkit
 
 // tslint:disable
-
 declare module 'events' {
-    function blockBreak(callback: callbackFn, priority?: any)
+    function blockBreak(callback: eventHandler<BlockBreakEvent>, priority?: any)
 
     /*********************
      ### events.blockBurn()
@@ -10936,7 +13263,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockBurn(callback: callbackFn, priority?: any)
+    function blockBurn(callback: eventHandler<BlockBurnEvent>, priority?: any)
 
     /*********************
      ### events.blockCanBuild()
@@ -10948,7 +13275,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockCanBuild(callback: callbackFn, priority?: any)
+    function blockCanBuild(callback: eventHandler<BlockCanBuildEvent>, priority?: any)
 
     /*********************
      ### events.blockDamage()
@@ -10960,7 +13287,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockDamage(callback: callbackFn, priority?: any)
+    function blockDamage(callback: eventHandler<BlockDamageEvent>, priority?: any)
 
     /*********************
      ### events.blockDispense()
@@ -10972,7 +13299,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockDispense(callback: callbackFn, priority?: any)
+    function blockDispense(callback: eventHandler<BlockDispenseEvent>, priority?: any)
 
     /*********************
      ### events.blockExp()
@@ -10984,7 +13311,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockExp(callback: callbackFn, priority?: any)
+    function blockExp(callback: eventHandler<BlockExpEvent>, priority?: any)
 
     /*********************
      ### events.blockExplode()
@@ -10996,7 +13323,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockExplode(callback: callbackFn, priority?: any)
+    function blockExplode(callback: eventHandler<BlockExplodeEvent>, priority?: any)
 
     /*********************
      ### events.blockFade()
@@ -11008,7 +13335,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockFade(callback: callbackFn, priority?: any)
+    function blockFade(callback: eventHandler<BlockFadeEvent>, priority?: any)
 
     /*********************
      ### events.blockForm()
@@ -11020,7 +13347,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockForm(callback: callbackFn, priority?: any)
+    function blockForm(callback: eventHandler<BlockFormEvent>, priority?: any)
 
     /*********************
      ### events.blockFromTo()
@@ -11032,7 +13359,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockFromTo(callback: callbackFn, priority?: any)
+    function blockFromTo(callback: eventHandler<BlockFromToEvent>, priority?: any)
 
     /*********************
      ### events.blockGrow()
@@ -11044,7 +13371,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockGrow(callback: callbackFn, priority?: any)
+    function blockGrow(callback: eventHandler<BlockGrowEvent>, priority?: any)
 
     /*********************
      ### events.blockIgnite()
@@ -11056,7 +13383,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockIgnite(callback: callbackFn, priority?: any)
+    function blockIgnite(callback: eventHandler<BlockIgniteEvent>, priority?: any)
 
     /*********************
      ### events.blockMultiPlace()
@@ -11068,7 +13395,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockMultiPlace(callback: callbackFn, priority?: any)
+    function blockMultiPlace(callback: eventHandler<BlockMultiPlaceEvent>, priority?: any)
 
     /*********************
      ### events.blockPhysics()
@@ -11080,7 +13407,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPhysics(callback: callbackFn, priority?: any)
+    function blockPhysics(callback: eventHandler<BlockPhysicsEvent>, priority?: any)
 
     /*********************
      ### events.blockPistonExtend()
@@ -11092,7 +13419,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPistonExtend(callback: callbackFn, priority?: any)
+    function blockPistonExtend(callback: eventHandler<BlockPistonEvent>, priority?: any)
 
     /*********************
      ### events.blockPistonRetract()
@@ -11104,7 +13431,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPistonRetract(callback: callbackFn, priority?: any)
+    function blockPistonRetract(callback: eventHandler<BlockPistonEvent>, priority?: any)
 
     /*********************
      ### events.blockPlace()
@@ -11116,7 +13443,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPlace(callback: callbackFn, priority?: any)
+    function blockPlace(callback: eventHandler<BlockPlaceEvent>, priority?: any)
 
     /*********************
      ### events.blockRedstone()
@@ -11128,7 +13455,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockRedstone(callback: callbackFn, priority?: any)
+    function blockRedstone(callback: eventHandler<BlockRedstoneEvent>, priority?: any)
 
     /*********************
      ### events.blockSpread()
@@ -11140,7 +13467,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockSpread(callback: callbackFn, priority?: any)
+    function blockSpread(callback: eventHandler<BlockSpreadEvent>, priority?: any)
 
     /*********************
      ### events.cauldronLevelChange()
@@ -11152,7 +13479,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function cauldronLevelChange(callback: callbackFn, priority?: any)
+    function cauldronLevelChange(callback: eventHandler<CauldronLevelChangeEvent>, priority?: any)
 
     /*********************
      ### events.entityBlockForm()
@@ -11164,7 +13491,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBlockForm(callback: callbackFn, priority?: any)
+    function entityBlockForm(callback: eventHandler<EntityBlockFormEvent>, priority?: any)
 
     /*********************
      ### events.leavesDecay()
@@ -11176,7 +13503,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function leavesDecay(callback: callbackFn, priority?: any)
+    function leavesDecay(callback: eventHandler<LeavesDecayEvent>, priority?: any)
 
     /*********************
      ### events.notePlay()
@@ -11188,7 +13515,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function notePlay(callback: callbackFn, priority?: any)
+    function notePlay(callback: eventHandler<NotePlayEvent>, priority?: any)
 
     /*********************
      ### events.signChange()
@@ -11200,7 +13527,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function signChange(callback: callbackFn, priority?: any)
+    function signChange(callback: eventHandler<SignChangeEvent>, priority?: any)
 
     /*********************
      ### events.enchantItem()
@@ -11212,7 +13539,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function enchantItem(callback: callbackFn, priority?: any)
+    function enchantItem(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.prepareItemEnchant()
@@ -11224,7 +13551,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareItemEnchant(callback: callbackFn, priority?: any)
+    function prepareItemEnchant(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.areaEffectCloudApply()
@@ -11236,7 +13563,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function areaEffectCloudApply(callback: callbackFn, priority?: any)
+    function areaEffectCloudApply(callback: eventHandler<AreaEffectCloudApplyEvent>, priority?: any)
 
     /*********************
      ### events.creatureSpawn()
@@ -11248,7 +13575,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function creatureSpawn(callback: callbackFn, priority?: any)
+    function creatureSpawn(callback: eventHandler<CreatureSpawnEvent>, priority?: any)
 
     /*********************
      ### events.creeperPower()
@@ -11260,7 +13587,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function creeperPower(callback: callbackFn, priority?: any)
+    function creeperPower(callback: eventHandler<CreeperPowerEvent>, priority?: any)
 
     /*********************
      ### events.enderDragonChangePhase()
@@ -11272,7 +13599,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function enderDragonChangePhase(callback: callbackFn, priority?: any)
+    function enderDragonChangePhase(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityAirChange()
@@ -11284,7 +13611,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityAirChange(callback: callbackFn, priority?: any)
+    function entityAirChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityBreakDoor()
@@ -11296,7 +13623,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBreakDoor(callback: callbackFn, priority?: any)
+    function entityBreakDoor(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityBreed()
@@ -11308,7 +13635,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBreed(callback: callbackFn, priority?: any)
+    function entityBreed(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityChangeBlock()
@@ -11320,7 +13647,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityChangeBlock(callback: callbackFn, priority?: any)
+    function entityChangeBlock(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityCombustByBlock()
@@ -11332,7 +13659,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombustByBlock(callback: callbackFn, priority?: any)
+    function entityCombustByBlock(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityCombustByEntity()
@@ -11344,7 +13671,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombustByEntity(callback: callbackFn, priority?: any)
+    function entityCombustByEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityCombust()
@@ -11356,7 +13683,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombust(callback: callbackFn, priority?: any)
+    function entityCombust(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityCreatePortal()
@@ -11368,7 +13695,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCreatePortal(callback: callbackFn, priority?: any)
+    function entityCreatePortal(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityDamageByBlock()
@@ -11380,7 +13707,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamageByBlock(callback: callbackFn, priority?: any)
+    function entityDamageByBlock(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityDamageByEntity()
@@ -11392,7 +13719,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamageByEntity(callback: callbackFn, priority?: any)
+    function entityDamageByEntity(callback: eventHandler<EntityDamageByEntityEvent>, priority?: any)
 
     /*********************
      ### events.entityDamage()
@@ -11404,7 +13731,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamage(callback: callbackFn, priority?: any)
+    function entityDamage(callback: eventHandler<EntityDamageEvent>, priority?: any)
 
     /*********************
      ### events.entityDeath()
@@ -11416,7 +13743,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDeath(callback: callbackFn, priority?: any)
+    function entityDeath(callback: eventHandler<EntityDeathEvent>, priority?: any)
 
     /*********************
      ### events.entityExplode()
@@ -11428,7 +13755,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityExplode(callback: callbackFn, priority?: any)
+    function entityExplode(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityInteract()
@@ -11440,7 +13767,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityInteract(callback: callbackFn, priority?: any)
+    function entityInteract(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityPickupItem()
@@ -11452,7 +13779,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPickupItem(callback: callbackFn, priority?: any)
+    function entityPickupItem(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityPortalEnter()
@@ -11464,7 +13791,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortalEnter(callback: callbackFn, priority?: any)
+    function entityPortalEnter(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityPortal()
@@ -11476,7 +13803,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortal(callback: callbackFn, priority?: any)
+    function entityPortal(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityPortalExit()
@@ -11488,7 +13815,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortalExit(callback: callbackFn, priority?: any)
+    function entityPortalExit(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityRegainHealth()
@@ -11500,7 +13827,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityRegainHealth(callback: callbackFn, priority?: any)
+    function entityRegainHealth(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityResurrect()
@@ -11512,7 +13839,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityResurrect(callback: callbackFn, priority?: any)
+    function entityResurrect(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityShootBow()
@@ -11524,7 +13851,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityShootBow(callback: callbackFn, priority?: any)
+    function entityShootBow(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entitySpawn()
@@ -11536,7 +13863,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entitySpawn(callback: callbackFn, priority?: any)
+    function entitySpawn(callback: eventHandler<EntitySpawnEvent>, priority?: any)
 
     /*********************
      ### events.entityTame()
@@ -11548,7 +13875,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTame(callback: callbackFn, priority?: any)
+    function entityTame(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityTarget()
@@ -11560,7 +13887,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTarget(callback: callbackFn, priority?: any)
+    function entityTarget(callback: eventHandler<EntityTargetEvent>, priority?: any)
 
     /*********************
      ### events.entityTargetLivingEntity()
@@ -11572,7 +13899,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTargetLivingEntity(callback: callbackFn, priority?: any)
+    function entityTargetLivingEntity(callback: eventHandler, priority?: any)
     /*********************
      ### events.entityTeleport()
 
@@ -11583,7 +13910,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTeleport(callback: callbackFn, priority?: any)
+    function entityTeleport(callback: eventHandler<EntityTeleportEvent>, priority?: any)
 
     /*********************
      ### events.entityToggleGlide()
@@ -11595,7 +13922,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityToggleGlide(callback: callbackFn, priority?: any)
+    function entityToggleGlide(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.entityUnleash()
@@ -11607,7 +13934,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityUnleash(callback: callbackFn, priority?: any)
+    function entityUnleash(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.expBottle()
@@ -11619,7 +13946,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function expBottle(callback: callbackFn, priority?: any)
+    function expBottle(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.explosionPrime()
@@ -11631,7 +13958,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function explosionPrime(callback: callbackFn, priority?: any)
+    function explosionPrime(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.fireworkExplode()
@@ -11643,7 +13970,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function fireworkExplode(callback: callbackFn, priority?: any)
+    function fireworkExplode(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.foodLevelChange()
@@ -11655,7 +13982,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function foodLevelChange(callback: callbackFn, priority?: any)
+    function foodLevelChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.horseJump()
@@ -11667,7 +13994,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function horseJump(callback: callbackFn, priority?: any)
+    function horseJump(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.itemDespawn()
@@ -11679,7 +14006,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemDespawn(callback: callbackFn, priority?: any)
+    function itemDespawn(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.itemMerge()
@@ -11691,7 +14018,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemMerge(callback: callbackFn, priority?: any)
+    function itemMerge(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.itemSpawn()
@@ -11703,7 +14030,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemSpawn(callback: callbackFn, priority?: any)
+    function itemSpawn(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.lingeringPotionSplash()
@@ -11715,7 +14042,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function lingeringPotionSplash(callback: callbackFn, priority?: any)
+    function lingeringPotionSplash(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.pigZap()
@@ -11727,7 +14054,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pigZap(callback: callbackFn, priority?: any)
+    function pigZap(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerDeath()
@@ -11739,7 +14066,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerDeath(callback: callbackFn, priority?: any)
+    function playerDeath(callback: eventHandler<PlayerDeathEvent>, priority?: any)
 
     /*********************
      ### events.playerLeashEntity()
@@ -11751,7 +14078,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLeashEntity(callback: callbackFn, priority?: any)
+    function playerLeashEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.potionSplash()
@@ -11763,7 +14090,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function potionSplash(callback: callbackFn, priority?: any)
+    function potionSplash(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.projectileHit()
@@ -11775,7 +14102,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function projectileHit(callback: callbackFn, priority?: any)
+    function projectileHit(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.projectileLaunch()
@@ -11787,7 +14114,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function projectileLaunch(callback: callbackFn, priority?: any)
+    function projectileLaunch(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.sheepDyeWool()
@@ -11799,7 +14126,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function sheepDyeWool(callback: callbackFn, priority?: any)
+    function sheepDyeWool(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.sheepRegrowWool()
@@ -11811,7 +14138,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function sheepRegrowWool(callback: callbackFn, priority?: any)
+    function sheepRegrowWool(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.slimeSplit()
@@ -11823,7 +14150,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function slimeSplit(callback: callbackFn, priority?: any)
+    function slimeSplit(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.spawnerSpawn()
@@ -11835,7 +14162,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function spawnerSpawn(callback: callbackFn, priority?: any)
+    function spawnerSpawn(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.villagerAcquireTrade()
@@ -11847,7 +14174,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function villagerAcquireTrade(callback: callbackFn, priority?: any)
+    function villagerAcquireTrade(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.villagerReplenishTrade()
@@ -11859,7 +14186,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function villagerReplenishTrade(callback: callbackFn, priority?: any)
+    function villagerReplenishTrade(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.hangingBreakByEntity()
@@ -11871,7 +14198,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingBreakByEntity(callback: callbackFn, priority?: any)
+    function hangingBreakByEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.hangingBreak()
@@ -11883,7 +14210,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingBreak(callback: callbackFn, priority?: any)
+    function hangingBreak(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.hangingPlace()
@@ -11895,7 +14222,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingPlace(callback: callbackFn, priority?: any)
+    function hangingPlace(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.brew()
@@ -11907,7 +14234,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function brew(callback: callbackFn, priority?: any)
+    function brew(callback: eventHandler<BrewEvent>, priority?: any)
 
     /*********************
      ### events.brewingStandFuel()
@@ -11919,7 +14246,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function brewingStandFuel(callback: callbackFn, priority?: any)
+    function brewingStandFuel(callback: eventHandler<BrewingStandFuelEvent>, priority?: any)
 
     /*********************
      ### events.craftItem()
@@ -11931,7 +14258,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function craftItem(callback: callbackFn, priority?: any)
+    function craftItem(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.furnaceBurn()
@@ -11943,7 +14270,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceBurn(callback: callbackFn, priority?: any)
+    function furnaceBurn(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.furnaceExtract()
@@ -11955,7 +14282,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceExtract(callback: callbackFn, priority?: any)
+    function furnaceExtract(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.furnaceSmelt()
@@ -11967,7 +14294,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceSmelt(callback: callbackFn, priority?: any)
+    function furnaceSmelt(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryClick()
@@ -11979,7 +14306,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryClick(callback: callbackFn, priority?: any)
+    function inventoryClick(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryClose()
@@ -11991,7 +14318,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryClose(callback: callbackFn, priority?: any)
+    function inventoryClose(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryCreative()
@@ -12003,7 +14330,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryCreative(callback: callbackFn, priority?: any)
+    function inventoryCreative(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryDrag()
@@ -12015,7 +14342,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryDrag(callback: callbackFn, priority?: any)
+    function inventoryDrag(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventory()
@@ -12027,7 +14354,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventory(callback: callbackFn, priority?: any)
+    function inventory(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryMoveItem()
@@ -12039,7 +14366,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryMoveItem(callback: callbackFn, priority?: any)
+    function inventoryMoveItem(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryOpen()
@@ -12051,7 +14378,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryOpen(callback: callbackFn, priority?: any)
+    function inventoryOpen(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.inventoryPickupItem()
@@ -12063,7 +14390,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryPickupItem(callback: callbackFn, priority?: any)
+    function inventoryPickupItem(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.prepareAnvil()
@@ -12075,7 +14402,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareAnvil(callback: callbackFn, priority?: any)
+    function prepareAnvil(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.prepareItemCraft()
@@ -12087,7 +14414,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareItemCraft(callback: callbackFn, priority?: any)
+    function prepareItemCraft(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.asyncPlayerChat()
@@ -12099,7 +14426,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function asyncPlayerChat(callback: callbackFn, priority?: any)
+    function asyncPlayerChat(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.asyncPlayerPreLogin()
@@ -12111,7 +14438,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function asyncPlayerPreLogin(callback: callbackFn, priority?: any)
+    function asyncPlayerPreLogin(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerAchievementAwarded()
@@ -12123,7 +14450,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAchievementAwarded(callback: callbackFn, priority?: any)
+    function playerAchievementAwarded(callback: eventHandler, priority?: any)
     /*********************
      ### events.playerAdvancementDone()
 
@@ -12134,7 +14461,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAdvancementDone(callback: callbackFn, priority?: any)
+    function playerAdvancementDone(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerAnimation()
@@ -12146,7 +14473,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAnimation(callback: callbackFn, priority?: any)
+    function playerAnimation(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerArmorStandManipulate()
@@ -12158,7 +14485,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerArmorStandManipulate(callback: callbackFn, priority?: any)
+    function playerArmorStandManipulate(callback: eventHandler, priority?: any)
     /*********************
      ### events.playerBedEnter()
 
@@ -12169,7 +14496,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBedEnter(callback: callbackFn, priority?: any)
+    function playerBedEnter(callback: eventHandler<PlayerBedEnterEvent>, priority?: any)
 
     /*********************
      ### events.playerBedLeave()
@@ -12181,7 +14508,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBedLeave(callback: callbackFn, priority?: any)
+    function playerBedLeave(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerBucketEmpty()
@@ -12193,7 +14520,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBucketEmpty(callback: callbackFn, priority?: any)
+    function playerBucketEmpty(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerBucketFill()
@@ -12205,7 +14532,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBucketFill(callback: callbackFn, priority?: any)
+    function playerBucketFill(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerChangedMainHand()
@@ -12217,7 +14544,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChangedMainHand(callback: callbackFn, priority?: any)
+    function playerChangedMainHand(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerChangedWorld()
@@ -12229,7 +14556,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChangedWorld(callback: callbackFn, priority?: any)
+    function playerChangedWorld(callback: eventHandler<PlayerChangedWorldEvent>, priority?: any)
 
     /*********************
      ### events.playerChat()
@@ -12241,7 +14568,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChat(callback: callbackFn, priority?: any)
+    function playerChat(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerChatTabComplete()
@@ -12253,7 +14580,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChatTabComplete(callback: callbackFn, priority?: any)
+    function playerChatTabComplete(callback: eventHandler<PlayerChatTabCompleteEvent>, priority?: any)
 
     /*********************
      ### events.playerCommandPreprocess()
@@ -12265,7 +14592,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerCommandPreprocess(callback: callbackFn, priority?: any)
+    function playerCommandPreprocess(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerDropItem()
@@ -12277,7 +14604,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerDropItem(callback: callbackFn, priority?: any)
+    function playerDropItem(callback: eventHandler<PlayerDropItemEvent>, priority?: any)
 
     /*********************
      ### events.playerEditBook()
@@ -12289,7 +14616,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerEditBook(callback: callbackFn, priority?: any)
+    function playerEditBook(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerEggThrow()
@@ -12301,7 +14628,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerEggThrow(callback: callbackFn, priority?: any)
+    function playerEggThrow(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerExpChange()
@@ -12313,7 +14640,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerExpChange(callback: callbackFn, priority?: any)
+    function playerExpChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerFish()
@@ -12325,7 +14652,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerFish(callback: callbackFn, priority?: any)
+    function playerFish(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerGameModeChange()
@@ -12337,7 +14664,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerGameModeChange(callback: callbackFn, priority?: any)
+    function playerGameModeChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerInteractAtEntity()
@@ -12349,7 +14676,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerInteractAtEntity(callback: callbackFn, priority?: any)
+    function playerInteractAtEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerInteractEntity()
@@ -12361,7 +14688,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerInteractEntity(callback: callbackFn, priority?: any)
+    function playerInteractEntity(callback: eventHandler<PlayerInteractEntityEvent>, priority?: any)
 
     /*********************
      ### events.playerInteract()
@@ -12373,7 +14700,7 @@ declare module 'events' {
       * priority - optional -bi see events.on() for more information.
 
      ***/
-    function playerInteract(callback: callbackFn, priority?: any)
+    function playerInteract(callback: eventHandler<PlayerInteractEvent>, priority?: any)
 
     /*********************
      ### events.playerItemBreak()
@@ -12385,7 +14712,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemBreak(callback: callbackFn, priority?: any)
+    function playerItemBreak(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerItemConsume()
@@ -12397,7 +14724,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemConsume(callback: callbackFn, priority?: any)
+    function playerItemConsume(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerItemDamage()
@@ -12409,7 +14736,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemDamage(callback: callbackFn, priority?: any)
+    function playerItemDamage(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerItemHeld()
@@ -12421,7 +14748,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemHeld(callback: callbackFn, priority?: any)
+    function playerItemHeld(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerJoin()
@@ -12433,7 +14760,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerJoin(callback: callbackFn, priority?: any)
+    function playerJoin(callback: eventHandler<PlayerJoinEvent>, priority?: any)
 
     /*********************
      ### events.playerKick()
@@ -12445,7 +14772,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerKick(callback: callbackFn, priority?: any)
+    function playerKick(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerLevelChange()
@@ -12457,7 +14784,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLevelChange(callback: callbackFn, priority?: any)
+    function playerLevelChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerLocaleChange()
@@ -12469,7 +14796,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLocaleChange(callback: callbackFn, priority?: any)
+    function playerLocaleChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerLogin()
@@ -12481,7 +14808,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLogin(callback: callbackFn, priority?: any)
+    function playerLogin(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerMove()
@@ -12493,7 +14820,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerMove(callback: callbackFn, priority?: any)
+    function playerMove(callback: eventHandler<PlayerMoveEvent>, priority?: any)
 
     /*********************
      ### events.playerPickupArrow()
@@ -12505,7 +14832,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPickupArrow(callback: callbackFn, priority?: any)
+    function playerPickupArrow(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerPickupItem()
@@ -12517,7 +14844,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPickupItem(callback: callbackFn, priority?: any)
+    function playerPickupItem(callback: eventHandler<PlayerPickupItemEvent>, priority?: any)
 
     /*********************
      ### events.playerPortal()
@@ -12529,7 +14856,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPortal(callback: callbackFn, priority?: any)
+    function playerPortal(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerPreLogin()
@@ -12541,7 +14868,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPreLogin(callback: callbackFn, priority?: any)
+    function playerPreLogin(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerQuit()
@@ -12553,7 +14880,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerQuit(callback: callbackFn, priority?: any)
+    function playerQuit(callback: eventHandler<PlayerQuitEvent>, priority?: any)
 
     /*********************
      ### events.playerRegisterChannel()
@@ -12565,7 +14892,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerRegisterChannel(callback: callbackFn, priority?: any)
+    function playerRegisterChannel(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerResourcePackStatus()
@@ -12577,7 +14904,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerResourcePackStatus(callback: callbackFn, priority?: any)
+    function playerResourcePackStatus(callback: eventHandler, priority?: any)
     /*********************
      ### events.playerRespawn()
 
@@ -12588,7 +14915,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerRespawn(callback: callbackFn, priority?: any)
+    function playerRespawn(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerShearEntity()
@@ -12600,7 +14927,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerShearEntity(callback: callbackFn, priority?: any)
+    function playerShearEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerStatisticIncrement()
@@ -12612,7 +14939,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerStatisticIncrement(callback: callbackFn, priority?: any)
+    function playerStatisticIncrement(callback: eventHandler, priority?: any)
     /*********************
      ### events.playerSwapHandItems()
 
@@ -12623,7 +14950,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerSwapHandItems(callback: callbackFn, priority?: any)
+    function playerSwapHandItems(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerTeleport()
@@ -12635,7 +14962,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerTeleport(callback: callbackFn, priority?: any)
+    function playerTeleport(callback: eventHandler<PlayerTeleportEvent>, priority?: any)
 
     /*********************
      ### events.playerToggleFlight()
@@ -12647,7 +14974,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleFlight(callback: callbackFn, priority?: any)
+    function playerToggleFlight(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerToggleSneak()
@@ -12659,7 +14986,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleSneak(callback: callbackFn, priority?: any)
+    function playerToggleSneak(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerToggleSprint()
@@ -12671,7 +14998,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleSprint(callback: callbackFn, priority?: any)
+    function playerToggleSprint(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerUnleashEntity()
@@ -12683,7 +15010,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerUnleashEntity(callback: callbackFn, priority?: any)
+    function playerUnleashEntity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerUnregisterChannel()
@@ -12695,7 +15022,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerUnregisterChannel(callback: callbackFn, priority?: any)
+    function playerUnregisterChannel(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.playerVelocity()
@@ -12707,7 +15034,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerVelocity(callback: callbackFn, priority?: any)
+    function playerVelocity(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.broadcastMessage()
@@ -12719,7 +15046,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function broadcastMessage(callback: callbackFn, priority?: any)
+    function broadcastMessage(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.mapInitialize()
@@ -12731,7 +15058,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function mapInitialize(callback: callbackFn, priority?: any)
+    function mapInitialize(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.pluginDisable()
@@ -12743,7 +15070,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pluginDisable(callback: callbackFn, priority?: any)
+    function pluginDisable(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.pluginEnable()
@@ -12755,7 +15082,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pluginEnable(callback: callbackFn, priority?: any)
+    function pluginEnable(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.remoteServerCommand()
@@ -12767,7 +15094,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function remoteServerCommand(callback: callbackFn, priority?: any)
+    function remoteServerCommand(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.serverCommand()
@@ -12779,7 +15106,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serverCommand(callback: callbackFn, priority?: any)
+    function serverCommand(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.serverListPing()
@@ -12791,7 +15118,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serverListPing(callback: callbackFn, priority?: any)
+    function serverListPing(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.serviceRegister()
@@ -12803,7 +15130,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serviceRegister(callback: callbackFn, priority?: any)
+    function serviceRegister(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.serviceUnregister()
@@ -12815,7 +15142,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serviceUnregister(callback: callbackFn, priority?: any)
+    function serviceUnregister(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.tabComplete()
@@ -12827,7 +15154,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function tabComplete(callback: callbackFn, priority?: any)
+    function tabComplete(callback: eventHandler<TabCompleteEvent>, priority?: any)
 
     /*********************
      ### events.vehicleBlockCollision()
@@ -12839,7 +15166,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleBlockCollision(callback: callbackFn, priority?: any)
+    function vehicleBlockCollision(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleCreate()
@@ -12851,7 +15178,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleCreate(callback: callbackFn, priority?: any)
+    function vehicleCreate(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleDamage()
@@ -12863,7 +15190,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleDamage(callback: callbackFn, priority?: any)
+    function vehicleDamage(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleDestroy()
@@ -12875,7 +15202,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleDestroy(callback: callbackFn, priority?: any)
+    function vehicleDestroy(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleEnter()
@@ -12887,7 +15214,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleEnter(callback: callbackFn, priority?: any)
+    function vehicleEnter(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleEntityCollision()
@@ -12899,7 +15226,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleEntityCollision(callback: callbackFn, priority?: any)
+    function vehicleEntityCollision(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleExit()
@@ -12911,7 +15238,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleExit(callback: callbackFn, priority?: any)
+    function vehicleExit(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleMove()
@@ -12923,7 +15250,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleMove(callback: callbackFn, priority?: any)
+    function vehicleMove(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.vehicleUpdate()
@@ -12935,7 +15262,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleUpdate(callback: callbackFn, priority?: any)
+    function vehicleUpdate(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.lightningStrike()
@@ -12947,7 +15274,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function lightningStrike(callback: callbackFn, priority?: any)
+    function lightningStrike(callback: eventHandler<LightningStrikeEvent>, priority?: any)
 
     /*********************
      ### events.thunderChange()
@@ -12959,7 +15286,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function thunderChange(callback: callbackFn, priority?: any)
+    function thunderChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.weatherChange()
@@ -12971,7 +15298,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function weatherChange(callback: callbackFn, priority?: any)
+    function weatherChange(callback: eventHandler<WeatherChangeEvent>, priority?: any)
 
     /*********************
      ### events.chunkLoad()
@@ -12983,7 +15310,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkLoad(callback: callbackFn, priority?: any)
+    function chunkLoad(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.chunkPopulate()
@@ -12995,7 +15322,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkPopulate(callback: callbackFn, priority?: any)
+    function chunkPopulate(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.chunkUnload()
@@ -13007,7 +15334,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkUnload(callback: callbackFn, priority?: any)
+    function chunkUnload(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.portalCreate()
@@ -13019,7 +15346,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function portalCreate(callback: callbackFn, priority?: any)
+    function portalCreate(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.spawnChange()
@@ -13031,7 +15358,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function spawnChange(callback: callbackFn, priority?: any)
+    function spawnChange(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.structureGrow()
@@ -13043,7 +15370,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function structureGrow(callback: callbackFn, priority?: any)
+    function structureGrow(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.worldInit()
@@ -13055,7 +15382,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldInit(callback: callbackFn, priority?: any)
+    function worldInit(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.worldLoad()
@@ -13067,7 +15394,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldLoad(callback: callbackFn, priority?: any)
+    function worldLoad(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.worldSave()
@@ -13079,7 +15406,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldSave(callback: callbackFn, priority?: any)
+    function worldSave(callback: eventHandler, priority?: any)
 
     /*********************
      ### events.worldUnload()
@@ -13091,7 +15418,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldUnload(callback: callbackFn, priority?: any)
+    function worldUnload(callback: eventHandler, priority?: any)
 }
 
 /**
