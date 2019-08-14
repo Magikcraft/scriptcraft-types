@@ -13251,7 +13251,11 @@ interface  PlayerBedEnterEvent extends PlayerEvent, Cancellable {
 
 // tslint:disable
 declare module 'events' {
-    function blockBreak(callback: eventHandler<BlockBreakEvent>, priority?: any)
+
+    interface ScriptCraftEventHandler {
+        unregister(): void
+    }
+    function blockBreak(callback: eventHandler<BlockBreakEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockBurn()
@@ -13263,7 +13267,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockBurn(callback: eventHandler<BlockBurnEvent>, priority?: any)
+    function blockBurn(callback: eventHandler<BlockBurnEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockCanBuild()
@@ -13275,7 +13279,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockCanBuild(callback: eventHandler<BlockCanBuildEvent>, priority?: any)
+    function blockCanBuild(callback: eventHandler<BlockCanBuildEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockDamage()
@@ -13287,7 +13291,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockDamage(callback: eventHandler<BlockDamageEvent>, priority?: any)
+    function blockDamage(callback: eventHandler<BlockDamageEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockDispense()
@@ -13299,7 +13303,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockDispense(callback: eventHandler<BlockDispenseEvent>, priority?: any)
+    function blockDispense(callback: eventHandler<BlockDispenseEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockExp()
@@ -13311,7 +13315,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockExp(callback: eventHandler<BlockExpEvent>, priority?: any)
+    function blockExp(callback: eventHandler<BlockExpEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockExplode()
@@ -13323,7 +13327,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockExplode(callback: eventHandler<BlockExplodeEvent>, priority?: any)
+    function blockExplode(callback: eventHandler<BlockExplodeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockFade()
@@ -13335,7 +13339,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockFade(callback: eventHandler<BlockFadeEvent>, priority?: any)
+    function blockFade(callback: eventHandler<BlockFadeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockForm()
@@ -13347,7 +13351,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockForm(callback: eventHandler<BlockFormEvent>, priority?: any)
+    function blockForm(callback: eventHandler<BlockFormEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockFromTo()
@@ -13359,7 +13363,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockFromTo(callback: eventHandler<BlockFromToEvent>, priority?: any)
+    function blockFromTo(callback: eventHandler<BlockFromToEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockGrow()
@@ -13371,7 +13375,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockGrow(callback: eventHandler<BlockGrowEvent>, priority?: any)
+    function blockGrow(callback: eventHandler<BlockGrowEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockIgnite()
@@ -13383,7 +13387,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockIgnite(callback: eventHandler<BlockIgniteEvent>, priority?: any)
+    function blockIgnite(callback: eventHandler<BlockIgniteEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockMultiPlace()
@@ -13395,7 +13399,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockMultiPlace(callback: eventHandler<BlockMultiPlaceEvent>, priority?: any)
+    function blockMultiPlace(callback: eventHandler<BlockMultiPlaceEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockPhysics()
@@ -13407,7 +13411,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPhysics(callback: eventHandler<BlockPhysicsEvent>, priority?: any)
+    function blockPhysics(callback: eventHandler<BlockPhysicsEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockPistonExtend()
@@ -13419,7 +13423,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPistonExtend(callback: eventHandler<BlockPistonEvent>, priority?: any)
+    function blockPistonExtend(callback: eventHandler<BlockPistonEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockPistonRetract()
@@ -13431,7 +13435,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPistonRetract(callback: eventHandler<BlockPistonEvent>, priority?: any)
+    function blockPistonRetract(callback: eventHandler<BlockPistonEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockPlace()
@@ -13443,7 +13447,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockPlace(callback: eventHandler<BlockPlaceEvent>, priority?: any)
+    function blockPlace(callback: eventHandler<BlockPlaceEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockRedstone()
@@ -13455,7 +13459,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockRedstone(callback: eventHandler<BlockRedstoneEvent>, priority?: any)
+    function blockRedstone(callback: eventHandler<BlockRedstoneEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.blockSpread()
@@ -13467,7 +13471,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function blockSpread(callback: eventHandler<BlockSpreadEvent>, priority?: any)
+    function blockSpread(callback: eventHandler<BlockSpreadEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.cauldronLevelChange()
@@ -13479,7 +13483,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function cauldronLevelChange(callback: eventHandler<CauldronLevelChangeEvent>, priority?: any)
+    function cauldronLevelChange(callback: eventHandler<CauldronLevelChangeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityBlockForm()
@@ -13491,7 +13495,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBlockForm(callback: eventHandler<EntityBlockFormEvent>, priority?: any)
+    function entityBlockForm(callback: eventHandler<EntityBlockFormEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.leavesDecay()
@@ -13503,7 +13507,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function leavesDecay(callback: eventHandler<LeavesDecayEvent>, priority?: any)
+    function leavesDecay(callback: eventHandler<LeavesDecayEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.notePlay()
@@ -13515,7 +13519,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function notePlay(callback: eventHandler<NotePlayEvent>, priority?: any)
+    function notePlay(callback: eventHandler<NotePlayEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.signChange()
@@ -13527,7 +13531,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function signChange(callback: eventHandler<SignChangeEvent>, priority?: any)
+    function signChange(callback: eventHandler<SignChangeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.enchantItem()
@@ -13539,7 +13543,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function enchantItem(callback: eventHandler, priority?: any)
+    function enchantItem(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.prepareItemEnchant()
@@ -13551,7 +13555,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareItemEnchant(callback: eventHandler, priority?: any)
+    function prepareItemEnchant(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.areaEffectCloudApply()
@@ -13563,7 +13567,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function areaEffectCloudApply(callback: eventHandler<AreaEffectCloudApplyEvent>, priority?: any)
+    function areaEffectCloudApply(callback: eventHandler<AreaEffectCloudApplyEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.creatureSpawn()
@@ -13575,7 +13579,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function creatureSpawn(callback: eventHandler<CreatureSpawnEvent>, priority?: any)
+    function creatureSpawn(callback: eventHandler<CreatureSpawnEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.creeperPower()
@@ -13587,7 +13591,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function creeperPower(callback: eventHandler<CreeperPowerEvent>, priority?: any)
+    function creeperPower(callback: eventHandler<CreeperPowerEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.enderDragonChangePhase()
@@ -13599,7 +13603,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function enderDragonChangePhase(callback: eventHandler, priority?: any)
+    function enderDragonChangePhase(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityAirChange()
@@ -13611,7 +13615,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityAirChange(callback: eventHandler, priority?: any)
+    function entityAirChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityBreakDoor()
@@ -13623,7 +13627,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBreakDoor(callback: eventHandler, priority?: any)
+    function entityBreakDoor(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityBreed()
@@ -13635,7 +13639,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityBreed(callback: eventHandler, priority?: any)
+    function entityBreed(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityChangeBlock()
@@ -13647,7 +13651,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityChangeBlock(callback: eventHandler, priority?: any)
+    function entityChangeBlock(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityCombustByBlock()
@@ -13659,7 +13663,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombustByBlock(callback: eventHandler, priority?: any)
+    function entityCombustByBlock(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityCombustByEntity()
@@ -13671,7 +13675,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombustByEntity(callback: eventHandler, priority?: any)
+    function entityCombustByEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityCombust()
@@ -13683,7 +13687,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCombust(callback: eventHandler, priority?: any)
+    function entityCombust(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityCreatePortal()
@@ -13695,7 +13699,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityCreatePortal(callback: eventHandler, priority?: any)
+    function entityCreatePortal(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityDamageByBlock()
@@ -13707,7 +13711,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamageByBlock(callback: eventHandler, priority?: any)
+    function entityDamageByBlock(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityDamageByEntity()
@@ -13719,7 +13723,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamageByEntity(callback: eventHandler<EntityDamageByEntityEvent>, priority?: any)
+    function entityDamageByEntity(callback: eventHandler<EntityDamageByEntityEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityDamage()
@@ -13731,7 +13735,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDamage(callback: eventHandler<EntityDamageEvent>, priority?: any)
+    function entityDamage(callback: eventHandler<EntityDamageEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityDeath()
@@ -13743,7 +13747,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityDeath(callback: eventHandler<EntityDeathEvent>, priority?: any)
+    function entityDeath(callback: eventHandler<EntityDeathEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityExplode()
@@ -13755,7 +13759,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityExplode(callback: eventHandler, priority?: any)
+    function entityExplode(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityInteract()
@@ -13767,7 +13771,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityInteract(callback: eventHandler, priority?: any)
+    function entityInteract(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityPickupItem()
@@ -13779,7 +13783,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPickupItem(callback: eventHandler, priority?: any)
+    function entityPickupItem(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityPortalEnter()
@@ -13791,7 +13795,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortalEnter(callback: eventHandler, priority?: any)
+    function entityPortalEnter(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityPortal()
@@ -13803,7 +13807,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortal(callback: eventHandler, priority?: any)
+    function entityPortal(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityPortalExit()
@@ -13815,7 +13819,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityPortalExit(callback: eventHandler, priority?: any)
+    function entityPortalExit(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityRegainHealth()
@@ -13827,7 +13831,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityRegainHealth(callback: eventHandler, priority?: any)
+    function entityRegainHealth(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityResurrect()
@@ -13839,7 +13843,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityResurrect(callback: eventHandler, priority?: any)
+    function entityResurrect(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityShootBow()
@@ -13851,7 +13855,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityShootBow(callback: eventHandler, priority?: any)
+    function entityShootBow(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entitySpawn()
@@ -13863,7 +13867,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entitySpawn(callback: eventHandler<EntitySpawnEvent>, priority?: any)
+    function entitySpawn(callback: eventHandler<EntitySpawnEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityTame()
@@ -13875,7 +13879,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTame(callback: eventHandler, priority?: any)
+    function entityTame(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityTarget()
@@ -13887,7 +13891,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTarget(callback: eventHandler<EntityTargetEvent>, priority?: any)
+    function entityTarget(callback: eventHandler<EntityTargetEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityTargetLivingEntity()
@@ -13899,7 +13903,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTargetLivingEntity(callback: eventHandler, priority?: any)
+    function entityTargetLivingEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
     /*********************
      ### events.entityTeleport()
 
@@ -13910,7 +13914,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityTeleport(callback: eventHandler<EntityTeleportEvent>, priority?: any)
+    function entityTeleport(callback: eventHandler<EntityTeleportEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityToggleGlide()
@@ -13922,7 +13926,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityToggleGlide(callback: eventHandler, priority?: any)
+    function entityToggleGlide(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entityUnleash()
@@ -13934,7 +13938,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityUnleash(callback: eventHandler, priority?: any)
+    function entityUnleash(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.expBottle()
@@ -13946,7 +13950,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function expBottle(callback: eventHandler, priority?: any)
+    function expBottle(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.explosionPrime()
@@ -13958,7 +13962,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function explosionPrime(callback: eventHandler, priority?: any)
+    function explosionPrime(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.fireworkExplode()
@@ -13970,7 +13974,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function fireworkExplode(callback: eventHandler, priority?: any)
+    function fireworkExplode(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.foodLevelChange()
@@ -13982,7 +13986,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function foodLevelChange(callback: eventHandler, priority?: any)
+    function foodLevelChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.horseJump()
@@ -13994,7 +13998,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function horseJump(callback: eventHandler, priority?: any)
+    function horseJump(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.itemDespawn()
@@ -14006,7 +14010,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemDespawn(callback: eventHandler, priority?: any)
+    function itemDespawn(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.itemMerge()
@@ -14018,7 +14022,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemMerge(callback: eventHandler, priority?: any)
+    function itemMerge(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.itemSpawn()
@@ -14030,7 +14034,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function itemSpawn(callback: eventHandler, priority?: any)
+    function itemSpawn(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.lingeringPotionSplash()
@@ -14042,7 +14046,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function lingeringPotionSplash(callback: eventHandler, priority?: any)
+    function lingeringPotionSplash(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.pigZap()
@@ -14054,7 +14058,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pigZap(callback: eventHandler, priority?: any)
+    function pigZap(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerDeath()
@@ -14066,7 +14070,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerDeath(callback: eventHandler<PlayerDeathEvent>, priority?: any)
+    function playerDeath(callback: eventHandler<PlayerDeathEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerLeashEntity()
@@ -14078,7 +14082,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLeashEntity(callback: eventHandler, priority?: any)
+    function playerLeashEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.potionSplash()
@@ -14090,7 +14094,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function potionSplash(callback: eventHandler, priority?: any)
+    function potionSplash(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.projectileHit()
@@ -14102,7 +14106,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function projectileHit(callback: eventHandler, priority?: any)
+    function projectileHit(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.projectileLaunch()
@@ -14114,7 +14118,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function projectileLaunch(callback: eventHandler, priority?: any)
+    function projectileLaunch(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.sheepDyeWool()
@@ -14126,7 +14130,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function sheepDyeWool(callback: eventHandler, priority?: any)
+    function sheepDyeWool(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.sheepRegrowWool()
@@ -14138,7 +14142,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function sheepRegrowWool(callback: eventHandler, priority?: any)
+    function sheepRegrowWool(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.slimeSplit()
@@ -14150,7 +14154,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function slimeSplit(callback: eventHandler, priority?: any)
+    function slimeSplit(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.spawnerSpawn()
@@ -14162,7 +14166,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function spawnerSpawn(callback: eventHandler, priority?: any)
+    function spawnerSpawn(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.villagerAcquireTrade()
@@ -14174,7 +14178,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function villagerAcquireTrade(callback: eventHandler, priority?: any)
+    function villagerAcquireTrade(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.villagerReplenishTrade()
@@ -14186,7 +14190,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function villagerReplenishTrade(callback: eventHandler, priority?: any)
+    function villagerReplenishTrade(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.hangingBreakByEntity()
@@ -14198,7 +14202,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingBreakByEntity(callback: eventHandler, priority?: any)
+    function hangingBreakByEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.hangingBreak()
@@ -14210,7 +14214,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingBreak(callback: eventHandler, priority?: any)
+    function hangingBreak(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.hangingPlace()
@@ -14222,7 +14226,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function hangingPlace(callback: eventHandler, priority?: any)
+    function hangingPlace(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.brew()
@@ -14234,7 +14238,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function brew(callback: eventHandler<BrewEvent>, priority?: any)
+    function brew(callback: eventHandler<BrewEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.brewingStandFuel()
@@ -14246,7 +14250,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function brewingStandFuel(callback: eventHandler<BrewingStandFuelEvent>, priority?: any)
+    function brewingStandFuel(callback: eventHandler<BrewingStandFuelEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.craftItem()
@@ -14258,7 +14262,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function craftItem(callback: eventHandler, priority?: any)
+    function craftItem(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.furnaceBurn()
@@ -14270,7 +14274,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceBurn(callback: eventHandler, priority?: any)
+    function furnaceBurn(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.furnaceExtract()
@@ -14282,7 +14286,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceExtract(callback: eventHandler, priority?: any)
+    function furnaceExtract(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.furnaceSmelt()
@@ -14294,7 +14298,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function furnaceSmelt(callback: eventHandler, priority?: any)
+    function furnaceSmelt(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryClick()
@@ -14306,7 +14310,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryClick(callback: eventHandler, priority?: any)
+    function inventoryClick(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryClose()
@@ -14318,7 +14322,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryClose(callback: eventHandler, priority?: any)
+    function inventoryClose(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryCreative()
@@ -14330,7 +14334,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryCreative(callback: eventHandler, priority?: any)
+    function inventoryCreative(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryDrag()
@@ -14342,7 +14346,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryDrag(callback: eventHandler, priority?: any)
+    function inventoryDrag(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventory()
@@ -14354,7 +14358,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventory(callback: eventHandler, priority?: any)
+    function inventory(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryMoveItem()
@@ -14366,7 +14370,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryMoveItem(callback: eventHandler, priority?: any)
+    function inventoryMoveItem(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryOpen()
@@ -14378,7 +14382,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryOpen(callback: eventHandler, priority?: any)
+    function inventoryOpen(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.inventoryPickupItem()
@@ -14390,7 +14394,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function inventoryPickupItem(callback: eventHandler, priority?: any)
+    function inventoryPickupItem(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.prepareAnvil()
@@ -14402,7 +14406,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareAnvil(callback: eventHandler, priority?: any)
+    function prepareAnvil(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.prepareItemCraft()
@@ -14414,7 +14418,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function prepareItemCraft(callback: eventHandler, priority?: any)
+    function prepareItemCraft(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.asyncPlayerChat()
@@ -14426,7 +14430,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function asyncPlayerChat(callback: eventHandler, priority?: any)
+    function asyncPlayerChat(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.asyncPlayerPreLogin()
@@ -14438,7 +14442,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function asyncPlayerPreLogin(callback: eventHandler, priority?: any)
+    function asyncPlayerPreLogin(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerAchievementAwarded()
@@ -14450,7 +14454,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAchievementAwarded(callback: eventHandler, priority?: any)
+    function playerAchievementAwarded(callback: eventHandler, priority?: any): ScriptCraftEventHandler
     /*********************
      ### events.playerAdvancementDone()
 
@@ -14461,7 +14465,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAdvancementDone(callback: eventHandler, priority?: any)
+    function playerAdvancementDone(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerAnimation()
@@ -14473,7 +14477,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerAnimation(callback: eventHandler, priority?: any)
+    function playerAnimation(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerArmorStandManipulate()
@@ -14485,7 +14489,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerArmorStandManipulate(callback: eventHandler, priority?: any)
+    function playerArmorStandManipulate(callback: eventHandler, priority?: any): ScriptCraftEventHandler
     /*********************
      ### events.playerBedEnter()
 
@@ -14496,7 +14500,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBedEnter(callback: eventHandler<PlayerBedEnterEvent>, priority?: any)
+    function playerBedEnter(callback: eventHandler<PlayerBedEnterEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerBedLeave()
@@ -14508,7 +14512,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBedLeave(callback: eventHandler, priority?: any)
+    function playerBedLeave(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerBucketEmpty()
@@ -14520,7 +14524,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBucketEmpty(callback: eventHandler, priority?: any)
+    function playerBucketEmpty(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerBucketFill()
@@ -14532,7 +14536,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerBucketFill(callback: eventHandler, priority?: any)
+    function playerBucketFill(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerChangedMainHand()
@@ -14544,7 +14548,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChangedMainHand(callback: eventHandler, priority?: any)
+    function playerChangedMainHand(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerChangedWorld()
@@ -14556,7 +14560,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChangedWorld(callback: eventHandler<PlayerChangedWorldEvent>, priority?: any)
+    function playerChangedWorld(callback: eventHandler<PlayerChangedWorldEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerChat()
@@ -14568,7 +14572,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChat(callback: eventHandler, priority?: any)
+    function playerChat(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerChatTabComplete()
@@ -14580,7 +14584,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerChatTabComplete(callback: eventHandler<PlayerChatTabCompleteEvent>, priority?: any)
+    function playerChatTabComplete(callback: eventHandler<PlayerChatTabCompleteEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerCommandPreprocess()
@@ -14592,7 +14596,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerCommandPreprocess(callback: eventHandler, priority?: any)
+    function playerCommandPreprocess(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerDropItem()
@@ -14604,7 +14608,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerDropItem(callback: eventHandler<PlayerDropItemEvent>, priority?: any)
+    function playerDropItem(callback: eventHandler<PlayerDropItemEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerEditBook()
@@ -14616,7 +14620,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerEditBook(callback: eventHandler, priority?: any)
+    function playerEditBook(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerEggThrow()
@@ -14628,7 +14632,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerEggThrow(callback: eventHandler, priority?: any)
+    function playerEggThrow(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerExpChange()
@@ -14640,7 +14644,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerExpChange(callback: eventHandler, priority?: any)
+    function playerExpChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerFish()
@@ -14652,7 +14656,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerFish(callback: eventHandler, priority?: any)
+    function playerFish(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerGameModeChange()
@@ -14664,7 +14668,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerGameModeChange(callback: eventHandler, priority?: any)
+    function playerGameModeChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerInteractAtEntity()
@@ -14676,7 +14680,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerInteractAtEntity(callback: eventHandler, priority?: any)
+    function playerInteractAtEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerInteractEntity()
@@ -14688,7 +14692,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerInteractEntity(callback: eventHandler<PlayerInteractEntityEvent>, priority?: any)
+    function playerInteractEntity(callback: eventHandler<PlayerInteractEntityEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerInteract()
@@ -14700,7 +14704,7 @@ declare module 'events' {
       * priority - optional -bi see events.on() for more information.
 
      ***/
-    function playerInteract(callback: eventHandler<PlayerInteractEvent>, priority?: any)
+    function playerInteract(callback: eventHandler<PlayerInteractEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerItemBreak()
@@ -14712,7 +14716,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemBreak(callback: eventHandler, priority?: any)
+    function playerItemBreak(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerItemConsume()
@@ -14724,7 +14728,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemConsume(callback: eventHandler, priority?: any)
+    function playerItemConsume(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerItemDamage()
@@ -14736,7 +14740,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemDamage(callback: eventHandler, priority?: any)
+    function playerItemDamage(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerItemHeld()
@@ -14748,7 +14752,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerItemHeld(callback: eventHandler, priority?: any)
+    function playerItemHeld(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerJoin()
@@ -14760,7 +14764,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerJoin(callback: eventHandler<PlayerJoinEvent>, priority?: any)
+    function playerJoin(callback: eventHandler<PlayerJoinEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerKick()
@@ -14772,7 +14776,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerKick(callback: eventHandler, priority?: any)
+    function playerKick(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerLevelChange()
@@ -14784,7 +14788,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLevelChange(callback: eventHandler, priority?: any)
+    function playerLevelChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerLocaleChange()
@@ -14796,7 +14800,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLocaleChange(callback: eventHandler, priority?: any)
+    function playerLocaleChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerLogin()
@@ -14808,7 +14812,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerLogin(callback: eventHandler, priority?: any)
+    function playerLogin(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerMove()
@@ -14820,7 +14824,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerMove(callback: eventHandler<PlayerMoveEvent>, priority?: any)
+    function playerMove(callback: eventHandler<PlayerMoveEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerPickupArrow()
@@ -14832,7 +14836,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPickupArrow(callback: eventHandler, priority?: any)
+    function playerPickupArrow(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerPickupItem()
@@ -14844,7 +14848,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPickupItem(callback: eventHandler<PlayerPickupItemEvent>, priority?: any)
+    function playerPickupItem(callback: eventHandler<PlayerPickupItemEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerPortal()
@@ -14856,7 +14860,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPortal(callback: eventHandler, priority?: any)
+    function playerPortal(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerPreLogin()
@@ -14868,7 +14872,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerPreLogin(callback: eventHandler, priority?: any)
+    function playerPreLogin(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerQuit()
@@ -14880,7 +14884,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerQuit(callback: eventHandler<PlayerQuitEvent>, priority?: any)
+    function playerQuit(callback: eventHandler<PlayerQuitEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerRegisterChannel()
@@ -14892,7 +14896,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerRegisterChannel(callback: eventHandler, priority?: any)
+    function playerRegisterChannel(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerResourcePackStatus()
@@ -14904,7 +14908,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerResourcePackStatus(callback: eventHandler, priority?: any)
+    function playerResourcePackStatus(callback: eventHandler, priority?: any): ScriptCraftEventHandler
     /*********************
      ### events.playerRespawn()
 
@@ -14915,7 +14919,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerRespawn(callback: eventHandler, priority?: any)
+    function playerRespawn(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerShearEntity()
@@ -14927,7 +14931,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerShearEntity(callback: eventHandler, priority?: any)
+    function playerShearEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerStatisticIncrement()
@@ -14939,7 +14943,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerStatisticIncrement(callback: eventHandler, priority?: any)
+    function playerStatisticIncrement(callback: eventHandler, priority?: any): ScriptCraftEventHandler
     /*********************
      ### events.playerSwapHandItems()
 
@@ -14950,7 +14954,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerSwapHandItems(callback: eventHandler, priority?: any)
+    function playerSwapHandItems(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerTeleport()
@@ -14962,7 +14966,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerTeleport(callback: eventHandler<PlayerTeleportEvent>, priority?: any)
+    function playerTeleport(callback: eventHandler<PlayerTeleportEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerToggleFlight()
@@ -14974,7 +14978,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleFlight(callback: eventHandler, priority?: any)
+    function playerToggleFlight(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerToggleSneak()
@@ -14986,7 +14990,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleSneak(callback: eventHandler, priority?: any)
+    function playerToggleSneak(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerToggleSprint()
@@ -14998,7 +15002,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerToggleSprint(callback: eventHandler, priority?: any)
+    function playerToggleSprint(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerUnleashEntity()
@@ -15010,7 +15014,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerUnleashEntity(callback: eventHandler, priority?: any)
+    function playerUnleashEntity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerUnregisterChannel()
@@ -15022,7 +15026,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerUnregisterChannel(callback: eventHandler, priority?: any)
+    function playerUnregisterChannel(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.playerVelocity()
@@ -15034,7 +15038,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function playerVelocity(callback: eventHandler, priority?: any)
+    function playerVelocity(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.broadcastMessage()
@@ -15046,7 +15050,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function broadcastMessage(callback: eventHandler, priority?: any)
+    function broadcastMessage(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.mapInitialize()
@@ -15058,7 +15062,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function mapInitialize(callback: eventHandler, priority?: any)
+    function mapInitialize(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.pluginDisable()
@@ -15070,7 +15074,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pluginDisable(callback: eventHandler, priority?: any)
+    function pluginDisable(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.pluginEnable()
@@ -15082,7 +15086,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function pluginEnable(callback: eventHandler, priority?: any)
+    function pluginEnable(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.remoteServerCommand()
@@ -15094,7 +15098,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function remoteServerCommand(callback: eventHandler, priority?: any)
+    function remoteServerCommand(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.serverCommand()
@@ -15106,7 +15110,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serverCommand(callback: eventHandler, priority?: any)
+    function serverCommand(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.serverListPing()
@@ -15118,7 +15122,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serverListPing(callback: eventHandler, priority?: any)
+    function serverListPing(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.serviceRegister()
@@ -15130,7 +15134,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serviceRegister(callback: eventHandler, priority?: any)
+    function serviceRegister(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.serviceUnregister()
@@ -15142,7 +15146,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function serviceUnregister(callback: eventHandler, priority?: any)
+    function serviceUnregister(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.tabComplete()
@@ -15154,7 +15158,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function tabComplete(callback: eventHandler<TabCompleteEvent>, priority?: any)
+    function tabComplete(callback: eventHandler<TabCompleteEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleBlockCollision()
@@ -15166,7 +15170,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleBlockCollision(callback: eventHandler, priority?: any)
+    function vehicleBlockCollision(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleCreate()
@@ -15178,7 +15182,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleCreate(callback: eventHandler, priority?: any)
+    function vehicleCreate(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleDamage()
@@ -15190,7 +15194,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleDamage(callback: eventHandler, priority?: any)
+    function vehicleDamage(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleDestroy()
@@ -15202,7 +15206,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleDestroy(callback: eventHandler, priority?: any)
+    function vehicleDestroy(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleEnter()
@@ -15214,7 +15218,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleEnter(callback: eventHandler, priority?: any)
+    function vehicleEnter(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleEntityCollision()
@@ -15226,7 +15230,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleEntityCollision(callback: eventHandler, priority?: any)
+    function vehicleEntityCollision(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleExit()
@@ -15238,7 +15242,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleExit(callback: eventHandler, priority?: any)
+    function vehicleExit(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleMove()
@@ -15250,7 +15254,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleMove(callback: eventHandler, priority?: any)
+    function vehicleMove(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.vehicleUpdate()
@@ -15262,7 +15266,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function vehicleUpdate(callback: eventHandler, priority?: any)
+    function vehicleUpdate(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.lightningStrike()
@@ -15274,7 +15278,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function lightningStrike(callback: eventHandler<LightningStrikeEvent>, priority?: any)
+    function lightningStrike(callback: eventHandler<LightningStrikeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.thunderChange()
@@ -15286,7 +15290,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function thunderChange(callback: eventHandler, priority?: any)
+    function thunderChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.weatherChange()
@@ -15298,7 +15302,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function weatherChange(callback: eventHandler<WeatherChangeEvent>, priority?: any)
+    function weatherChange(callback: eventHandler<WeatherChangeEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.chunkLoad()
@@ -15310,7 +15314,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkLoad(callback: eventHandler, priority?: any)
+    function chunkLoad(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.chunkPopulate()
@@ -15322,7 +15326,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkPopulate(callback: eventHandler, priority?: any)
+    function chunkPopulate(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.chunkUnload()
@@ -15334,7 +15338,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function chunkUnload(callback: eventHandler, priority?: any)
+    function chunkUnload(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.portalCreate()
@@ -15346,7 +15350,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function portalCreate(callback: eventHandler, priority?: any)
+    function portalCreate(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.spawnChange()
@@ -15358,7 +15362,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function spawnChange(callback: eventHandler, priority?: any)
+    function spawnChange(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.structureGrow()
@@ -15370,7 +15374,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function structureGrow(callback: eventHandler, priority?: any)
+    function structureGrow(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.worldInit()
@@ -15382,7 +15386,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldInit(callback: eventHandler, priority?: any)
+    function worldInit(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.worldLoad()
@@ -15394,7 +15398,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldLoad(callback: eventHandler, priority?: any)
+    function worldLoad(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.worldSave()
@@ -15406,7 +15410,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldSave(callback: eventHandler, priority?: any)
+    function worldSave(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.worldUnload()
@@ -15418,7 +15422,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function worldUnload(callback: eventHandler, priority?: any)
+    function worldUnload(callback: eventHandler, priority?: any): ScriptCraftEventHandler
 }
 
 /**
