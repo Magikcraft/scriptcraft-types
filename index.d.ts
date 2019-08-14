@@ -12950,12 +12950,14 @@ interface  PlayerMoveEvent extends PlayerEvent, Cancellable {
 
     /** Gets the location this player moved from */
     getFrom​(): Location
+    from: Location
     /**   */
     getHandlerList​(): HandlerList
     /**   */
     getHandlers​(): HandlerList
     /** Gets the location this player moved to */
     getTo​(): Location
+    to: Location
     /** Gets the cancellation state of this event. */
     isCancelled​(): boolean
     /** Sets the cancellation state of this event. */
