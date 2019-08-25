@@ -1,4 +1,4 @@
-declare const echo: (player: any, msg: string) => void
+declare const echo: (player: Player, msg: string) => void
 declare const java: any
 declare const __plugin: Plugin
 declare const __dirname: string
@@ -14,8 +14,8 @@ declare const self: Player
 declare const Java: Java
 declare const setTimeout: (callbackFn, delay: any) => number
 declare const setInterval: (callbackFn, delay: any) => number
-declare const clearTimeout: (handle: any) => void
-declare const clearInterval: (handle: any) => void
+declare const clearTimeout: (handle: number) => void
+declare const clearInterval: (handle: number) => void
 declare const engineUUID: string
 
 interface Java {
