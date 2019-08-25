@@ -1623,7 +1623,7 @@ interface MemoryKey<T> extends Keyed {
     values(): MemoryKey<T>[]
 }
 
-interface LivingEntity extends Attributable, Damageable, ProjectileSource {
+interface LivingEntity extends Attributable, Damageable, ProjectileSource, Entity {
     /** Adds the given PotionEffect to the living entity. */
     addPotionEffect(effect: PotionEffect): boolean
     /** Adds the given PotionEffect to the living entity. */
