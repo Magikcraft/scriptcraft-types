@@ -3,7 +3,6 @@ declare const java: any
 declare const __plugin: Plugin
 declare const __dirname: string
 declare const __filename: string
-declare const org: any
 declare const refresh: () => void
 declare const __require: (filename: string) => any
 declare const require: (filename: string, options?: { cache?: boolean }) => any
@@ -11,8 +10,7 @@ declare const console: { log: (msg: string) => void }
 declare const isJavaObject: (obj: any) => boolean
 declare const config: any
 declare const scload: (file: any) => any
-declare const EventEmitter: any
-declare const self: any
+declare const self: Player
 declare const Java: Java
 declare const setTimeout: (callbackFn, delay: any) => number
 declare const setInterval: (callbackFn, delay: any) => number
