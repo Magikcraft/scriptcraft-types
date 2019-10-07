@@ -1,5 +1,5 @@
 declare const echo: (player: Player, msg: string) => void
-declare const java: any
+declare const java: JavaAPI
 declare const __plugin: Plugin
 declare const __dirname: string
 declare const __filename: string
@@ -25,15 +25,50 @@ interface Java {
     type(type: 'org.bukkit.boss.BarStyle'): BarStyles
     type(type: 'org.bukkit.event.inventory.InventoryType'): InventoryTypes
     type(type: string): any
+    type(type: 'org.bukkit.configuration.MemoryConfiguration'):  MemoryConfigurationConstructor
+    type(type: 'java.util.stream'): StreamStatic
     from: (JavaScriptItem: any) => any
+}
+
+interface JavaAPI {
+    util: {
+        stream: {
+            Collectors: Collectors
+        }
+    }
+}
+
+interface List<T> {
+    stream(): Stream<T>
+    length: number
+    readonly [n: number]: T
+}
+
+interface Stream<T> {
+    allMatch(predicate: (e:T) => boolean): boolean
+    anyMatch(predicate: (e:T) => boolean): boolean
+    collect<S>(collector: Collector<T, S>): S
+    distinct(): Stream<T>
+    filter(predicate: (e:T) => boolean): Stream<T>
+    toArray(): T[]
+    sort(): Stream<T>
+}
+
+interface StreamStatic {
+    concat<T>(a: Stream<T>, b: Stream<T>): Stream<T>
+    new<T>(): Stream<T>
+}
+
+interface Collector<T, S> {
+
+}
+
+interface Collectors {
+    toList<T>(): Collector<T, List<T>>
 }
 
 interface TabExecutor extends TabCompleter, CommandExecutor {
 
-}
-
-interface Java{
-   type(type: 'org.bukkit.configuration.MemoryConfiguration'):  MemoryConfigurationConstructor
 }
 
 type Configuration = any
@@ -7035,7 +7070,7 @@ interface World extends PluginMessageRecipient, Metadatable {
     /** Gets whether the world's spawn area should be kept loaded into memoryor not. */
     getKeepSpawnInMemory(): boolean
     /** Get a list of all living entities in this World */
-    getLivingEntities(): LivingEntity[]
+    getLivingEntities(): List<LivingEntity>
     /** Gets an array of all loaded Chunks */
     getLoadedChunks(): Chunk[]
     /** Gets the maximum height of this world. */
