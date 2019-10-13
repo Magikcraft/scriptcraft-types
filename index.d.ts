@@ -3139,7 +3139,7 @@ interface BookMeta extends ItemMeta {
    setTitle​(title: string): boolean
 }
 
-interface ItemMeta extends Cloneable<ItemMeta> {
+interface ItemMeta extends Cloneable<ItemMeta>, PersistentDataHolder {
     /** Add an Attribute and it's Modifier. */
     addAttributeModifier(
         attribute: Attribute,
