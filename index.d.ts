@@ -4802,25 +4802,25 @@ interface Nameable {
 
 interface PersistentDataHolder {
     /** Returns a custom tag container capable of storing tags on the object. */
-    getPersistentDataContainer(): any //PersistentDataContainer
+    getPersistentDataContainer(): PersistentDataContainer
 }
 
-// interface PersistentDataContainer {
-//    /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
-//    get​<T, Z>(key: NamespacedKey, type: PersistentDataType<T,Z>): Z
-//    /** Returns the adapter context this tag container uses. */
-//    getAdapterContext​(): PersistentDataAdapterContext
-//    /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
-//    getOrDefault​(key: NamespacedKey, type: PersistentDataType<T,Z>, defaultValue: Z): <T,Z> Z
-//    /** Returns if the persistent metadata provider has metadata registeredmatching the provided parameters. */
-//    has​(key: NamespacedKey, type: PersistentDataType<T,Z>): <T,Z> boolean
-//    /** Returns if the container instance is empty, therefore has no entriesinside it. */
-//    isEmpty​(): boolean
-//    /** Removes a custom key from the PersistentDataHolder instance. */
-//    remove​(key: NamespacedKey): void
-//    /** Stores a metadata value on the PersistentDataHolder instance. */
-//    set​(key: NamespacedKey, type: PersistentDataType<T,Z>, value: Z): void
-// }
+interface PersistentDataContainer {
+   /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
+   get​<T, Z>(key: NamespacedKey, type: PersistentDataType<T,Z>): Z
+   /** Returns the adapter context this tag container uses. */
+   getAdapterContext​(): PersistentDataAdapterContext
+   /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
+   getOrDefault​<T, Z>(key: NamespacedKey, type: PersistentDataType<T,Z>, defaultValue: Z):  Z
+   /** Returns if the persistent metadata provider has metadata registeredmatching the provided parameters. */
+   has​<T, Z>(key: NamespacedKey, type: PersistentDataType<T,Z>):  boolean
+   /** Returns if the container instance is empty, therefore has no entriesinside it. */
+   isEmpty​(): boolean
+   /** Removes a custom key from the PersistentDataHolder instance. */
+   remove​(key: NamespacedKey): void
+   /** Stores a metadata value on the PersistentDataHolder instance. */
+   set<T,Z>​(key: NamespacedKey, type: PersistentDataType<T, Z>, value: Z): void
+}
 
 interface Java {
     type(type: 'org.bukkit.util.BoundingBox'): BoundingBoxConstructor
@@ -11574,7 +11574,7 @@ interface PersistentDataType<T,Z> {
     getComplexType​(): new(...args) => Z
     /** Returns the primitive data type of this tag. */
     getPrimitiveType​(): new(...args) => T
-    /** Returns the primitive data that resembles the complex object passed tothis method. */
+    /** Returns the primitive data that resembles the complex object passed to this method. */
     toPrimitive​(complex: Z, context: PersistentDataAdapterContext): any
 }
 
@@ -11586,7 +11586,7 @@ interface PersistentDataContainer {
     /** Returns the adapter context this tag container uses. */
     getAdapterContext​(): PersistentDataAdapterContext
     /** Returns the metadata value that is stored on thePersistentDataHolder instance. */
-    getOrDefault​<T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>, defaultValue: Z):  Z
+    getOrDefault​<T, Z>(key: NamespacedKey, type: PersistentDataType<T, Z>, defaultValue: Z):  Z
     /** Returns if the persistent metadata provider has metadata registeredmatching the provided parameters. */
     has​ <T,Z>(key: NamespacedKey, type: PersistentDataType<T,Z>): boolean
     /** Returns if the container instance is empty, therefore has no entriesinside it. */
