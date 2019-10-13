@@ -12676,6 +12676,34 @@ interface  EntityTargetEvent extends EntityEvent, Cancellable {
     setTarget​(target: Entity): void
 }
 
+
+interface Java{
+    type(type: 'org.bukkit.event.entity.EntityShootBowEvent'):  EntityShootBowEventConstructor
+}
+
+interface  EntityShootBowEventConstructor {
+    new(shooter: LivingEntity,  bow: ItemStack,  projectile: Entity,  force: number):  EntityShootBowEvent
+}
+
+interface  EntityShootBowEvent extends EntityEvent {
+    /** Gets the bow ItemStack used to fire the arrow. */
+    getBow(): ItemStack
+    /** Returns the Entity involved in this event  */
+    getEntity(): LivingEntity
+    /** Returns the reason for the targeting */
+    getForce(): number
+    /** Get the entity that this is targeting. */
+    getHandlers​(): HandlerList
+    /** Gets the projectile which will be launched by this event */
+    getProjectile​(): Entity
+    /** Gets the cancellation state of this event. */
+    isCancelled(): boolean
+    /** Sets the cancellation state of this event. */
+    setCancelled​(cancel: boolean): void
+    /** Replaces the projectile which will be launched */
+    setProjectile​(projectile: Entity): void
+}
+
 interface Java{
     type(type: 'org.bukkit.event.entity.EntityTeleportEvent'):  EntityTeleportEventConstructor
 }
@@ -13904,7 +13932,7 @@ declare module 'events' {
       * priority - optional - see events.on() for more information.
 
      ***/
-    function entityShootBow(callback: eventHandler, priority?: any): ScriptCraftEventHandler
+    function entityShootBow(callback: eventHandler<EntityShootBowEvent>, priority?: any): ScriptCraftEventHandler
 
     /*********************
      ### events.entitySpawn()
