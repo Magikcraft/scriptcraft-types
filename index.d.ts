@@ -7372,7 +7372,7 @@ interface World extends PluginMessageRecipient, Metadatable {
         clazz: new (...args) => T
     ): T
     /** Creates a entity at the given Location */
-    spawnEntity(loc: Location, type: EntityType): Entity
+    spawnEntity(loc: Location, type: EntityType): Entity | LivingEntity
     /** Spawn a FallingBlock entity at the given Location ofthe specified Material. */
     spawnFallingBlock(location: Location, data: BlockData): FallingBlock
     /** Spawn a FallingBlock entity at the given Location ofthe specified Material. */
