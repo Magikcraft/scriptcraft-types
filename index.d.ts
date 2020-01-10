@@ -35,7 +35,18 @@ interface JavaAPI {
         stream: {
             Collectors: Collectors
         }
-    }
+    },
+    io: {
+        File: FileConstructor,
+        FileReader: any,
+        BufferedReader: any
+    },
+    lang: {
+        System: {
+            getenv: (key: string) => string | null
+        }
+    },
+    org: any
 }
 
 interface Collection<T> {
@@ -1719,7 +1730,7 @@ interface LivingEntity extends Attributable, Damageable, ProjectileSource, Entit
     /** Returns if the living entity despawns when away from players or not. */
     getRemoveWhenFarAway(): boolean
     /** Gets the block that the living entity has targeted. */
-    getTargetBlock(transparent: Material[], maxDistance: number): Block
+    getTargetBlock(transparent: Material[] | null, maxDistance: number): Block
     /** Gets the block that the living entity has targeted. */
     getTargetBlockExact(maxDistance: number): Block
     /** Gets the block that the living entity has targeted. */
@@ -7608,8 +7619,12 @@ interface Location {
     setZ: (z: number) => void
     getChunk: () => Chunk
     getDirection: () => Vector
+    setPitch: (pitch: number) => void
     getPitch: () => number
+    getYaw: () => number
+    setYaw: (yaw: number) => void
     getWorld: () => World
+    setWorld: (world: World) => void
     length: () => number
     lengthSquared: () => number
     locToBlock: () => number
