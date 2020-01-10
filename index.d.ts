@@ -687,7 +687,7 @@ interface Iterable<T> {
    forEach(consumer: (item: T) => void): void
 }
 
-interface Iterator<T> {
+interface JIterator<T> {
    hasNext(): boolean
    next(): T
    remove()
@@ -4520,7 +4520,7 @@ interface Server extends PluginMessageRecipient {
     /** Adds a recipe to the crafting manager. */
     addRecipe(recipe: Recipe): boolean
     /** Get an iterator through all advancements. */
-    advancementIterator(): Iterator<Advancement>
+    advancementIterator(): JIterator<Advancement>
     /** Bans the specified address from the server. */
     banIP(address: string): void
     /** Broadcasts the specified message to every user with the givenpermission name. */
@@ -4614,7 +4614,7 @@ interface Server extends PluginMessageRecipient {
     /** Gets the KeyedBossBar specified by this key. */
     getBossBar(key: NamespacedKey): KeyedBossBar | null
     /** Gets an unmodifiable iterator through all persistent bossbars. */
-    getBossBars(): Iterator<KeyedBossBar>
+    getBossBars(): JIterator<KeyedBossBar>
     /** Gets the Bukkit version that this server is running. */
     getBukkitVersion(): string
     /** Gets a list of command aliases defined in the server properties. */
@@ -4749,7 +4749,7 @@ interface Server extends PluginMessageRecipient {
     matchPlayer(name: string): Player[]
     nukkit?: any
     /** Get an iterator through the list of crafting recipes. */
-    recipeIterator(): Iterator<Recipe>
+    recipeIterator(): JIterator<Recipe>
     /** Reloads the server, refreshing settings and plugin information. */
     reload(): void
     /** Reload only the Minecraft data for the server. */
