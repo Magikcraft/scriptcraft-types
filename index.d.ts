@@ -1,5 +1,6 @@
 declare const echo: (player: Player, msg: string) => void
 declare const java: JavaAPI
+declare const org: any
 declare const __plugin: Plugin
 declare const __dirname: string
 declare const __filename: string
